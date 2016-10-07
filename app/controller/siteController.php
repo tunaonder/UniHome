@@ -31,7 +31,7 @@ class SiteController {
 
   public function home() {
 		$pageName = 'Home';
-
+		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/home.tpl';
 
   }
