@@ -31,7 +31,7 @@
 
     </div>
 
-    <img  src="<?= BASE_URL ?>/public/images/student-house.jpg" alt="UniHome"></img>
+    <img class="mainImage" src="<?= BASE_URL ?>/public/images/student-house.jpg" alt="UniHome"></img>
 
   </div>
 

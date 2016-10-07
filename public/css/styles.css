@@ -19,7 +19,8 @@ div{
 
 }
 
-/*Header Styling*/
+
+/*==================Header Styling=====================*/
 .header #appName{
 
   float: left;
@@ -47,8 +48,96 @@ div{
 }
 
 .header label{
-  
+
   float: right;
   margin-right: 20px;
   margin-top: 25px;
+}
+
+
+/*============================Home Content Styling====================================*/
+
+.mainImage {
+  width: 100%;
+}
+
+#featuresTitle{
+  /*Make the item to the horizontally centered*/
+  display: block;
+  margin-top: 20px;
+  font-size: 50px;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 0;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+
+}
+
+.featuresLabel{
+  font-style: italic;
+  font-size: 25px;
+}
+
+#featureContainer{
+  /*Centered Features*/
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  height: auto;
+  width: 60%;
+}
+
+/*FOOTER STYLING*/
+#footer{
+  width: 100%;
+  /*Put content to the center*/
+  text-align: center;
+  background-color: #7D1935;
+  color: white;
+
+
+}
+#footer-content{
+  display: block;
+  margin: 0 auto;
+}
+#footer label{
+  display: inline;
+  font-size: 15px;
+  color: white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-family: Arial Narrow, sans-serif;
+}
+
+#footer button{
+  border: none;
+  background: transparent;
+  text-decoration: underline;
+  font-size: 15px;
+  padding-left: 10px;
+  color: white;
+  margin-top: 10px;
+  cursor: pointer;
+  font-family: "Lucida Grande", Geneva, Verdana, Arial, Helvetica, sans-serif;
+  margin-bottom: 5px;
+}
+/*Change button text color on hover*/
+#footer button:hover{
+  color: red;
+}
+/*No selection color around the button when button is clicked*/
+#footer button:focus{
+  outline: 0;
+}
+
+#footer label{
+  margin-left: 15px;
+  font-size: 16px;
+}
+
+#listContent2{
+  margin: 0px;
+  height: 100%;
 }
