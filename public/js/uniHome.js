@@ -1,25 +1,30 @@
-// Run When page is ready
-$(document).ready(function () {
-  // Add header template to the div with header id
-  $(function(){
-
-
-      title = "Explore UniHome Features! -";
-      $('#featuresTitle').append(title);
-
-
-      st1 = "Meet all of your housing needs by connecting other university students!";
-      st2 = "Find Roommates from your university!";
-      st3 = "Buy and Sell your goods in a fast way!";
-      st4 = "Sublease your rooms!";
-
-      $('#featuresLabel1').append(st1);
-      $('#featuresLabel2').append(st2);
-      $('#featuresLabel3').append(st3);
-      $('#featuresLabel4').append(st4);
-
-
-
-
-  });
-});
+//Directs users to another page with the information of userLoggedIn
+function changePage(page){
+  if (page == 'login'){
+    window.location.href = './login';
+  }
+  else if (page == 'signUp'){
+    window.location.href = './signUp';
+  }
+  else if (page == 'post'){
+    window.location.href = './postItem.html';
+  }
+  else if (page == 'home'){
+    window.location.href = './';
+  }
+  else if(page == 'forSale'){
+    window.location.href = './forSale.html';
+  }
+  else if(page == 'roommates'){
+    window.location.href = './roommates.html';
+  }
+  else if(page == 'sublease'){
+    window.location.href = './sublease.html' + '#';
+  }
+  else if(page == 'item'){
+    window.location.href = './item.html';
+  }
+  else{
+    alert("Currently this page does not exist. Sorry for the inconvenience2!");
+  }
+}
