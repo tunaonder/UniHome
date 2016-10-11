@@ -18,8 +18,8 @@
     <div class="header">
 
       <!-- Application Logo or Name -->
-      <label id="appName">UniHome </label>
-      <!-- <a id="appName" href="">UniHome</a> -->
+      <!-- <label id="appName">UniHome </label> -->
+        <a id="appName" href="./">UniHome</a>
 
       <!-- Header Navigators -->
       <div >
@@ -27,9 +27,6 @@
         <button type="button" onClick="changePage('login');">Login</button>
         <label style="color: white"> Login To Post An Item: </label>
       </div>
-
-
-
 
 
     </div>
