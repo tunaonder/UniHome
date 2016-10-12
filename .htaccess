@@ -6,5 +6,10 @@ RewriteEngine on
 
 # Site
 RewriteRule ^$ app/controller/siteController.php?action=home [QSA,L]
+RewriteRule ^login/process/?$ app/controller/siteController.php?action=processLogin [QSA,L]
 RewriteRule ^login/?$ app/controller/siteController.php?action=login [QSA,L]
 RewriteRule ^signUp/?$ app/controller/siteController.php?action=signUp [QSA,L]
+
+#User
+
+RewriteRule ^signUp/saveUser?$ app/controller/userController.php?action=saveUser [QSA,L]

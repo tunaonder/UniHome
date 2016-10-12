@@ -17,19 +17,26 @@
 
       <div class="centeredContent" >
 
-        <div class="lineContainer">
-          <label>Email: </label>
-          <input id="emailInput" type="text">
-        </div>
+        <form id="login" action="<?= BASE_URL ?>/login/process" method="POST">
 
-        <div class="lineContainer">
-          <label>Password: </label>
-          <input id="passwordInput" type="password">
-        </div>
+          <div class="lineContainer">
+            <label>Email: </label>
+            <input id="emailInput" type="text" name="un">
+          </div>
+
+          <div class="lineContainer">
+            <label>Password: </label>
+            <input id="passwordInput" type="password" name="pw">
+          </div>
 
 
-        <button class="contentButton" type="button" onClick="userLogin();">Login!</button>
-        <button class="contentButton" type="button" onClick="changePage('home');">Cancel</button>
+          <button class="contentButton" type="submit" >Login!</button>
+          <button class="contentButton" type="button" onClick="changePage('home');">Cancel</button>
+
+        </form>
+
+
+
 
 
       </div>

@@ -17,6 +17,15 @@
     <!-- Header Section Of Page -->
     <div class="header">
 
+      <?php
+
+      session_start();
+      if(isset($_SESSION['user'])) {
+        echo '<p>Logged in as: '.$_SESSION['user'].'</p>';
+      }
+
+      ?>
+
       <!-- Application Logo or Name -->
       <!-- <label id="appName">UniHome </label> -->
         <a id="appName" href="./">UniHome</a>

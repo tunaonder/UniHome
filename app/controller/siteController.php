@@ -26,6 +26,13 @@ class SiteController {
 			$this->signUp();
 			break;
 
+			case 'processLogin':
+				$username = $_POST['un'];
+				$password = $_POST['pw'];
+				$this->processLogin($username, $password);
+				break;
+
+
 
 			// redirect to home page if all else fails
 			default:
@@ -57,6 +64,26 @@ class SiteController {
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/signUp.tpl';
 		include_once SYSTEM_PATH.'/view/footer.tpl';
+	}
+
+	public function processLogin($u, $p) {
+
+		$adminUsername = 'saito@vt.edu';
+		$adminPassword = '1234';
+		if(($u == $adminUsername) && ($p == $adminPassword)) {
+			session_start();
+			$_SESSION['user'] = $u;
+			header('Location: '.BASE_URL);
+			exit();
+		// 	echo 'Hooray! Access is granted.';
+		// } else {
+		// 	echo 'Access denied.';
+		} else {
+			// send them back
+			header('Location: '.BASE_URL);
+			exit();
+		}
+
 	}
 
 
