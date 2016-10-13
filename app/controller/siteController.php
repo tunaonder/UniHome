@@ -35,6 +35,8 @@ class SiteController {
 			case 'processLogout':
 
 			$this->processLogout();
+
+
 			break;
 
 
