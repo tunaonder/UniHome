@@ -1,8 +1,15 @@
+<?php
+
+$loginInformation = "Login to Post an Item!";
+$button1Information = "Login";
+$button2Information = "Sign Up";
+?>
+
 <!DOCTYPE html>
 <html  lang="en">
 <head>
 
-<title>UniHome | <?= $pageName ?></title>
+  <title>UniHome | <?= $pageName ?></title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -13,32 +20,41 @@
 
 </head>
 <body>
+  <!-- echo '<p>Logged in as: '.$_SESSION['user'].'</p>'; -->
+  <!-- Header Section Of Page -->
+  <div class="header">
 
-    <!-- Header Section Of Page -->
-    <div class="header">
+    <?php
 
-      <?php
+    session_start();
 
-      session_start();
-      if(isset($_SESSION['user'])) {
-        echo '<p>Logged in as: '.$_SESSION['user'].'</p>';
-      }
+    if(isset($_SESSION['user'])) {
 
-      ?>
+      $loginInformation = 'Logged in as: '.$_SESSION['user'].'';
+      $button1Information = "Post";
+      $button2Information = "Logout";
 
-      <!-- Application Logo or Name -->
-      <!-- <label id="appName">UniHome </label> -->
-        <a id="appName" href="./">UniHome</a>
+    }
 
-      <!-- Header Navigators -->
-      <div >
-        <button id="signUpButton" type="button" onClick="changePage('signUp');">Sign Up</button>
-        <button type="button" onClick="changePage('login');">Login</button>
-        <label style="color: white"> Login To Post An Item: </label>
-      </div>
+    ?>
 
+    <!-- Application Logo or Name -->
+    <!-- <label id="appName">UniHome </label> -->
+    <a id="appName" href="./">UniHome</a>
 
+    <!-- Header Navigators -->
+    <div >
+      <form action="<?= BASE_URL ?>/processLogout" method="POST">
+
+        <button id="signUpButton" type="submit" ><?= $button2Information ?></button>
+        <button type="button" onClick="changePage('login');"><?= $button1Information ?></button>
+        <label id = "userLoggedInLabel "style="color: white"> <?= $loginInformation ?> </label>
+
+      </form>
     </div>
+
+
+  </div>
 
 </body>
 

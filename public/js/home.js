@@ -5,7 +5,6 @@ $(document).ready(function () {
   // Add header template to the div with header id
   $(function(){
 
-    console.log("asdads");
 
       title = "Explore UniHome Features! -";
       $('#featuresTitle').append(title);

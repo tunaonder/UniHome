@@ -27,10 +27,15 @@ class SiteController {
 			break;
 
 			case 'processLogin':
-				$username = $_POST['un'];
-				$password = $_POST['pw'];
-				$this->processLogin($username, $password);
-				break;
+			$username = $_POST['un'];
+			$password = $_POST['pw'];
+			$this->processLogin($username, $password);
+			break;
+
+			case 'processLogout':
+
+			$this->processLogout();
+			break;
 
 
 
@@ -68,6 +73,8 @@ class SiteController {
 
 	public function processLogin($u, $p) {
 
+
+
 		$adminUsername = 'saito@vt.edu';
 		$adminPassword = '1234';
 		if(($u == $adminUsername) && ($p == $adminPassword)) {
@@ -75,14 +82,28 @@ class SiteController {
 			$_SESSION['user'] = $u;
 			header('Location: '.BASE_URL);
 			exit();
-		// 	echo 'Hooray! Access is granted.';
-		// } else {
-		// 	echo 'Access denied.';
+			// 	echo 'Hooray! Access is granted.';
+			// } else {
+			// 	echo 'Access denied.';
 		} else {
 			// send them back
 			header('Location: '.BASE_URL);
 			exit();
 		}
+
+	}
+
+	public function processLogout() {
+
+		//Clean Session Cookies
+		$_SESSION = Array();
+		//Delete Session
+		session_start();
+		session_destroy();
+		// send them back
+		header('Location: '.BASE_URL);
+		exit();
+
 
 	}
 
