@@ -6,7 +6,7 @@
   <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/styles.css">
   <script type="text/javascript" src="<?= BASE_URL ?>/public/js/jquery-3.1.0.min.js"></script>
   <script type="text/javascript" src="<?= BASE_URL ?>/public/js/uniHome.js"></script>
-  <script type="text/javascript" src="<?= BASE_URL ?>/public/js/login.js"></script>
+
 
 
 </head>

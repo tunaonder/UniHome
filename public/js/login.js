@@ -1,3 +1,6 @@
+
+
+
 function userLogin(){
 
   //When email or password inputs are focused remove red border color
@@ -9,7 +12,7 @@ function userLogin(){
     $('#passwordInput').css('border-color', '');
     $('#emailInput').css('border-color', '');
   });
-  
+
   //Get Email and password value
   var email = $('#emailInput').val();
   var password = $('#passwordInput').val();

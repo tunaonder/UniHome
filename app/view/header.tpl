@@ -1,8 +1,8 @@
 <?php
 
 $loginInformation = "Login to Post an Item!";
-$button1Information = "Login";
-$button2Information = "Sign Up";
+$userLoggedInButtonStyle = "none";
+$userLoggedInButtonStyle2 = "block";
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +16,8 @@ $button2Information = "Sign Up";
   <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/styles.css">
   <script type="text/javascript" src="<?= BASE_URL ?>/public/js/jquery-3.1.0.min.js"></script>
   <script type="text/javascript" src="<?= BASE_URL ?>/public/js/uniHome.js"></script>
+  <script type="text/javascript" src="<?= BASE_URL ?>/public/js/login.js"></script>
+
 
 
 </head>
@@ -31,12 +33,13 @@ $button2Information = "Sign Up";
     if(isset($_SESSION['user'])) {
 
       $loginInformation = 'Logged in as: '.$_SESSION['user'].'';
-      $button1Information = "Post";
-      $button2Information = "Logout";
+      $userLoggedInButtonStyle = "block";
+      $userLoggedInButtonStyle2 = "none";
 
     }
 
     ?>
+    <!-- echo '<script type="text/javascript">','jsfunction();','</script>'; -->
 
     <!-- Application Logo or Name -->
     <!-- <label id="appName">UniHome </label> -->
@@ -46,8 +49,10 @@ $button2Information = "Sign Up";
     <div >
       <form action="<?= BASE_URL ?>/processLogout" method="POST">
 
-        <button id="signUpButton" type="submit" ><?= $button2Information ?></button>
-        <button type="button" onClick="changePage('login');"><?= $button1Information ?></button>
+        <button id="signUpButton" type="submit" style="display: <?= $userLoggedInButtonStyle ?>">Logout</button>
+        <button type="button" onClick="changePage('post');" style="display: <?= $userLoggedInButtonStyle ?>">Post!</button>
+        <button type="button" onClick="changePage('signUp');" style="display: <?= $userLoggedInButtonStyle2 ?>">Sign Up</button>
+        <button type="button" onClick="changePage('login');" style="display: <?= $userLoggedInButtonStyle2 ?>">Login</button>
         <label id = "userLoggedInLabel "style="color: white"> <?= $loginInformation ?> </label>
 
       </form>

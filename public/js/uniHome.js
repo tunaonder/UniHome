@@ -1,3 +1,7 @@
+$(document).ready(function(){
+
+});
+
 //Directs users to another page with the information of userLoggedIn
 function changePage(page){
   if (page == 'login'){
