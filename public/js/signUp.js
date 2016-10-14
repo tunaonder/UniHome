@@ -1,9 +1,5 @@
-
-
-
 function userSignUp(){
 
-  console.log('adfasdf');
 
   var name = $('#signUpNameInput').val();
   var email = $('#signUpEmailInput').val();

@@ -52,6 +52,7 @@ function userLogin(){
 
   //If both email and password are valid, login
   if(check1 && check2){
+
     return true;
   }
   else {

@@ -22,12 +22,12 @@
 
           <div class="lineContainer">
             <label>Email: </label>
-            <input id="emailInput" type="text" name="un">
+            <input id="emailInput" type="text" name="uEmail">
           </div>
 
           <div class="lineContainer">
             <label>Password: </label>
-            <input id="passwordInput" type="password" name="pw">
+            <input id="passwordInput" type="password" name="uPw">
           </div>
 
 

@@ -3,6 +3,8 @@
 $loginInformation = "Login to Post an Item!";
 $userLoggedInButtonStyle = "none";
 $userLoggedInButtonStyle2 = "block";
+
+
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +18,19 @@ $userLoggedInButtonStyle2 = "block";
   <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/styles.css">
   <script type="text/javascript" src="<?= BASE_URL ?>/public/js/jquery-3.1.0.min.js"></script>
   <script type="text/javascript" src="<?= BASE_URL ?>/public/js/uniHome.js"></script>
-  <script type="text/javascript" src="<?= BASE_URL ?>/public/js/login.js"></script>
+
+
+
+  <?php if($pageName == 'Home'): ?>
+    <script type="text/javascript" src="<?= BASE_URL ?>/public/js/home.js"></script>
+
+  <?php endif; ?>
+  <?php if($pageName == 'Login'): ?>
+    <script type="text/javascript" src="<?= BASE_URL ?>/public/js/login.js"></script>
+  <?php endif; ?>
+  <?php if($pageName == 'Sign Up'): ?>
+    <script type="text/javascript" src="<?= BASE_URL ?>/public/js/signUp.js"></script>
+  <?php endif; ?>
 
 
 
@@ -39,6 +53,7 @@ $userLoggedInButtonStyle2 = "block";
     }
 
     ?>
+
     <!-- echo '<script type="text/javascript">','jsfunction();','</script>'; -->
 
     <!-- Application Logo or Name -->

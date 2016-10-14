@@ -27,9 +27,9 @@ class SiteController {
 			break;
 
 			case 'processLogin':
-			$username = $_POST['un'];
-			$password = $_POST['pw'];
-			$this->processLogin($username, $password);
+			$userEmail = $_POST['uEmail'];
+			$password = $_POST['uPw'];
+			$this->processLogin($userEmail, $password);
 			break;
 
 			case 'processLogout':
@@ -75,18 +75,27 @@ class SiteController {
 
 	public function processLogin($u, $p) {
 
+		//Get User Object From DB
+		$user = User::loadByEmail($u);
 
+		//If it is null go back
+		if ($user == null){
 
-		$adminUsername = 'saito@vt.edu';
-		$adminPassword = '1234';
-		if(($u == $adminUsername) && ($p == $adminPassword)) {
+			header('Location: '.BASE_URL);
+			exit();
+		}
+		//Get User password
+		else{
+			$password = $user->get('password');
+		}
+
+		//If password matches with db password start session
+		if( $password == $p) {
 			session_start();
 			$_SESSION['user'] = $u;
 			header('Location: '.BASE_URL);
 			exit();
-			// 	echo 'Hooray! Access is granted.';
-			// } else {
-			// 	echo 'Access denied.';
+
 		} else {
 			// send them back
 			header('Location: '.BASE_URL);

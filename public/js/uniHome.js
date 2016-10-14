@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+  
 });
 
 //Directs users to another page with the information of userLoggedIn
@@ -31,4 +31,9 @@ function changePage(page){
   else{
     alert("Currently this page does not exist. Sorry for the inconvenience2!");
   }
+}
+
+function consoleLog(text){
+  console.log(text);
+  console.log("asdasdas");
 }

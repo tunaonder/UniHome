@@ -9,7 +9,7 @@ class User extends DbObject {
     protected $name;
     protected $email;
     protected $phone_number;
-    protected $pw;
+    protected $password;
     protected $university;
 
 
@@ -18,7 +18,7 @@ class User extends DbObject {
         $defaultArgs = array(
             'id' => null,
             'email' => '',
-            'pw' => '',
+            'password' => '',
             'university' => null,
             'name' => null,
             'phone_number' => null
@@ -28,7 +28,7 @@ class User extends DbObject {
 
         $this->id = $args['id'];
         $this->email = $args['email'];
-        $this->pw = $args['pw'];
+        $this->password = $args['password'];
         $this->university = $args['university'];
         $this->name = $args['name'];
         $this->phone_number = $args['phone_number'];
@@ -40,7 +40,7 @@ class User extends DbObject {
         // omit id and any timestamps
         $db_properties = array(
             'email' => $this->email,
-            'password' => $this->pw,
+            'password' => $this->password,
             'university' => $this->university,
             'name' => $this->name,
             'phone_number' => $this->phone_number
@@ -56,7 +56,7 @@ class User extends DbObject {
     }
 
     // load user by email
-    public static function loadByemail($email=null) {
+    public static function loadByEmail($email=null) {
         if($email === null)
             return null;
 
@@ -74,5 +74,6 @@ class User extends DbObject {
             return ($obj);
         }
     }
+
 
 }
