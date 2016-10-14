@@ -10,6 +10,7 @@ RewriteRule ^login/process/?$ app/controller/siteController.php?action=processLo
 RewriteRule ^login/?$ app/controller/siteController.php?action=login [QSA,L]
 RewriteRule ^signUp/?$ app/controller/siteController.php?action=signUp [QSA,L]
 RewriteRule ^processLogout/?$ app/controller/siteController.php?action=processLogout [QSA,L]
+RewriteRule ^post/?$ app/controller/siteController.php?action=post [QSA,L]
 
 #User
 

@@ -23,7 +23,6 @@ $userLoggedInButtonStyle2 = "block";
 
   <?php if($pageName == 'Home'): ?>
     <script type="text/javascript" src="<?= BASE_URL ?>/public/js/home.js"></script>
-
   <?php endif; ?>
   <?php if($pageName == 'Login'): ?>
     <script type="text/javascript" src="<?= BASE_URL ?>/public/js/login.js"></script>
@@ -31,12 +30,15 @@ $userLoggedInButtonStyle2 = "block";
   <?php if($pageName == 'Sign Up'): ?>
     <script type="text/javascript" src="<?= BASE_URL ?>/public/js/signUp.js"></script>
   <?php endif; ?>
+  <?php if($pageName == 'Post'): ?>
+    <script type="text/javascript" src="<?= BASE_URL ?>/public/js/post.js"></script>
+  <?php endif; ?>
 
 
 
 </head>
 <body>
-  <!-- echo '<p>Logged in as: '.$_SESSION['user'].'</p>'; -->
+
   <!-- Header Section Of Page -->
   <div class="header">
 
@@ -54,10 +56,8 @@ $userLoggedInButtonStyle2 = "block";
 
     ?>
 
-    <!-- echo '<script type="text/javascript">','jsfunction();','</script>'; -->
 
     <!-- Application Logo or Name -->
-    <!-- <label id="appName">UniHome </label> -->
     <a id="appName" href="./">UniHome</a>
 
     <!-- Header Navigators -->

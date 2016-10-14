@@ -33,8 +33,10 @@ class SiteController {
 			break;
 
 			case 'processLogout':
-
 			$this->processLogout();
+
+			case 'post':
+			$this->post();
 
 
 			break;
@@ -70,6 +72,13 @@ class SiteController {
 		$pageName = 'Sign Up';
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/signUp.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
+	}
+
+	public function post() {
+		$pageName = 'Post';
+		include_once SYSTEM_PATH.'/view/header.tpl';
+		include_once SYSTEM_PATH.'/view/post.tpl';
 		include_once SYSTEM_PATH.'/view/footer.tpl';
 	}
 

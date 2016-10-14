@@ -271,3 +271,56 @@ div .alert{
   background-color: red;
 
 }
+
+/*================Post Item Page Style=============*/
+.mainContent .postItemContent{
+  /*Make the item to the horizontally centered*/
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 30px;
+  height: 100%;
+  font-size: 30px;
+  text-align: center;
+  width: 380px;
+}
+
+.mainContent .postItemLineContainer{
+  margin-top: 6px;
+}
+
+/*Change size of of the content under 400px*/
+@media all and (max-width: 400px){
+  .mainContent .postItemContent{
+
+    width: 320px;
+  }
+
+  .mainContent .postItemLineContainer label{
+    font-size: 20px;
+  }
+}
+
+
+.mainContent textarea{
+  float: right;
+  margin-top: 10px;
+}
+
+.mainContent .postItemLineContainer input{
+  float: right;
+  width: 195px;
+  margin-top: 10px;
+}
+
+.mainContent .postItemLineContainer select{
+  float: right;
+  width: 200px;
+  margin-top: 10px;
+}
+
+.mainContent .postItemLineContainer img{
+  width: 100px;
+  float: left;
+  margin-top: 10px;
+}

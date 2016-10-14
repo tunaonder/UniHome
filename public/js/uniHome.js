@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  
+
 });
 
 //Directs users to another page with the information of userLoggedIn
@@ -11,7 +11,7 @@ function changePage(page){
     window.location.href = './signUp';
   }
   else if (page == 'post'){
-    window.location.href = './postItem.html';
+    window.location.href = './post';
   }
   else if (page == 'home'){
     window.location.href = './';
