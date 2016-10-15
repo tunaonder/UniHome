@@ -38,7 +38,7 @@ class SiteController {
 			case 'post':
 			$this->post();
 
-			
+
 
 
 
@@ -105,6 +105,7 @@ class SiteController {
 		if( $password == $p) {
 			session_start();
 			$_SESSION['user'] = $u;
+			$_SESSION['userId'] = $user->get('id');
 			header('Location: '.BASE_URL);
 			exit();
 

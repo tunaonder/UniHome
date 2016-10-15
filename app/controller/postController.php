@@ -9,6 +9,7 @@ $action = $_GET['action'];
 $pc = new PostController();
 $pc->route($action);
 
+
 class PostController {
 
 	// route us to the appropriate class method for this action
@@ -29,28 +30,38 @@ class PostController {
 	}
 
 		public function postItem(){
-			$this->uploadPhoto();
+
+			//Upload Photo and Return File Name
+			$file_name = $this->uploadPhoto();
+
+			$category = $_POST['category'];
+			$type = $_POST['type'];
+			$title = $_POST['title'];
+			$description = $_POST['description'];
+			$price = $_POST['price'];
+			$condition = $_POST['conditionInfo'];
+			$photoInfo = $file_name;
+			//Get the Creator Id from the Session
+			session_start();
+			if (isset($_SESSION['user'])){
+				$creator_id = $_SESSION['userId'];
+			}
 
 
-			// $category = $_POST['category'];
-			// $type = $_POST['type'];
-			// $title = $_POST['title'];
-			// $description = $_POST['description'];
-			// $price = $_POST['price'];
-			// $condition = $_POST['condition'];
-			// $file $_POST['file'];
-			//
-			// $user = new User();
-			//
-			// $user->set('name', $name);
-			// $user->set('email', $email);
-			// $user->set('phone_number', $phone_number);
-			// $user->set('university', $university);
-			// $user->set('password', $password);
-			//
-			// $user->save();
-			// //Redirect user
-			// header('Location: '.BASE_URL.'/');
+			$post = new Post();
+
+			$post->set('category', $category);
+			$post->set('type', $type);
+			$post->set('title', $title);
+			$post->set('description', $description);
+			$post->set('price', $price);
+			$post->set('conditionInfo', $condition);
+			$post->set('photoInfo', $photoInfo);
+			$post->set('creator_id', $creator_id);
+
+			$post->save();
+			//Redirect user
+			header('Location: '.BASE_URL.'/');
 
 
 
@@ -63,10 +74,10 @@ class PostController {
 			if(isset($_POST['submit']))
 			{
 				//Change file Name. So that files uploaded with the same name will have different names
-				$file = rand(1000,100000)."-".$_FILES['file']['name'];
-				$file_loc = $_FILES['file']['tmp_name'];
-				$file_size = $_FILES['file']['size'];
-				$file_type = $_FILES['file']['type'];
+				$file = rand(1000,100000)."-".$_FILES['fileInfo']['name'];
+				$file_loc = $_FILES['fileInfo']['tmp_name'];
+				$file_size = $_FILES['fileInfo']['size'];
+				$file_type = $_FILES['fileInfo']['type'];
 
 				 $folder = SYSTEM_PATH.'/uploads/';
 
@@ -81,6 +92,8 @@ class PostController {
 				$final_file=str_replace(' ','-',$new_file_name);
 
 				move_uploaded_file($file_loc,$folder.$final_file);
+
+				return $final_file;
 
 
 			}

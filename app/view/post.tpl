@@ -45,7 +45,7 @@
 
       <div class="postItemLineContainer">
         <label>Condition: </label>
-        <select name="condition">
+        <select name="conditionInfo">
           <option value="New">New</option>
           <option value="Used">Used</option>
         </select>
@@ -54,7 +54,7 @@
 
       <div class="postItemLineContainer">
         <label>Upload Photo: </label>
-        <input type="file" name="file" size="25" />
+        <input type="file" name="fileInfo" size="25" />
 
       </div>
 
