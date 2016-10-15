@@ -26,6 +26,11 @@ class SiteController {
 			$this->signUp();
 			break;
 
+			case 'forSale':
+			$this->forSale();
+			break;
+
+
 			case 'processLogin':
 			$userEmail = $_POST['uEmail'];
 			$password = $_POST['uPw'];
@@ -37,10 +42,6 @@ class SiteController {
 
 			case 'post':
 			$this->post();
-
-
-
-
 
 			break;
 
@@ -84,6 +85,15 @@ class SiteController {
 		include_once SYSTEM_PATH.'/view/post.tpl';
 		include_once SYSTEM_PATH.'/view/footer.tpl';
 	}
+
+	public function forSale() {
+		$pageName = 'For Sale';
+		include_once SYSTEM_PATH.'/view/header.tpl';
+		include_once SYSTEM_PATH.'/view/navigator.tpl';
+		include_once SYSTEM_PATH.'/view/forSale.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
+	}
+
 
 	public function processLogin($u, $p) {
 

@@ -333,3 +333,81 @@ div .alert{
   float: left;
   margin-top: 10px;
 }
+
+/*============================LIST VIEW STYLING =========================*/
+
+
+
+#listContent{
+  margin: 0px;
+  height: 100%;
+}
+
+.col-1 {
+  float: left;
+  padding: 20px;
+  overflow: hidden;
+  height: 350px;
+
+
+
+}
+.col-1 img {
+  height: 270px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  cursor: pointer;
+}
+
+.listItemTitle {
+  font-weight: bold;
+  font-size: 20px;
+  width: 80%;
+  padding: 10px;
+  cursor: pointer;
+  float: left;
+
+}
+
+.listItemPrice {
+  float: right;
+  width: 20%;
+  font-weight: bold;
+  font-size: 25px;
+  color: green;
+  margin-top: 10px;
+  padding-left: 20px;
+  padding-right: 10px;
+
+}
+
+@media all and (min-width: 1340px){
+  .col-1 {
+    width: 24%;
+
+  }
+}
+@media all and (max-width: 1339px){
+  .col-1 {
+    width: 32%;
+
+  }
+}
+
+@media all and (max-width: 990px){
+  .col-1 {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    overflow: auto;
+    height: auto;
+
+
+  }
+  .col-1 img {
+    width: 100%;
+    height: auto;
+  }
+}

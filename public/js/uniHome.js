@@ -17,7 +17,7 @@ function changePage(page){
     window.location.href = './';
   }
   else if(page == 'forSale'){
-    window.location.href = './forSale.html';
+    window.location.href = './forSale';
   }
   else if(page == 'roommates'){
     window.location.href = './roommates.html';
