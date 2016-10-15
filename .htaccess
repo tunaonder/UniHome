@@ -4,6 +4,14 @@ RewriteEngine on
 
 # ErrorDocument 404 /app/controller/error.php
 
+#User
+
+RewriteRule ^signUp/saveUser?$ app/controller/userController.php?action=saveUser [QSA,L]
+
+#Item
+
+RewriteRule ^post/postItem?$ app/controller/postController.php?action=postItem [QSA,L]
+
 # Site
 RewriteRule ^$ app/controller/siteController.php?action=home [QSA,L]
 RewriteRule ^login/process/?$ app/controller/siteController.php?action=processLogin [QSA,L]
@@ -11,7 +19,3 @@ RewriteRule ^login/?$ app/controller/siteController.php?action=login [QSA,L]
 RewriteRule ^signUp/?$ app/controller/siteController.php?action=signUp [QSA,L]
 RewriteRule ^processLogout/?$ app/controller/siteController.php?action=processLogout [QSA,L]
 RewriteRule ^post/?$ app/controller/siteController.php?action=post [QSA,L]
-
-#User
-
-RewriteRule ^signUp/saveUser?$ app/controller/userController.php?action=saveUser [QSA,L]

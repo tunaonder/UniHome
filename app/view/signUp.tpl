@@ -55,10 +55,10 @@
     </form>
 
 
-
+<div id="alertContainer2" ></div>
 
   </div>
 
 
-  <div id="alertContainer2" ></div>
+
 </div>

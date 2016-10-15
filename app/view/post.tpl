@@ -3,13 +3,24 @@
 <div class="mainContent">
   <div class="postItemContent">
 
-    <form id="post-item" action="<?= BASE_URL ?>/post/postItem" method="POST" onSubmit="return postItem();">
+    <!-- enctype defines form submits a file -->
+    <form id="post-item" action="<?= BASE_URL ?>/post/postItem" method="POST" onSubmit="return postItem();" enctype="multipart/form-data">
       <div class="postItemLineContainer">
         <label>Category: </label>
         <select name ="category">
           <!-- <option value="vt">Roommates</option> -->
-          <option value="ru">For Sale</option>
+          <option value="For Sale">For Sale</option>
           <!-- <option value="nrc">Sublease</option> -->
+        </select>
+      </div>
+
+      <div class="postItemLineContainer">
+        <label>Type: </label>
+        <select name="type">
+          <option value="Furniture">Furniture</option>
+          <option value="Electronic">Electronic</option>
+          <option value="Clothing">Clothing</option>
+          <option value="Misc">Misc</option>
         </select>
       </div>
 
@@ -43,12 +54,13 @@
 
       <div class="postItemLineContainer">
         <label>Upload Photo: </label>
-        <input type='file' onchange="readURL(this);" />
+        <input type="file" name="file" size="25" />
 
       </div>
 
+
       <div class="postItemLineContainer">
-        <button class="contentButton" type="button" onClick="postItem();">Post!</button>
+        <button class="contentButton" name="submit" type="submit" >Post!</button>
         <button class="contentButton" type="button" onClick="changePage('home');">Cancel</button>
       </div>
 
@@ -56,9 +68,11 @@
 
 
 
-
+    <div id="alertContainer3" ></div>
 
   </div>
+
+
 
 
 

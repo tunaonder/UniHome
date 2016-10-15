@@ -28,14 +28,15 @@ function postItem(){
 
   var check1 = true;
   var check2 = true;
+  var check3 = true;
 
-  //Check if email address contains '@' and ends with .com or .edu(just check if there are three letters after the final dot)
+
   if( title.length <= 5){
     alert = $('<div class="alert"> Title Is Too Short! </div>');
 
 
     //add the alert
-    $('#alertContainer').prepend(alert);
+    $('#alertContainer3').prepend(alert);
     $(alert).fadeOut(2500);
 
 
@@ -44,22 +45,35 @@ function postItem(){
     check1 = false;
 
   }
-  //Check if password field is filled
+
   if (description.length <= 20){
     alert = $('<div class="alert"> Description Is Too Short! </div>');
 
     //add the alert
-    $('#alertContainer').prepend(alert);
+    $('#alertContainer3').prepend(alert);
     $(alert).fadeOut(2500);
 
     //make password input border red
-    $('#passwordInput').css('border-color', 'red');
+    $('#descriptionInput').css('border-color', 'red');
     check2 = false;
 
   }
 
-  //If both email and password are valid, login
-  if(check1 && check2){
+  if (price == ""){
+    alert = $('<div class="alert"> Please Enter A Price </div>');
+
+    //add the alert
+    $('#alertContainer3').prepend(alert);
+    $(alert).fadeOut(2500);
+
+    //make password input border red
+    $('#priceInput').css('border-color', 'red');
+    check3 = false;
+
+  }
+
+
+  if(check1 && check2 && check3){
 
     return true;
   }

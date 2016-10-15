@@ -19,9 +19,9 @@ class User extends DbObject {
             'id' => null,
             'email' => '',
             'password' => '',
-            'university' => null,
-            'name' => null,
-            'phone_number' => null
+            'university' => '',
+            'name' => '',
+            'phone_number' => ''
             );
 
         $args += $defaultArgs;
