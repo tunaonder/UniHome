@@ -1,6 +1,7 @@
 html, body {
   font-family: Helvetica, Arial, sans-serif;
   padding: 0; margin: 0;
+
 }
 
 /*When the child elements of any element are floated, they're removed from the normal flow of the document */
@@ -8,6 +9,10 @@ html, body {
 div{
   overflow: auto;
 
+}
+
+.wrapper{
+  background-color: #F5F3EE;
 }
 
 /*Size of Main content is View Height - (footerheight + headerHeight) */
@@ -340,45 +345,55 @@ div .alert{
 
 #listContent{
   margin: 0px;
+  margin-top: 20px;
   height: 100%;
+  width: 100%;
 }
 
 .col-1 {
   float: left;
-  padding: 20px;
+  padding-left: 10px;
   overflow: hidden;
   height: 350px;
-
+  cursor: pointer;
 
 
 }
 .col-1 img {
   height: 270px;
+  width: 100%;
+  /*Center the image in the column*/
   margin-left: auto;
   margin-right: auto;
   display: block;
-  cursor: pointer;
+
+}
+
+.listItemInfo{
+  width: 100%;
+
 }
 
 .listItemTitle {
   font-weight: bold;
   font-size: 20px;
-  width: 80%;
-  padding: 10px;
-  cursor: pointer;
+  width: 70%;
+  padding-left: 10px;
+  padding-top: 10px;
   float: left;
+  cursor: pointer;
 
 }
 
 .listItemPrice {
   float: right;
-  width: 20%;
   font-weight: bold;
   font-size: 25px;
   color: green;
   margin-top: 10px;
-  padding-left: 20px;
-  padding-right: 10px;
+  cursor: pointer;
+  /*padding-left: 20px;
+  padding-right: 10px;*/
 
 }
 
@@ -410,4 +425,165 @@ div .alert{
     width: 100%;
     height: auto;
   }
+}
+
+/*=============================FOR SALE ITEM STYLE===================*/
+
+/*Content from header to footer*/
+.itemContent{
+  margin: 0px;
+  height: 100%;
+}
+
+/*Go to back area should have complete row*/
+.itemContent .backContainer{
+  width: 100%;
+  margin-top: 20px;
+
+
+}
+
+.itemContent #backNavigator{
+  margin-left: 20px;
+  color: purple;
+  font-weight: bold;
+
+}
+
+.itemContent #backNavigator:hover{
+  color: red;
+
+}
+
+.itemContent .backContainer #itemPageItemTitle{
+  font-weight: bold;
+  color: purple;
+  margin-left: 10px;
+  display: inline;
+
+
+}
+
+.itemContent .itemTitleContainer h2 {
+  margin-left: 20px;
+}
+
+
+/*IMAGE AND FEATURES STYLING*/
+.itemContent img {
+  overflow: hidden;
+  margin-bottom: 20px;
+
+}
+
+.itemContent .rightBlockContainer {
+  width: 35%;
+
+}
+
+.itemContent .itemFeaturesContainer label{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.itemContent .itemFeaturesContainer .innerFeaturesContainer {
+  width: 140px;
+  float: left;
+}
+
+.itemContent .itemFeaturesContainer .innerFeaturesContainer2 label{
+  font-size: 25px;
+  font-weight: normal;
+}
+
+.itemContent .itemFeaturesContainer .itemLineContainer{
+  margin-top: 20px;
+
+}
+
+#itemDescription{
+  min-height: 100px;
+}
+
+/*IMAGE AND FEATURES STYLING WHEN PAGE IS LARGE*/
+
+@media all and (min-width: 969px){
+  .itemContent img {
+    width : 60%;
+    max-height: 450px;
+    max-width: 600px;
+    float: left;
+    margin-left: 20px;
+
+
+  }
+
+  .itemContent .itemFeaturesContainer .innerFeaturesContainer {
+    margin-left: 20px;
+
+  }
+
+  .itemContent .itemFeaturesContainer .innerFeaturesContainer2 {
+    margin-left: 10px;
+  }
+
+
+}
+
+/*IMAGE AND FEATURES STYLING WHEN PAGE IS SMALL*/
+
+@media all and (max-width: 970px){
+  .itemContent .itemFeaturesContainer {
+    margin-left: 20px;
+
+
+  }
+
+  .itemContent img {
+    width: 90%;
+    max-width: 562px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+
+  }
+
+  .itemContent .rightBlockContainer {
+
+    width: 100%;
+  }
+
+  .itemContent .itemFeaturesContainer .innerFeaturesContainer2 {
+    margin-left: 10px;
+
+  }
+
+}
+
+.itemContent h3{
+  margin-left: 20px;
+  font-size: 25px;
+  display: block;
+}
+
+
+/*Item description and contact area styling*/
+#contactContainer{
+background-color: white;
+margin: 20px;
+}
+.itemContent .itemDescription{
+  background-color: white;
+  margin: 20px;
+  padding: 10px;
+  font-size: 16px;
+  display: block;
+}
+.itemContent p{
+  font-size: 16px;
+  display: block;
+}
+.itemContactPerson{
+  font-weight: bold;
+  margin-left: 20px;
 }

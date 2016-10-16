@@ -5,6 +5,7 @@ $userLoggedInButtonStyle = "none";
 $userLoggedInButtonStyle2 = "block";
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +45,9 @@ $userLoggedInButtonStyle2 = "block";
 
     <?php
 
-    session_start();
+    if (session_status() == PHP_SESSION_NONE) {
+      session_start();
+    }
 
     if(isset($_SESSION['user'])) {
 
@@ -52,22 +55,25 @@ $userLoggedInButtonStyle2 = "block";
       $userLoggedInButtonStyle = "block";
       $userLoggedInButtonStyle2 = "none";
 
+
+
     }
 
     ?>
 
 
     <!-- Application Logo or Name -->
-    <a id="appName" href="./">UniHome</a>
+    <!-- <a id="appName" action="<?= BASE_URL ?>">UniHome</a> -->
+    <a id="appName"href="<?= BASE_URL ?>">UniHome</a>
 
     <!-- Header Navigators -->
     <div >
       <form action="<?= BASE_URL ?>/processLogout" method="POST">
 
         <button id="signUpButton" type="submit" style="display: <?= $userLoggedInButtonStyle ?>">Logout</button>
-        <button type="button" onClick="changePage('post');" style="display: <?= $userLoggedInButtonStyle ?>">Post!</button>
-        <button type="button" onClick="changePage('signUp');" style="display: <?= $userLoggedInButtonStyle2 ?>">Sign Up</button>
-        <button type="button" onClick="changePage('login');" style="display: <?= $userLoggedInButtonStyle2 ?>">Login</button>
+        <button type="button" onClick="document.location.href='<?= BASE_URL ?>/post'" style="display: <?= $userLoggedInButtonStyle ?>">Post!</button>
+        <button type="button" onClick="document.location.href='<?= BASE_URL ?>/signUp'" style="display: <?= $userLoggedInButtonStyle2 ?>">Sign Up</button>
+        <button type="button" onClick="document.location.href='<?= BASE_URL ?>/login'" style="display: <?= $userLoggedInButtonStyle2 ?>">Login</button>
         <label id = "userLoggedInLabel "style="color: white"> <?= $loginInformation ?> </label>
 
       </form>

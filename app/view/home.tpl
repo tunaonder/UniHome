@@ -1,4 +1,4 @@
-
+<div class = "wrapper">
   <div class="content">
 
     <h1 id="featuresTitle"> - </h1>
@@ -13,3 +13,5 @@
     <img id="mainImage" src="<?= BASE_URL ?>/public/images/student-house.jpg" alt="UniHome"></img>
 
   </div>
+
+</div>

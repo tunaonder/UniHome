@@ -88,6 +88,15 @@ class SiteController {
 
 	public function forSale() {
 		$pageName = 'For Sale';
+
+		$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
+		or die ('Error: Could not connect to MySql database');
+		mysql_select_db(DB_DATABASE);
+
+		$q = "SELECT * FROM Post ORDER BY created_at DESC;";
+		$result = mysql_query($q);
+
+
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/navigator.tpl';
 		include_once SYSTEM_PATH.'/view/forSale.tpl';

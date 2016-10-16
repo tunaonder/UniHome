@@ -1,62 +1,32 @@
+<div class = "wrapper">
+
 <!-- Main Content -->
-  <div id="listContent">
+<div id="listContent">
 
-    <div class = "col-1">
+  <?php while($row = mysql_fetch_assoc($result)): ?>
 
-      <img src= "<?= BASE_URL ?>/app/uploads/iphone.jpg" alt = "Photo"></img>
+  <form action="<?= BASE_URL ?>/shirts/edit/<?= $row['id'] ?>" method="POST">
 
-      <label class="listItemTitle">TEST ITEM Title</label>
-      <label class="listItemPrice">$300</label>
 
-    </div>
+    <a href="<?= BASE_URL ?>/forSale/view/<?= $row['id'] ?>">
+      <div class="col-1">
+      <img src="<?= BASE_URL ?>/app/uploads/<?= $row['photoInfo'] ?>" alt="<?= $row['title'] ?>" />
 
-    <div class = "col-1">
+      <div class = "listItemInfo">
+        <label class="listItemTitle"><?= $row['title'] ?></label>
+        <label class="listItemPrice">$<?= $row['price'] ?></label>
+      </div>
+    </a>
 
-      <img src= "<?= BASE_URL ?>/app/uploads/iphone.jpg" alt = "Photo"></img>
 
-      <label class="listItemTitle">TEST ITEM Title</label>
-      <label class="listItemPrice">$300</label>
 
-    </div>
-    <div class = "col-1">
+  </div>
 
-      <img src= "<?= BASE_URL ?>/app/uploads/iphone.jpg" alt = "Photo"></img>
+  </form>
 
-      <label class="listItemTitle">TEST ITEM Title</label>
-      <label class="listItemPrice">$300</label>
+  <?php endwhile; ?>
 
-    </div>
-    <div class = "col-1">
 
-      <img src= "<?= BASE_URL ?>/app/uploads/iphone.jpg" alt = "Photo"></img>
-
-      <label class="listItemTitle">TEST ITEM Title</label>
-      <label class="listItemPrice">$300</label>
-
-    </div>
-    <div class = "col-1">
-
-      <img src= "<?= BASE_URL ?>/app/uploads/iphone.jpg" alt = "Photo"></img>
-
-      <label class="listItemTitle">TEST ITEM Title</label>
-      <label class="listItemPrice">$300</label>
-
-    </div>
-    <div class = "col-1">
-
-      <img src= "<?= BASE_URL ?>/app/uploads/iphone.jpg" alt = "Photo"></img>
-
-      <label class="listItemTitle">TEST ITEM Title</label>
-      <label class="listItemPrice">$300</label>
-
-    </div>
-    <div class = "col-1">
-
-      <img src= "<?= BASE_URL ?>/app/uploads/iphone.jpg" alt = "Photo"></img>
-
-      <label class="listItemTitle">TEST ITEM Title</label>
-      <label class="listItemPrice">$300</label>
-
-    </div>
+</div>
 
 </div>
