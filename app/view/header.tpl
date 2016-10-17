@@ -31,7 +31,7 @@ $userLoggedInButtonStyle2 = "block";
   <?php if($pageName == 'Sign Up'): ?>
     <script type="text/javascript" src="<?= BASE_URL ?>/public/js/signUp.js"></script>
   <?php endif; ?>
-  <?php if($pageName == 'Post'): ?>
+  <?php if($pageName == 'Post' || $pageName == 'Edit'): ?>
     <script type="text/javascript" src="<?= BASE_URL ?>/public/js/post.js"></script>
   <?php endif; ?>
 
@@ -71,7 +71,8 @@ $userLoggedInButtonStyle2 = "block";
       <form action="<?= BASE_URL ?>/processLogout" method="POST">
 
         <button id="signUpButton" type="submit" style="display: <?= $userLoggedInButtonStyle ?>">Logout</button>
-        <button type="button" onClick="document.location.href='<?= BASE_URL ?>/post'" style="display: <?= $userLoggedInButtonStyle ?>">Post!</button>
+        <button type="button" onClick="document.location.href='<?= BASE_URL ?>/post'" style="display: <?= $userLoggedInButtonStyle ?>"> New Post</button>
+        <button type="button" onClick="document.location.href='<?= BASE_URL ?>/yourPosts'" style="display: <?= $userLoggedInButtonStyle ?>">Your Items</button>
         <button type="button" onClick="document.location.href='<?= BASE_URL ?>/signUp'" style="display: <?= $userLoggedInButtonStyle2 ?>">Sign Up</button>
         <button type="button" onClick="document.location.href='<?= BASE_URL ?>/login'" style="display: <?= $userLoggedInButtonStyle2 ?>">Login</button>
         <label id = "userLoggedInLabel "style="color: white"> <?= $loginInformation ?> </label>

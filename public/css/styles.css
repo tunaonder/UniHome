@@ -13,6 +13,8 @@ div{
 
 .wrapper{
   background-color: #F5F3EE;
+  height: 100vh;
+
 }
 
 /*Size of Main content is View Height - (footerheight + headerHeight) */
@@ -586,4 +588,26 @@ margin: 20px;
 .itemContactPerson{
   font-weight: bold;
   margin-left: 20px;
+}
+
+/*=============================================YOUR POSTS LIST VIEW ===================================*/
+
+.yourItemsList {
+  font-weight: bold;
+  font-size: 20px;
+  padding-top: 10px;
+  float: left;
+  cursor: pointer;
+
+}
+
+.postItemLineContainer .fixedInfo{
+  width: 200px;
+  float: right;
+
+}
+
+.postItemLineContainer .fixedInfo label{
+  font-size: 16px;
+  margin-top: 10px;
 }

@@ -26,6 +26,21 @@ class PostController {
 			$this->viewPost($postId);
 			break;
 
+			case 'displayPostDetails':
+			$postId = $_GET['pid'];
+			$this->displayPostDetails($postId);
+			break;
+
+			case 'editPost':
+			$postId = $_GET['pid'];
+			$this->editPost($postId);
+			break;
+
+			case 'deletePost':
+			$postId = $_GET['pid'];
+			$this->deletePost($postId);
+			break;
+
 			// redirect to home page if all else fails
 			default:
 			header('Location: '.BASE_URL);
@@ -79,6 +94,11 @@ class PostController {
 
 		if(isset($_POST['submit']))
 		{
+
+			if($_FILES['fileInfo']['name'] == null){
+				return "";
+			}
+
 			//Change file Name. So that files uploaded with the same name will have different names
 			$file = rand(1000,100000)."-".$_FILES['fileInfo']['name'];
 			$file_loc = $_FILES['fileInfo']['tmp_name'];
@@ -152,6 +172,82 @@ class PostController {
 
 	}
 
+	public function displayPostDetails($pid){
+
+		$pageName = 'Edit';
+
+		$p = Post::loadById($pid);
+
+		$post = array();
+
+		$post['id'] = $p->get('id');
+		$post['category'] = $p->get('category');
+		$post['type'] = $p->get('type');
+		$post['title'] = $p->get('title');
+		$post['description'] = $p->get('description');
+		$post['conditionInfo'] = $p->get('conditionInfo');
+		$post['price'] = $p->get('price');
+		$post['photoInfo'] = $p->get('photoInfo');
+
+
+
+		include_once SYSTEM_PATH.'/view/header.tpl';
+		include_once SYSTEM_PATH.'/view/editView.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
+
+	}
+
+	public function editPost($pid){
+
+		$file_name = $this->uploadPhoto();
+
+		$p = Post::loadById($pid);
+
+		$title = $_POST['editTitle'];
+		$description = $_POST['editDescription'];
+		$price = $_POST['editPrice'];
+
+
+		$p->set('title', $title);
+		$p->set('description', $description);
+		$p->set('price', $price);
+		if($file_name != ""){
+			$p->set('photoInfo', $file_name);
+
+		}
+
+		$p->save();
+
+		//Redirect user
+		header('Location: '.BASE_URL.'/yourPosts');
+
+	}
+
+	public function deletePost($pid){
+
+		$file_name = $this->uploadPhoto();
+
+		$p = Post::loadById($pid);
+
+		$title = $_POST['editTitle'];
+		$description = $_POST['editDescription'];
+		$price = $_POST['editPrice'];
+
+
+		$p->set('title', $title);
+		$p->set('description', $description);
+		$p->set('price', $price);
+		if($file_name != ""){
+			$p->set('photoInfo', $file_name);
+
+		}
+
+		$p->save();
+
+		//Redirect user
+		header('Location: '.BASE_URL.'/yourPosts');
+
+	}
 
 
 

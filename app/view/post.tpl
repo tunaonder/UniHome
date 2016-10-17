@@ -61,7 +61,7 @@
 
         <div class="postItemLineContainer">
           <button class="contentButton" name="submit" type="submit" >Post!</button>
-          <button class="contentButton" type="button" onClick="changePage('home');">Cancel</button>
+          <button class="contentButton" type="button" onClick="document.location.href='<?= BASE_URL ?>'">Cancel</button>
         </div>
 
       </form>
