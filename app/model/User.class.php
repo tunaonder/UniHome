@@ -74,13 +74,13 @@ class User extends DbObject {
             return ($obj);
         }
     }
-
+    //Create a Db instance and Get Student Count From Selected University
     public static function getStudentCountFromUniversity($university) {
       $db = Db::instance();
       $result = $db->getStudentCount($university, __CLASS__, self::DB_TABLE);
       return $result;
     }
-
+    //Create a db instance and get posts posted by students from particular university
     public static function getPostCountFromUniversity($university) {
       $db = Db::instance();
       $result = $db->getPostCountFromUniversity($university, __CLASS__, self::DB_TABLE);

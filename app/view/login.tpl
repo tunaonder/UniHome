@@ -24,12 +24,11 @@
       </form>
 
 
-
-
-
     </div>
 
     <div id="alertContainer" ></div>
+
+    <input type="hidden" id="userExist" value="true">
 
 
   </div>

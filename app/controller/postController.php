@@ -125,6 +125,7 @@ class PostController {
 		}
 	}
 
+	//Get Post Information from id and display accordingly
 	public function viewPost($pid){
 
 
@@ -149,7 +150,7 @@ class PostController {
 		if (session_status() == PHP_SESSION_NONE) {
 			session_start();
 		}
-		//If Session is started get Item owner info
+		//If Session is started get Item owner info (Users who are not signed in cannot display contact info)
 		if(isset($_SESSION['user'])) {
 			$itemOwnerId = $p->get('creator_id');
 			$user = User::loadById($itemOwnerId);
@@ -211,6 +212,8 @@ class PostController {
 		$p->set('title', $title);
 		$p->set('description', $description);
 		$p->set('price', $price);
+
+		//If new Photo is uploaded set new photo data, otherwise do not change it
 		if($file_name != ""){
 			$p->set('photoInfo', $file_name);
 

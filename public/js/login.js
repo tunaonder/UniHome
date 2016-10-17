@@ -1,6 +1,3 @@
-
-
-
 function userLogin(){
 
   //When email or password inputs are focused remove red border color
@@ -49,6 +46,28 @@ function userLogin(){
     check2 = false;
 
   }
+
+  //Check if given email already exists
+  // $.get(
+  //   baseURL+'/login/check',
+  //   { 'email': email },
+  //   function(data) {
+  //     if(data.status == 'available') {
+  //       alert = $('<div class="alert"> Error: This Email does not exist! </div>');
+  //       //add the alert
+  //       $('#alertContainer').prepend(alert);
+  //       $(alert).fadeOut(2500);
+  //       $('#userExist').val("false");
+  //
+  //     }
+  //   },
+  //   "json"
+  // );
+
+
+
+
+
 
   //If both email and password are valid, login
   if(check1 && check2){

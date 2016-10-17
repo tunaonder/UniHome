@@ -1,3 +1,6 @@
+
+<!-- According to user status(Signed In Or Not), displayed information and components 
+are either visible or hidden -->
 <?php
 
 $loginInformation = "Login to Post an Item!";

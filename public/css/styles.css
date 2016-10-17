@@ -67,6 +67,15 @@ div{
   margin-top: 25px;
 }
 
+/*If width is less than 373px make header buttons occupy less space*/
+@media all and (max-width: 373px){
+  .header button{
+    width: 45px;
+    font-size: 10px;
+    margin-right: 5px;
+  }
+}
+
 
 /*=====================NAVIGATOR STYLING ===========================================*/
 
@@ -192,6 +201,18 @@ div{
   font-size: 16px;
 }
 
+@media all and (max-width: 400px){
+  #footer{
+    height: 70px;
+  }
+
+  #footer button{
+    margin: 0;
+  }
+  #footer label{
+    padding-bottom: 5px;
+  }
+}
 
 
 /*================Sign Up and Login Page Styles =============*/

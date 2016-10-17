@@ -3,11 +3,8 @@
   <!-- Main Content -->
   <div id="listContent">
 
+    <!-- Fetch each row from the result and create div and its components for each post in the database -->
     <?php while($row = mysql_fetch_assoc($result)): ?>
-
-
-
-
 
       <div class="col-1">
 
@@ -26,12 +23,7 @@
 
         </div>
 
-
-
-
       </div>
-
-
 
     <?php endwhile; ?>
 

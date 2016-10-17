@@ -196,8 +196,10 @@ public function getStudentCount($university, $class_name, $db_table){
 
 }
 
+//Find number of posts posted by students from particular university
 public function getPostCountFromUniversity($university, $class_name, $db_table){
 
+  //If university is not set retrun 0
   if ($university === null) {
     return 0;
   }

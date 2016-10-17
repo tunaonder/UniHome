@@ -20,6 +20,7 @@ RewriteRule ^yourPosts/delete/(\d+)/?$ app/controller/postController.php?action=
 # Site
 RewriteRule ^check/?$ app/controller/siteController.php?action=check&userId=$1 [QSA,L]
 RewriteRule ^$ app/controller/siteController.php?action=home [QSA,L]
+RewriteRule ^login/check/?$ app/controller/siteController.php?action=checkUser&userEmail=$1 [QSA,L]
 RewriteRule ^login/process/?$ app/controller/siteController.php?action=processLogin [QSA,L]
 RewriteRule ^login/?$ app/controller/siteController.php?action=login [QSA,L]
 RewriteRule ^signUp/?$ app/controller/siteController.php?action=signUp [QSA,L]

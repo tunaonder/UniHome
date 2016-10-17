@@ -8,19 +8,16 @@
 
         <div class="lineContainer">
           <label>Name: </label>
-          <!-- <input id="signUpNameInput" type="text"> -->
           <input id="signUpNameInput" type="text" name="userName" >
         </div>
 
         <div class="lineContainer">
           <label>Email: </label>
-          <!-- <input id="signUpEmailInput" type="text"> -->
           <input id="signUpEmailInput" type="text" name="userEmail">
         </div>
 
         <div class="lineContainer">
           <label>Phone: </label>
-          <!-- <input id="signUpPhoneInput" type="text"> -->
           <input id="signUpPhoneInput" type="text" name="userPhone">
         </div>
 
@@ -36,7 +33,6 @@
 
         <div class="lineContainer">
           <label>Password: </label>
-          <!-- <input id="signUpPasswordInput" type="password"> -->
           <input id="signUpPasswordInput" type="password" name="userPassword">
         </div>
 

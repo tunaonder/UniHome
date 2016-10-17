@@ -53,6 +53,11 @@ class SiteController {
 					$this->checkUserData($userId);
 					break;
 
+					case 'checkUser':
+					$userEmail = $_GET['userEmail'];
+					$this->checkUserEmail($userEmail);
+					break;
+
 				// redirect to home page if all else fails
 				default:
 				header('Location: '.BASE_URL);
@@ -92,6 +97,7 @@ class SiteController {
 			include_once SYSTEM_PATH.'/view/footer.tpl';
 		}
 
+		//Return all Posts From Database in descending order
 		public function forSale() {
 			$pageName = 'For Sale';
 
@@ -109,7 +115,7 @@ class SiteController {
 			include_once SYSTEM_PATH.'/view/footer.tpl';
 		}
 
-
+		//Login User
 		public function processLogin($u, $p) {
 
 			//Get User Object From DB
@@ -161,15 +167,17 @@ class SiteController {
 			$pageName = 'Your Posts';
 
 
+			//If session is not already started, start it
 			if (session_status() == PHP_SESSION_NONE) {
 				session_start();
 			}
+			//If user is set get its id
 			if(isset($_SESSION['user'])){
 
 				$id = $_SESSION['userId'];
 
 			}
-
+			//If there is no such id delete session
 			if($id == null){
 				//Delete Session
 				session_start();
@@ -180,11 +188,12 @@ class SiteController {
 
 			}
 
+
 			$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
 			or die ('Error: Could not connect to MySql database');
 			mysql_select_db(DB_DATABASE);
 
-
+			//Get all Posts created by current user
 			$q = "SELECT * FROM Post WHERE created_by=$id ORDER BY created_at DESC;";
 			$result = mysql_query($q);
 
@@ -195,21 +204,26 @@ class SiteController {
 			include_once SYSTEM_PATH.'/view/footer.tpl';
 		}
 
+		//Collect data related to particular user to display in the main page
 		public function checkUserData($id){
 
 			$user = User::loadById($id);
 
+			//If there is such user
 			if($user != null) {
+				//Get his university
 				$university = $user->get('university');
 
 				$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
 				or die ('Error: Could not connect to MySql database');
 				mysql_select_db(DB_DATABASE);
 
+				//Find number of students from particular university
 				$numberOfStudents = User::getStudentCountFromUniversity($university);
+				//Find number of posts posted by students from particular university
 				$postCount = User::getPostCountFromUniversity($university);
 
-
+				//Create json data with all this info
 				$json = array( 'status' => 'available', 'university' => $university,
 				'studentCount' => $numberOfStudents, 'postCount' => $postCount);
 
@@ -222,6 +236,20 @@ class SiteController {
 			header('Content-Type: application/json');
 			echo json_encode($json);
 
+		}
+
+		public function checkUserEmail($email) {
+			$user = User::loadByEmail($email);
+			if($user == null) {
+				// username is available
+				$json = array( 'status' => 'available' );
+			} else {
+				// username is taken
+				$json = array( 'status' => 'unavailable' );
+			}
+
+			header('Content-Type: application/json');
+			echo json_encode($json);
 		}
 
 
