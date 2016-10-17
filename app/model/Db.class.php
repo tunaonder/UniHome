@@ -11,7 +11,7 @@ class Db {
 		$username = DB_USER;
 		$password = DB_PASS;
 
-    
+
 
 		$conn = mysql_connect($host, $username, $password)
 			or die ('Error: Could not connect to MySql database');
@@ -165,5 +165,21 @@ class Db {
 		$row = mysql_fetch_assoc($result);
 		return ($row['id']);
 	}
+
+  //Delete Item
+  public function deleteById($id, $class_name, $db_table) {
+  if ($id === null) {
+    return false;
+  }
+
+  $query = sprintf("DELETE FROM `%s` WHERE id = '%s';",
+      $db_table,
+      $id
+         );
+  //echo $query;
+  $result = $this->lookup($query);
+
+  return true;
+}
 
 }

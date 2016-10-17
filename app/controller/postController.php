@@ -82,7 +82,7 @@ class PostController {
 
 		$post->save();
 		//Redirect user
-		header('Location: '.BASE_URL.'/');
+		header('Location: '.BASE_URL.'/yourPosts');
 
 
 
@@ -225,27 +225,17 @@ class PostController {
 
 	public function deletePost($pid){
 
-		$file_name = $this->uploadPhoto();
+		$result = Post::deleteById($pid);
 
-		$p = Post::loadById($pid);
-
-		$title = $_POST['editTitle'];
-		$description = $_POST['editDescription'];
-		$price = $_POST['editPrice'];
-
-
-		$p->set('title', $title);
-		$p->set('description', $description);
-		$p->set('price', $price);
-		if($file_name != ""){
-			$p->set('photoInfo', $file_name);
-
+		if($result){
+			//Redirect user
+			header('Location: '.BASE_URL.'/yourPosts');
 		}
 
-		$p->save();
 
-		//Redirect user
-		header('Location: '.BASE_URL.'/yourPosts');
+
+
+
 
 	}
 

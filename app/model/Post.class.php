@@ -87,4 +87,10 @@ class Post extends DbObject {
   }
 }
 
+public static function deleteById($id) {
+  $db = Db::instance();
+  $result = $db->deleteById($id, __CLASS__, self::DB_TABLE);
+  return $result;
+}
+
 }
