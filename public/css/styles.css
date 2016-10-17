@@ -66,6 +66,14 @@ div{
   margin-right: 20px;
   margin-top: 25px;
 }
+/*If width is less than 460px make header buttons occupy less space*/
+@media all and (max-width: 460px){
+  .header button{
+    width: 60px;
+    font-size: 10px;
+    margin-right: 5px;
+  }
+}
 
 /*If width is less than 373px make header buttons occupy less space*/
 @media all and (max-width: 373px){
