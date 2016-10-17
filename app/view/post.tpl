@@ -7,7 +7,7 @@
       <form id="post-item" action="<?= BASE_URL ?>/post/postItem" method="POST" onSubmit="return postItem();" enctype="multipart/form-data">
         <div class="postItemLineContainer">
           <label>Category: </label>
-          <select name ="category">
+          <select name ="category"  onclick="alert('Currently only avaiable category is For Sale');">
             <!-- <option value="vt">Roommates</option> -->
             <option value="For Sale">For Sale</option>
             <!-- <option value="nrc">Sublease</option> -->
