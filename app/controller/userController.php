@@ -46,7 +46,7 @@ class UserController {
 
 		$user->save();
 		//Redirect user
-		header('Location: '.BASE_URL.'/');
+		header('Location: '.BASE_URL.'/login');
 
 	}
 

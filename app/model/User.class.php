@@ -75,5 +75,17 @@ class User extends DbObject {
         }
     }
 
+    public static function getStudentCountFromUniversity($university) {
+      $db = Db::instance();
+      $result = $db->getStudentCount($university, __CLASS__, self::DB_TABLE);
+      return $result;
+    }
+
+    public static function getPostCountFromUniversity($university) {
+      $db = Db::instance();
+      $result = $db->getPostCountFromUniversity($university, __CLASS__, self::DB_TABLE);
+      return $result;
+    }
+
 
 }

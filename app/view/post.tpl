@@ -21,6 +21,7 @@
             <option value="Electronic">Electronic</option>
             <option value="Clothing">Clothing</option>
             <option value="Misc">Misc</option>
+            <option value="Household">Household</option>
           </select>
         </div>
 

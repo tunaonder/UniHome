@@ -11,8 +11,8 @@
           <img src="<?= BASE_URL ?>/app/uploads/<?= $row['photoInfo'] ?>" alt="<?= $row['title'] ?>" />
 
           <div class = "listItemInfo">
-            <label class="listItemTitle"><?= $row['title'] ?></label>
-            <label class="listItemPrice">$<?= $row['price'] ?></label>
+            <label class="listItemTitle clickable"><?= $row['title'] ?></label>
+            <label class="listItemPrice clickable">$<?= $row['price'] ?></label>
           </div>
         </a>
 

@@ -61,7 +61,8 @@ function userSignUp(){
   }
 
   //Check email input
-  if(email == '' ||email.indexOf('@') == -1 || (email.substring(email.lastIndexOf(".")+1)).length !== 3){
+  if(email == '' ||email.indexOf('@') == -1 || ((email.substring(email.lastIndexOf(".")+1)).length !== 3 &&
+   (email.substring(email.lastIndexOf(".")+1)).length !== 2)){
     emailValidate = false;
     alert = $('<div class="alert"> Error: Please enter a valid Email Address!</div>');
 

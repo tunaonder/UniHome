@@ -59,8 +59,8 @@ function postItem(){
 
   }
 
-  if (price == ""){
-    alert = $('<div class="alert"> Please Enter A Price </div>');
+  if (price == "" || (price.match(/[a-z]/i))){
+    alert = $('<div class="alert"> Please Enter A Valid Price </div>');
 
     //add the alert
     $('#alertContainer3').prepend(alert);

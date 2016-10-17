@@ -22,6 +22,10 @@ div{
   height: calc(100vh - 115px);
 }
 
+.clickable{
+  cursor: pointer;
+}
+
 /*==================Header Styling=====================*/
 
 .header{
@@ -257,7 +261,7 @@ div{
 #alertContainer{
   text-align: center;
   margin-top: 30px;
-
+  font-size: 16px;
 }
 
 /*Sign Up Page Alert Container*/
@@ -265,6 +269,7 @@ div{
   text-align: center;
   margin-top: 30px;
   width: 100%;
+  font-size: 16px;
 
 }
 
@@ -352,12 +357,12 @@ div .alert{
   width: 100%;
 }
 
+
 .col-1 {
   float: left;
   padding-left: 10px;
   overflow: hidden;
-  height: 350px;
-  cursor: pointer;
+  height: 375px;
 
 
 }
@@ -374,6 +379,7 @@ div .alert{
 .listItemInfo{
   width: 100%;
 
+
 }
 
 .listItemTitle {
@@ -383,7 +389,6 @@ div .alert{
   padding-left: 10px;
   padding-top: 10px;
   float: left;
-  cursor: pointer;
 
 }
 
@@ -393,7 +398,6 @@ div .alert{
   font-size: 25px;
   color: green;
   margin-top: 10px;
-  cursor: pointer;
   /*padding-left: 20px;
   padding-right: 10px;*/
 
@@ -426,6 +430,9 @@ div .alert{
   .col-1 img {
     width: 100%;
     height: auto;
+  }
+  .listItemPrice {
+    margin-right: 20px;
   }
 }
 
@@ -597,7 +604,6 @@ margin: 20px;
   font-size: 20px;
   padding-top: 10px;
   float: left;
-  cursor: pointer;
 
 }
 
@@ -610,4 +616,21 @@ margin: 20px;
 .postItemLineContainer .fixedInfo label{
   font-size: 16px;
   margin-top: 10px;
+}
+
+.modifyItemButton{
+  background-color: white;
+  /*border: none;*/
+  /*color: white;*/
+  display: inline;
+  padding: 7px 15px;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-right: 10px;
+  font-family: "Lucida Grande", Geneva, Verdana, Arial, Helvetica, sans-serif;
+
+}
+
+.leftButton{
+  float: left;
 }

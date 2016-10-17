@@ -17,11 +17,11 @@
         <img src="<?= BASE_URL ?>/app/uploads/<?= $row['photoInfo'] ?>" alt="<?= $row['title'] ?>" />
 
         <div class = "listItemInfo">
-          <form action="<?= BASE_URL ?>/yourPosts/edit/<?= $row['id'] ?>" method="POST">
-            <button type="submit" > Edit</button>
+          <form action="<?= BASE_URL ?>/yourPosts/edit/<?= $row['id'] ?>" method="GET">
+            <button  class ="modifyItemButton leftButton clickable" type="submit" > Edit</button>
           </form>
-          <form action="<?= BASE_URL ?>/yourPosts/delete/<?= $row['id'] ?>" method="POST">
-            <button type="submit" > Delete </button>
+          <form action="<?= BASE_URL ?>/yourPosts/delete/<?= $row['id'] ?>" method="POST" onsubmit="return deleteConfirmation();">
+            <button class ="modifyItemButton rightButton clickable" type="submit" > Delete </button>
           </form>
 
         </div>

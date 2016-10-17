@@ -2,184 +2,211 @@
 
 class Db {
 
-    private static $_instance = null;
-    private $conn;
+  private static $_instance = null;
+  private $conn;
 
-	private function __construct() {
-		$host     = DB_HOST;
-		$database = DB_DATABASE;
-		$username = DB_USER;
-		$password = DB_PASS;
-
-
-
-		$conn = mysql_connect($host, $username, $password)
-			or die ('Error: Could not connect to MySql database');
+  private function __construct() {
+    $host     = DB_HOST;
+    $database = DB_DATABASE;
+    $username = DB_USER;
+    $password = DB_PASS;
 
 
-		mysql_select_db($database);
+
+    $conn = mysql_connect($host, $username, $password)
+    or die ('Error: Could not connect to MySql database');
 
 
-	}
+    mysql_select_db($database);
 
-	public static function instance() {
-		if (self::$_instance === null) {
-			self::$_instance = new Db();
-		}
-		return self::$_instance;
-	}
 
-    public function fetchById($id, $class_name, $db_table) {
-		if ($id === null) {
-			return null;
-		}
+  }
 
-		$query = sprintf("SELECT * FROM `%s` WHERE id = '%s';",
-				$db_table,
-				$id
-			     );
-		//echo $query;
-		$result = $this->lookup($query);
+  public static function instance() {
+    if (self::$_instance === null) {
+      self::$_instance = new Db();
+    }
+    return self::$_instance;
+  }
 
-		if(!mysql_num_rows($result)) {
-			return null;
-		} else {
-			$row = mysql_fetch_assoc($result);
-			$obj = new $class_name($row);
-			return $obj;
-		}
-	}
+  public function fetchById($id, $class_name, $db_table) {
+    if ($id === null) {
+      return null;
+    }
 
-	public function store(&$obj, $class_name, $db_table, $data)
-	{
-		// find out if this item already exists so we know to use INSERT or UPDATE
-		if($obj->getId() === null) {
-			// ID would only be null for a new item, so let's use INSERT
-			$query = $this->buildInsertQuery($db_table, $data);
-			//echo $query;
-			$this->execute($query); // execute the query we've built
-			$obj->setId($this->getLastInsertID()); //get back the ID for the new item
-		} else {
-			// item ID exists, so let's use UPDATE
-			// only hit the database if the instance has been modified
-			if($obj->getModified()) {
-				$query = $this->buildUpdateQuery($db_table, $data, $obj->getId());
-				//echo $query;
-				$this->execute($query); // execute the query we've built
-			}
-		}
-		//echo $query; // print the query
-		$obj->setModified(false); // reset the flag
-	}
+    $query = sprintf("SELECT * FROM `%s` WHERE id = '%s';",
+    $db_table,
+    $id
+  );
+  //echo $query;
+  $result = $this->lookup($query);
 
-	// Formats a string for use in SQL queries.
-	// Use this on ANY string that comes from external sources (i.e. the user).
-	public function quoteString($s) {
-		return "'" . mysql_real_escape_string($s) . "'";
-	}
+  if(!mysql_num_rows($result)) {
+    return null;
+  } else {
+    $row = mysql_fetch_assoc($result);
+    $obj = new $class_name($row);
+    return $obj;
+  }
+}
 
-	// Formats a date (i.e. UNIX timestamp) for use in SQL queries.
-	public function quoteDate($d) {
-		return date("'Y-m-d H:i:s'", $d);
-	}
+public function store(&$obj, $class_name, $db_table, $data)
+{
+  // find out if this item already exists so we know to use INSERT or UPDATE
+  if($obj->getId() === null) {
+    // ID would only be null for a new item, so let's use INSERT
+    $query = $this->buildInsertQuery($db_table, $data);
+    //echo $query;
+    $this->execute($query); // execute the query we've built
+    $obj->setId($this->getLastInsertID()); //get back the ID for the new item
+  } else {
+    // item ID exists, so let's use UPDATE
+    // only hit the database if the instance has been modified
+    if($obj->getModified()) {
+      $query = $this->buildUpdateQuery($db_table, $data, $obj->getId());
+      //echo $query;
+      $this->execute($query); // execute the query we've built
+    }
+  }
+  //echo $query; // print the query
+  $obj->setModified(false); // reset the flag
+}
 
-	//Query the database for information
-	public function lookup($query) {
-		$result = mysql_query($query);
-		if(!$result)
-			die('Invalid query: ' . $query);
-		return ($result);
-	}
+// Formats a string for use in SQL queries.
+// Use this on ANY string that comes from external sources (i.e. the user).
+public function quoteString($s) {
+  return "'" . mysql_real_escape_string($s) . "'";
+}
 
-	//Execute operations like UPDATE or INSERT
-	public function execute($query) {
-		$ex = mysql_query($query);
-		if(!$ex)
-			die ('Query failed:' . mysql_error());
-	}
+// Formats a date (i.e. UNIX timestamp) for use in SQL queries.
+public function quoteDate($d) {
+  return date("'Y-m-d H:i:s'", $d);
+}
 
-	//Build an INSERT query.  Mostly here to make things neater elsewhere.
-	//$table  -> Name of the table to insert into
-	//$fields -> List of attributes to populate
-	//$values -> Values that will populate the new row
-	//RETURN  -> A mysql insert query in the form of:
-	//					 "INSERT INTO <table> (<fields>) VALUES (<values>)"
-	//NOTE: This function DOES NOT actually EXECUTE the query, only gives a
-	//			string to be used elsewhere.
-	public function buildInsertQuery($table = '', $data = array()) {
-		$fields = '';
-		$values = '';
+//Query the database for information
+public function lookup($query) {
+  $result = mysql_query($query);
+  if(!$result)
+  die('Invalid query: ' . $query);
+  return ($result);
+}
 
-		foreach ($data as $field => $value) {
-			if($value !== null) { // skip unset fields
-				$fields .= "`".$field . "`, ";
-				$values .= $this->quoteString($value) . ", ";
-			}
-		}
+//Execute operations like UPDATE or INSERT
+public function execute($query) {
+  $ex = mysql_query($query);
+  if(!$ex)
+  die ('Query failed:' . mysql_error());
+}
 
-		 // cut off the last ', ' for each
-		$fields = substr($fields, 0, -2);
-		$values = substr($values, 0, -2);
+//Build an INSERT query.  Mostly here to make things neater elsewhere.
+//$table  -> Name of the table to insert into
+//$fields -> List of attributes to populate
+//$values -> Values that will populate the new row
+//RETURN  -> A mysql insert query in the form of:
+//					 "INSERT INTO <table> (<fields>) VALUES (<values>)"
+//NOTE: This function DOES NOT actually EXECUTE the query, only gives a
+//			string to be used elsewhere.
+public function buildInsertQuery($table = '', $data = array()) {
+  $fields = '';
+  $values = '';
 
-		$query = sprintf("INSERT INTO `%s` (%s) VALUES (%s);",
-				$table,
-				$fields,
-				$values
-			     );
+  foreach ($data as $field => $value) {
+    if($value !== null) { // skip unset fields
+      $fields .= "`".$field . "`, ";
+      $values .= $this->quoteString($value) . ", ";
+    }
+  }
 
-		return ($query);
-	}
+  // cut off the last ', ' for each
+  $fields = substr($fields, 0, -2);
+  $values = substr($values, 0, -2);
 
-	public function buildUpdateQuery($table = '', $data = array(), $id=0) {
-		$all_null = true;
-		$query = "UPDATE `" . $table . "` SET `";
+  $query = sprintf("INSERT INTO `%s` (%s) VALUES (%s);",
+  $table,
+  $fields,
+  $values
+);
 
-		foreach ($data as $field => $value) {
-			if($value === null) {
-				$query .= $field . "` = NULL, `";
-        } else {
-				$query .= $field . "` = " . $this->quoteString($value) . ", `";
-				$all_null = false;
-			}
-		}
+return ($query);
+}
 
-		$query = substr($query, 0, -3); // cut off the last ', `'
-		$query .= " WHERE id = '" . $id . "';";
+public function buildUpdateQuery($table = '', $data = array(), $id=0) {
+  $all_null = true;
+  $query = "UPDATE `" . $table . "` SET `";
 
-		// only return a real query if there's something to update
-		if($all_null)
-			return '';
-		else
-			return ($query);
-	}
+  foreach ($data as $field => $value) {
+    if($value === null) {
+      $query .= $field . "` = NULL, `";
+    } else {
+      $query .= $field . "` = " . $this->quoteString($value) . ", `";
+      $all_null = false;
+    }
+  }
 
-	//Get the ID of the last row inserted into the database.  Useful for getting
-	//the id of a new object inserted using AUTO_INCREMENT in the db.
-	//RETURN -> The ID of the last inserted row
-	public function getLastInsertID() {
-		$query = "SELECT LAST_INSERT_ID() AS id";
-		$result = mysql_query($query);
-		if(!$result)
-			die('Invalid query.');
+  $query = substr($query, 0, -3); // cut off the last ', `'
+  $query .= " WHERE id = '" . $id . "';";
 
-		$row = mysql_fetch_assoc($result);
-		return ($row['id']);
-	}
+  // only return a real query if there's something to update
+  if($all_null)
+  return '';
+  else
+  return ($query);
+}
 
-  //Delete Item
-  public function deleteById($id, $class_name, $db_table) {
+//Get the ID of the last row inserted into the database.  Useful for getting
+//the id of a new object inserted using AUTO_INCREMENT in the db.
+//RETURN -> The ID of the last inserted row
+public function getLastInsertID() {
+  $query = "SELECT LAST_INSERT_ID() AS id";
+  $result = mysql_query($query);
+  if(!$result)
+  die('Invalid query.');
+
+  $row = mysql_fetch_assoc($result);
+  return ($row['id']);
+}
+
+//Delete Item
+public function deleteById($id, $class_name, $db_table) {
   if ($id === null) {
     return false;
   }
 
   $query = sprintf("DELETE FROM `%s` WHERE id = '%s';",
-      $db_table,
-      $id
-         );
-  //echo $query;
-  $result = $this->lookup($query);
+  $db_table,
+  $id
+);
+//echo $query;
+$result = $this->lookup($query);
 
-  return true;
+return true;
+}
+
+//Get Student Count From Selected University
+public function getStudentCount($university, $class_name, $db_table){
+
+  if ($university === null) {
+    return 0;
+  }
+
+  $result = mysql_query("SELECT * FROM Users WHERE university='$university';");
+  $num_rows = mysql_num_rows($result);
+
+  return $num_rows;
+
+}
+
+public function getPostCountFromUniversity($university, $class_name, $db_table){
+
+  if ($university === null) {
+    return 0;
+  }
+
+  $result = mysql_query("SELECT * FROM Post WHERE created_by IN (SELECT id FROM Users WHERE university='$university');");
+  $num_rows = mysql_num_rows($result);
+
+  return $num_rows;
+
 }
 
 }

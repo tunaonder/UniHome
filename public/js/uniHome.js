@@ -19,17 +19,8 @@ function changePage(page){
   else if(page == 'forSale'){
     window.location.href = './forSale';
   }
-  else if(page == 'roommates'){
-    window.location.href = './roommates.html';
-  }
-  else if(page == 'sublease'){
-    window.location.href = './sublease.html' + '#';
-  }
-  else if(page == 'item'){
-    window.location.href = './item.html';
-  }
   else{
-    alert("Currently this page does not exist. Sorry for the inconvenience2!");
+    alert("Currently this page does not exist. Sorry for the inconvenience!");
   }
 }
 

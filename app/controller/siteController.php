@@ -48,6 +48,11 @@ class SiteController {
 				$this->displayUserPosts();
 				break;
 
+				case 'check':
+					$userId = $_GET['userId'];
+					$this->checkUserData($userId);
+					break;
+
 				// redirect to home page if all else fails
 				default:
 				header('Location: '.BASE_URL);
@@ -126,6 +131,7 @@ class SiteController {
 				session_start();
 				$_SESSION['user'] = $u;
 				$_SESSION['userId'] = $user->get('id');
+				$_SESSION['userName'] = $user->get('name');
 				header('Location: '.BASE_URL);
 				exit();
 
@@ -184,8 +190,38 @@ class SiteController {
 
 
 			include_once SYSTEM_PATH.'/view/header.tpl';
+			include_once SYSTEM_PATH.'/view/navigator.tpl';
 			include_once SYSTEM_PATH.'/view/userPosts.tpl';
 			include_once SYSTEM_PATH.'/view/footer.tpl';
+		}
+
+		public function checkUserData($id){
+
+			$user = User::loadById($id);
+
+			if($user != null) {
+				$university = $user->get('university');
+
+				$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
+				or die ('Error: Could not connect to MySql database');
+				mysql_select_db(DB_DATABASE);
+
+				$numberOfStudents = User::getStudentCountFromUniversity($university);
+				$postCount = User::getPostCountFromUniversity($university);
+
+
+				$json = array( 'status' => 'available', 'university' => $university,
+				'studentCount' => $numberOfStudents, 'postCount' => $postCount);
+
+			} else {
+
+				$json = array( 'status' => 'unavailable' );
+
+			}
+
+			header('Content-Type: application/json');
+			echo json_encode($json);
+
 		}
 
 
