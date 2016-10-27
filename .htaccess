@@ -5,6 +5,7 @@ RewriteEngine on
 # ErrorDocument 404 /app/controller/error.php
 
 #User
+RewriteRule ^signup/check?$ app/controller/userController.php?action=checkEmail [QSA,L]
 
 RewriteRule ^signUp/saveUser?$ app/controller/userController.php?action=saveUser [QSA,L]
 

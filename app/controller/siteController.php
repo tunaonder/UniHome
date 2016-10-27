@@ -57,6 +57,8 @@ class SiteController {
 					$userEmail = $_GET['userEmail'];
 					$this->checkUserEmail($userEmail);
 					break;
+                
+
 
 				// redirect to home page if all else fails
 				default:
@@ -208,7 +210,7 @@ class SiteController {
 		public function checkUserData($id){
 
 			$user = User::loadById($id);
-
+            
 			//If there is such user
 			if($user != null) {
 				//Get his university
@@ -237,22 +239,5 @@ class SiteController {
 			echo json_encode($json);
 
 		}
-
-		public function checkUserEmail($email) {
-			$user = User::loadByEmail($email);
-			if($user == null) {
-				// username is available
-				$json = array( 'status' => 'available' );
-			} else {
-				// username is taken
-				$json = array( 'status' => 'unavailable' );
-			}
-
-			header('Content-Type: application/json');
-			echo json_encode($json);
-		}
-
-
-
 
 	}

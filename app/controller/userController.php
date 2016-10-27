@@ -14,11 +14,19 @@ class UserController {
 	// route us to the appropriate class method for this action
 	public function route($action) {
 		switch($action) {
-
+                
 			case 'saveUser':
         $this->saveUser();
 				break;
 
+                
+        case 'checkEmail':
+               
+            $userEmail = $_GET['email'];
+                
+                $this->checkUserEmail($userEmail);
+                break;
+                
       // redirect to home page if all else fails
       default:
         header('Location: '.BASE_URL);
@@ -50,6 +58,19 @@ class UserController {
 
 	}
 
+    	public function checkUserEmail($userEmail) {
+		$user = User::loadByEmail($userEmail);
+		if($user == null) {
+			// user doesn't exist; username is available
+			$json = array( 'status' => 'available' );
+		} else {
+			// username not available
+			$json = array( 'status' => 'unavailable' );
+		}
+
+		header('Content-Type: application/json');
+		echo json_encode($json);
+	}
 
 
 

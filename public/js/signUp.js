@@ -1,3 +1,34 @@
+
+$(document).ready(function(){  
+  $('#signUpEmailInput').blur(function(){
+    console.log('blurred');
+    var email = $(this).val();
+    $.get(
+      baseURL+'/signup/check',
+      { 'email': email  },
+      function(data){
+         if(data.status == 'unavailable') {
+           alert = $('<div class="alert"> This email is already taken </div>');
+    //add the alert
+    $('#alertContainer2').prepend(alert);
+    $(alert).fadeOut(3500);
+    //make password input border red
+    $('#signUpEmailInput').css('border-color', 'red');
+        }else if (data.status == 'available')
+            {
+                // Do something
+                $('#signUpEmailInput').css('border-color', '');
+            }
+      },
+      "json"
+    );
+  });
+
+});
+
+
+
+
 function userSignUp(){
 
 
@@ -79,7 +110,6 @@ function userSignUp(){
   //Check name input
   if (name == ''){
     nameValidate = false;
-
     alert = $('<div class="alert"> Error: Please enter your name </div>');
     //add the alert
     $('#alertContainer2').prepend(alert);
@@ -133,9 +163,5 @@ function userSignUp(){
   else{
     return false;
   }
-
-
-
-
 
 }

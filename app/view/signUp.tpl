@@ -13,7 +13,7 @@
 
         <div class="lineContainer">
           <label>Email: </label>
-          <input id="signUpEmailInput" type="text" name="userEmail">
+          <input id="signUpEmailInput"  type="text" name="userEmail">
         </div>
 
         <div class="lineContainer">

@@ -16,7 +16,7 @@ $(document).ready(function () {
       baseURL+'/check',
       { 'userId': userId },
       function(data) {
-
+        
         //If User is signed in display information fetched from json request accordingly
         if(data.status == 'available') {
 
