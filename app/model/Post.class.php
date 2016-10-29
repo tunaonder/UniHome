@@ -14,6 +14,7 @@ class Post extends DbObject {
   protected $conditionInfo;
   protected $photoInfo;
   protected $creator_id;
+  protected $address;
 
 
   // constructor
@@ -27,7 +28,8 @@ class Post extends DbObject {
       'price' => 0,
       'conditionInfo' => '',
       'photoInfo' => '',
-      'created_by' => 0
+      'created_by' => 0,
+      'address' => ''
     );
 
     $args += $defaultArgs;
@@ -41,6 +43,7 @@ class Post extends DbObject {
     $this->conditionInfo = $args['conditionInfo'];
     $this->photoInfo = $args['photoInfo'];
     $this->creator_id = $args['created_by'];
+    $this->address = $args['address'];
   }
 
   // save changes to object
@@ -57,7 +60,8 @@ class Post extends DbObject {
       'price' => $this->price,
       'conditionInfo' => $this->conditionInfo,
       'photoInfo' => $this->photoInfo,
-      'created_by' => $this->creator_id
+      'created_by' => $this->creator_id,
+      'address' => $this->address
     );
     $db->store($this, __CLASS__, self::DB_TABLE, $db_properties);
   }

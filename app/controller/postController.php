@@ -62,6 +62,7 @@ class PostController {
 		$price = $_POST['price'];
 		$condition = $_POST['conditionInfo'];
 		$photoInfo = $file_name;
+		$address = $_POST['address'];
 		//Get the Creator Id from the Session
 		session_start();
 		if (isset($_SESSION['user'])){
@@ -79,6 +80,7 @@ class PostController {
 		$post->set('conditionInfo', $condition);
 		$post->set('photoInfo', $photoInfo);
 		$post->set('creator_id', $creator_id);
+		$post->set('address', $address);
 
 		$post->save();
 		//Redirect user
@@ -142,6 +144,7 @@ class PostController {
 		$post['conditionInfo'] = $p->get('conditionInfo');
 		$post['price'] = $p->get('price');
 		$post['photoInfo'] = $p->get('photoInfo');
+		$post['address'] = $p->get('address');
 
 
 
@@ -189,6 +192,7 @@ class PostController {
 		$post['conditionInfo'] = $p->get('conditionInfo');
 		$post['price'] = $p->get('price');
 		$post['photoInfo'] = $p->get('photoInfo');
+		$post['address'] = $p->get('address');
 
 
 
@@ -207,11 +211,13 @@ class PostController {
 		$title = $_POST['editTitle'];
 		$description = $_POST['editDescription'];
 		$price = $_POST['editPrice'];
+		$address = $_POST['editAddress'];
 
 
 		$p->set('title', $title);
 		$p->set('description', $description);
 		$p->set('price', $price);
+		$p->set('address', $address);
 
 		//If new Photo is uploaded set new photo data, otherwise do not change it
 		if($file_name != ""){

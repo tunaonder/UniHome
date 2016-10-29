@@ -57,7 +57,7 @@
       <h3> Description </h3>
 
       <p id="itemDescription" class="itemDescription"><?= $post['description'] ?> </p>
-
+      <p id="itemDescription" class="itemDescription"><?= $post['address'] ?> </p>
 
       <div id="contactContainer">
         <p id="itemContactPerson1" class="itemContactPerson"> <?= $contactInfo['name'] ?>  </p>

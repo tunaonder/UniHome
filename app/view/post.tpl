@@ -59,6 +59,17 @@
 
         </div>
 
+        <!-- <div class="postItemLineContainer" id="floating-panel"> -->
+        <div class="postItemLineContainer">
+          <label>Address: </label>
+          <input id="address" type="textbox">
+          <input id="submit" type="button" value="Find!">
+        </div>
+        <div id="map"></div>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvzbGNUXp2lX_QOiX8LjIW144pggtYcQ8&callback=initMap">
+        </script>
+
 
         <div class="postItemLineContainer">
           <button class="contentButton" name="submit" type="submit" >Post!</button>

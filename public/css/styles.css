@@ -7,19 +7,20 @@ html, body {
 /*When the child elements of any element are floated, they're removed from the normal flow of the document */
 /*fix it*/
 div{
-  overflow: auto;
+  /*overflow: auto;*/
 
 }
 
 .wrapper{
   background-color: #F5F3EE;
   height: 100vh;
-
+  overflow: auto;
 }
 
 /*Size of Main content is View Height - (footerheight + headerHeight) */
 .mainContent{
   height: calc(100vh - 115px);
+  overflow: auto;
 }
 
 .clickable{
@@ -325,6 +326,7 @@ div .alert{
 /*================Post Item Page Style=============*/
 .mainContent .postItemContent{
   /*Make the item to the horizontally centered*/
+  overflow: auto;
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -336,6 +338,7 @@ div .alert{
 }
 
 .mainContent .postItemLineContainer{
+  overflow: auto;
   margin-top: 6px;
 }
 
@@ -662,4 +665,24 @@ margin: 20px;
 
 .leftButton{
   float: left;
+}
+
+/* google map styles*/
+#map {
+  height: 120px;
+  width: 200px;
+}
+
+#floating-panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
 }
