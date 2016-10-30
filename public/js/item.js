@@ -34,6 +34,4 @@ $(document).ready(function () {
     $('#itemContactPerson1').append(contactInfo);
 
   }
-
-
 });

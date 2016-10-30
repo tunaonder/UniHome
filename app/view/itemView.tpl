@@ -54,10 +54,15 @@
         </div>
       </div>
 
-      <h3> Description </h3>
-
+      <h3> Description: </h3>
       <p id="itemDescription" class="itemDescription"><?= $post['description'] ?> </p>
-      <p id="itemDescription" class="itemDescription"><?= $post['address'] ?> </p>
+
+      <h3> Address: </h3>
+      <p id="itemAddress" class="itemDescription"><?= $post['address'] ?> </p>
+      <div id="map"></div>
+      <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvzbGNUXp2lX_QOiX8LjIW144pggtYcQ8&callback=initMap">
+      </script>
 
       <div id="contactContainer">
         <p id="itemContactPerson1" class="itemContactPerson"> <?= $contactInfo['name'] ?>  </p>

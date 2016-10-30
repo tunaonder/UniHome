@@ -46,12 +46,10 @@ class PostController {
 			header('Location: '.BASE_URL);
 			exit();
 
-
 		}
 	}
 
 	public function postItem(){
-
 		//Upload Photo and Return File Name
 		$file_name = $this->uploadPhoto();
 
@@ -69,7 +67,6 @@ class PostController {
 			$creator_id = $_SESSION['userId'];
 		}
 
-
 		$post = new Post();
 
 		$post->set('category', $category);
@@ -85,9 +82,6 @@ class PostController {
 		$post->save();
 		//Redirect user
 		header('Location: '.BASE_URL.'/yourPosts');
-
-
-
 	}
 
 	//Function Resource: https://davidwalsh.name/basic-file-uploading-php
@@ -122,8 +116,6 @@ class PostController {
 			move_uploaded_file($file_loc,$folder.$final_file);
 
 			return $final_file;
-
-
 		}
 	}
 
@@ -133,7 +125,7 @@ class PostController {
 
 		$p = Post::loadById($pid);
 
-		$pageName = $p->get('title');
+		$pageName = 'View';
 
 		$post = array();
 
@@ -145,8 +137,6 @@ class PostController {
 		$post['price'] = $p->get('price');
 		$post['photoInfo'] = $p->get('photoInfo');
 		$post['address'] = $p->get('address');
-
-
 
 		$contactInfo = array();
 
@@ -166,8 +156,6 @@ class PostController {
 			$contactInfo['email'] = "";
 			$contactInfo['phone'] = "";
 		}
-
-
 
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/navigator.tpl';
@@ -193,8 +181,6 @@ class PostController {
 		$post['price'] = $p->get('price');
 		$post['photoInfo'] = $p->get('photoInfo');
 		$post['address'] = $p->get('address');
-
-
 
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/editView.tpl';
@@ -240,14 +226,5 @@ class PostController {
 			//Redirect user
 			header('Location: '.BASE_URL.'/yourPosts');
 		}
-
-
-
-
-
-
 	}
-
-
-
 }

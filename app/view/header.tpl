@@ -1,5 +1,5 @@
 
-<!-- According to user status(Signed In Or Not), displayed information and components 
+<!-- According to user status(Signed In Or Not), displayed information and components
 are either visible or hidden -->
 <?php
 
@@ -41,6 +41,9 @@ $userId = 0;
   <?php endif; ?>
   <?php if($pageName == 'Post' || $pageName == 'Edit'): ?>
     <script type="text/javascript" src="<?= BASE_URL ?>/public/js/post.js"></script>
+  <?php endif; ?>
+  <?php if($pageName == 'View'): ?>
+    <script type="text/javascript" src="<?= BASE_URL ?>/public/js/view.js"></script>
   <?php endif; ?>
   <?php if($pageName == 'Your Posts'): ?>
     <script type="text/javascript" src="<?= BASE_URL ?>/public/js/userPosts.js"></script>

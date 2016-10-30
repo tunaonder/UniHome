@@ -62,8 +62,8 @@
         <!-- <div class="postItemLineContainer" id="floating-panel"> -->
         <div class="postItemLineContainer">
           <label>Address: </label>
-          <input id="address" type="textbox">
-          <input id="submit" type="button" value="Find!">
+          <textarea id="address" name="address" rows="3" cols="30"></textarea>
+          <input id="submit" type="button" value="Find on Map">
         </div>
         <div id="map"></div>
         <script async defer

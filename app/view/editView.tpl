@@ -53,6 +53,11 @@
 
         </div>
 
+        <div class="postItemLineContainer">
+          <label>Address: </label>
+          <input id="addressInput" value="<?= $post['address'] ?>" name="editAddress" type="text">
+        </div>
+
 
         <div class="postItemLineContainer">
           <button class="contentButton" name="submit" type="submit" >Edit</button>

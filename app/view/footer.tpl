@@ -12,8 +12,4 @@
     <button onclick="changePage('followUs');">Follow Us</button>
   </div>
   <label> Copyright © 2016. UniHome </label>
-
-
-
-
 </div>
