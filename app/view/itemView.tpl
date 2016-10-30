@@ -17,6 +17,7 @@
     <!-- Item Image Will be displayed on the left side -->
     <img id="itemImage" src="<?= BASE_URL ?>/app/uploads/<?= $post['photoInfo'] ?>" alt="Image Does not Exist" >
 
+
     <!-- Other content will be on the right -->
     <div class="rightBlockContainer">
 
@@ -59,10 +60,14 @@
 
       <h3> Address: </h3>
       <p id="itemAddress" class="itemDescription"><?= $post['address'] ?> </p>
+
+
       <div id="map"></div>
       <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvzbGNUXp2lX_QOiX8LjIW144pggtYcQ8&callback=initMap">
       </script>
+
+      <button id="favButton" class="contentButton" type="button" onClick="addToFavs();" >Add to Favorites!</button>
 
       <div id="contactContainer">
         <p id="itemContactPerson1" class="itemContactPerson"> <?= $contactInfo['name'] ?>  </p>

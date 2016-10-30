@@ -35,3 +35,8 @@ $(document).ready(function () {
 
   }
 });
+
+function addToFavs(){
+  console.log('test');
+
+}
