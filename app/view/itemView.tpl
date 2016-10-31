@@ -7,7 +7,7 @@
     <!-- Extra navigation to go back -->
     <div class="backContainer">
       <a id="backNavigator" href="../">For Sale</a>
-      <p id="itemPageItemTitle">> <?= $post['title'] ?></p>
+      <p id="itemPageItemTitle"> <?= $post['title'] ?></p>
     </div>
 
     <div class="itemTitleContainer">
@@ -67,7 +67,11 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvzbGNUXp2lX_QOiX8LjIW144pggtYcQ8&callback=initMap">
       </script>
 
-      <button id="favButton" class="contentButton" type="button" onClick="addToFavs();" >Add to Favorites!</button>
+      <input type="hidden" id="postId" value="<?= $post['id'] ?>">
+      
+      <p id="favInfo" style="display: none"> Item is in Your Favorite List </p>
+      <button id="favButton" type="button" onClick="addToFavs();" style="display: <?= $favButtonStyle ?>">Add to Favorites!</button>
+
 
       <div id="contactContainer">
         <p id="itemContactPerson1" class="itemContactPerson"> <?= $contactInfo['name'] ?>  </p>

@@ -211,4 +211,24 @@ public function getPostCountFromUniversity($university, $class_name, $db_table){
 
 }
 
+public function getFavoriteId($userId, $postId, $class_name, $db_table){
+  if ($userId === 0 || $postId === 0) {
+    return 0;
+  }
+  $query = sprintf("SELECT id FROM `%s` WHERE user_id = '%s' AND post_id = '%s';" ,
+  $db_table,
+  $userId,
+  $postId);
+  $result = $this->lookup($query);
+
+  if(!mysql_num_rows($result)) {
+    return 0;
+  } else {
+    $row = mysql_fetch_assoc($result);
+    $id = $row['id'];
+    return $id;
+  }
+
+}
+
 }

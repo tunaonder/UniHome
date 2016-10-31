@@ -16,6 +16,9 @@ RewriteRule ^forSale/view/(\d+)/?$ app/controller/postController.php?action=view
 RewriteRule ^yourPosts/edit/(\d+)/editPost?$ app/controller/postController.php?action=editPost&pid=$1 [QSA,L]
 RewriteRule ^yourPosts/edit/(\d+)/?$ app/controller/postController.php?action=displayPostDetails&pid=$1 [QSA,L]
 RewriteRule ^yourPosts/delete/(\d+)/?$ app/controller/postController.php?action=deletePost&pid=$1 [QSA,L]
+RewriteRule ^yourFavorites/delete/(\d+)/?$ app/controller/postController.php?action=deleteFavorite&pid=$1 [QSA,L]
+RewriteRule ^forSale/view/(\d+)/addToFavs?$ app/controller/postController.php?action=addToFavs&userId=$1&pid=$1 [QSA,L]
+RewriteRule ^forSale/view/(\d+)/checkFav?$ app/controller/postController.php?action=checkFav&userId=$1&pid=$1 [QSA,L]
 
 
 # Site
@@ -28,4 +31,5 @@ RewriteRule ^signUp/?$ app/controller/siteController.php?action=signUp [QSA,L]
 RewriteRule ^processLogout/?$ app/controller/siteController.php?action=processLogout [QSA,L]
 RewriteRule ^post/?$ app/controller/siteController.php?action=post [QSA,L]
 RewriteRule ^yourPosts/?$ app/controller/siteController.php?action=displayUserPosts [QSA,L]
+RewriteRule ^yourFavorites/?$ app/controller/siteController.php?action=displayUserFavorites [QSA,L]
 RewriteRule ^forSale/?$ app/controller/siteController.php?action=forSale [QSA,L]

@@ -48,16 +48,20 @@ class SiteController {
 				$this->displayUserPosts();
 				break;
 
-				case 'check':
-					$userId = $_GET['userId'];
-					$this->checkUserData($userId);
-					break;
+				case 'displayUserFavorites':
+				$this->displayUserFavorites();
+				break;
 
-					case 'checkUser':
-					$userEmail = $_GET['userEmail'];
-					$this->checkUserEmail($userEmail);
-					break;
-                
+				case 'check':
+				$userId = $_GET['userId'];
+				$this->checkUserData($userId);
+				break;
+
+				case 'checkUser':
+				$userEmail = $_GET['userEmail'];
+				$this->checkUserEmail($userEmail);
+				break;
+
 
 
 				// redirect to home page if all else fails
@@ -210,7 +214,7 @@ class SiteController {
 		public function checkUserData($id){
 
 			$user = User::loadById($id);
-            
+
 			//If there is such user
 			if($user != null) {
 				//Get his university
@@ -238,6 +242,58 @@ class SiteController {
 			header('Content-Type: application/json');
 			echo json_encode($json);
 
+		}
+
+		public function displayUserFavorites() {
+			$pageName = 'Your Favorites';
+
+			//If session is not already started, start it
+			if (session_status() == PHP_SESSION_NONE) {
+				session_start();
+			}
+			//If user is set get its id
+			if(isset($_SESSION['user'])){
+
+				$id = $_SESSION['userId'];
+
+			}
+			//If there is no such id delete session
+			if($id == null){
+				//Delete Session
+				session_start();
+				session_destroy();
+				// send them back
+				header('Location: '.BASE_URL);
+				exit();
+
+			}
+
+
+
+			$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
+			or die ('Error: Could not connect to MySql database');
+			mysql_select_db(DB_DATABASE);
+
+			$favQuery = "SELECT post_id FROM Favorite WHERE user_id=$id;";
+			$favs = mysql_query($favQuery);
+
+			$postIdArray = array();
+			while($row = mysql_fetch_assoc($favs)):
+				array_push($postIdArray, $row['post_id']);
+			endwhile;
+
+			//Prepare Array For SQL Query
+			$formattedArray = implode(", ", $postIdArray);
+
+			//Get all Posts created by current user
+			$q = "SELECT * FROM Post WHERE id in ($formattedArray)";
+			$result = mysql_query($q);
+
+
+			include_once SYSTEM_PATH.'/view/header.tpl';
+			include_once SYSTEM_PATH.'/view/navigator.tpl';
+			include_once SYSTEM_PATH.'/view/userFavs.tpl';
+			include_once SYSTEM_PATH.'/view/footer.tpl';
 		}
 
 	}

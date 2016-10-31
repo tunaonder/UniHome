@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS Post, Users;
+DROP TABLE IF EXISTS Post, Users, Favorite;
 
 CREATE TABLE Users
 (
@@ -27,6 +27,13 @@ CREATE TABLE Post
   created_by INT,
   -- FOREIGN KEY (created_by) REFERENCES Users(id) ON DELETE CASCADE,
   PRIMARY KEY (id)
+);
+
+CREATE TABLE Favorite(
+  id INT NOT NULL AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  post_id INT NOT NULL,
+  PRIMARY KEY(id)
 );
 
 INSERT INTO Users (name, email, phone_number, university, password) VALUES

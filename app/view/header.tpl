@@ -8,6 +8,7 @@ $userLoggedInButtonStyle = "none";
 $userLoggedInButtonStyle2 = "block";
 $welcomeInfo = "Welcome to UniHome!";
 $userId = 0;
+$favButtonStyle = "none";
 
 
 ?>
@@ -48,6 +49,9 @@ $userId = 0;
   <?php if($pageName == 'Your Posts'): ?>
     <script type="text/javascript" src="<?= BASE_URL ?>/public/js/userPosts.js"></script>
   <?php endif; ?>
+  <?php if($pageName == 'Your Favorites'): ?>
+    <script type="text/javascript" src="<?= BASE_URL ?>/public/js/userFavs.js"></script>
+  <?php endif; ?>
 
 
 
@@ -70,6 +74,7 @@ $userId = 0;
       $userLoggedInButtonStyle2 = "none";
       $welcomeInfo = 'Welcome '.$_SESSION['userName'].'';
       $userId = $_SESSION['userId'];
+      $favButtonStyle = "block";
 
 
 
@@ -91,6 +96,7 @@ $userId = 0;
         <button id="signUpButton" type="submit" style="display: <?= $userLoggedInButtonStyle ?>">Logout</button>
         <button type="button" onClick="document.location.href='<?= BASE_URL ?>/post'" style="display: <?= $userLoggedInButtonStyle ?>"> New Post</button>
         <button type="button" onClick="document.location.href='<?= BASE_URL ?>/yourPosts'" style="display: <?= $userLoggedInButtonStyle ?>">Your Items</button>
+        <button type="button" onClick="document.location.href='<?= BASE_URL ?>/yourFavorites'" style="display: <?= $userLoggedInButtonStyle ?>">Your Favorites</button>
         <button type="button" onClick="document.location.href='<?= BASE_URL ?>/signUp'" style="display: <?= $userLoggedInButtonStyle2 ?>">Sign Up</button>
         <button type="button" onClick="document.location.href='<?= BASE_URL ?>/login'" style="display: <?= $userLoggedInButtonStyle2 ?>">Login</button>
         <label id = "userLoggedInLabel "style="color: white"> <?= $loginInformation ?> </label>

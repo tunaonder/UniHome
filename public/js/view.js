@@ -1,3 +1,45 @@
+// Run When page is ready
+$(document).ready(function () {
+
+  //This function Checks if User follows the current item
+  $(function(){
+
+    var userId = $('#userId').val();
+
+
+    //If user did not login, do not do any user control
+    if(userId == 0){
+      return;
+    }
+
+      var postId = $('#postId').val();
+
+      $.get(
+        baseURL+'/forSale/view/'+postId+'/checkFav',
+        { 'userId': userId, 'pid': postId },
+        function(data) {
+
+          //If User is signed in display information fetched from json request accordingly
+          if(data.status == 'followed') {
+            $('#favInfo').css('display', 'block');
+            $('#favButton').css('display', 'none');
+
+
+          }
+
+          //If User is NOT Signed In Display General Info
+          else if(data.status == 'unfollowed') {
+            $('#favInfo').css('display', 'none');
+            $('#favButton').css('display', 'block');
+          }
+
+        },
+        "json"
+      );
+
+  });
+});
+
 
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -24,4 +66,34 @@ function geocodeAddress(geocoder, resultsMap) {
       alert('Geocode was not successful for the following reason: ' + status);
     }
   });
+}
+
+function addToFavs(){
+  //Get Used Id From HTML hidden value to set as a json request parameter
+  var userId = $('#userId').val();
+  var postId = $('#postId').val();
+
+
+  $.post(
+    baseURL+'/forSale/view/'+postId+'/addToFavs',
+    { 'userId': userId, 'pid': postId },
+    function(data) {
+
+      //If User is signed in display information fetched from json request accordingly
+      if(data.status == 'available') {
+        $('#favInfo').css('display', 'block');
+        $('#favButton').css('display', 'none');
+      }
+
+      //If User is NOT Signed In Display General Info
+      else if(data.status == 'unavailable') {
+        $('#favInfo').css('display', 'none');
+        $('#favButton').css('display', 'block');
+      }
+
+    },
+    "json"
+  );
+
+
 }

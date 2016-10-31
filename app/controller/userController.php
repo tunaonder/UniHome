@@ -14,19 +14,19 @@ class UserController {
 	// route us to the appropriate class method for this action
 	public function route($action) {
 		switch($action) {
-                
+
 			case 'saveUser':
         $this->saveUser();
 				break;
 
-                
+
         case 'checkEmail':
-               
+
             $userEmail = $_GET['email'];
-                
+
                 $this->checkUserEmail($userEmail);
                 break;
-                
+
       // redirect to home page if all else fails
       default:
         header('Location: '.BASE_URL);
