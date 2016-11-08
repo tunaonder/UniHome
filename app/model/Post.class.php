@@ -77,26 +77,38 @@ class Post extends DbObject {
   public static function getAllPosts($limit=null) {
     $query = sprintf(" SELECT id FROM %s ORDER BY date_created DESC ",
     self::DB_TABLE
-  );
-  $db = Db::instance();
-  $result = $db->lookup($query);
-  if(!mysql_num_rows($result))
-  return null;
-  else {
-    $objects = array();
-    while($row = mysql_fetch_assoc($result)) {
-      $objects[] = self::loadById($row['id']);
+    );
+    $db = Db::instance();
+    $result = $db->lookup($query);
+    if(!mysql_num_rows($result))
+    return null;
+    else {
+      $objects = array();
+      while($row = mysql_fetch_assoc($result)) {
+        $objects[] = self::loadById($row['id']);
+      }
+      return ($objects);
     }
-    return ($objects);
   }
-}
 
-public static function deleteById($id) {
-  $db = Db::instance();
-  $result = $db->deleteById($id, __CLASS__, self::DB_TABLE);
-  return $result;
-}
+  public static function deleteById($id) {
+    $db = Db::instance();
+    $result = $db->deleteById($id, __CLASS__, self::DB_TABLE);
+    return $result;
+  }
+
+  public static function getUserItemsById($id){
+    $db = Db::instance();
+    $result = $db->getUserItemsById($id, __CLASS__, self::DB_TABLE);
+    return $result;
 
 
+  }
 
+  public static function getPostsByPostIds($list){
+    $db = Db::instance();
+    $result = $db->getPostsByPostIds($list, __CLASS__, self::DB_TABLE);
+    return $result;
+
+  }
 }

@@ -194,15 +194,8 @@ class SiteController {
 
 			}
 
-
-			$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
-			or die ('Error: Could not connect to MySql database');
-			mysql_select_db(DB_DATABASE);
-
-			//Get all Posts created by current user
-			$q = "SELECT * FROM Post WHERE created_by=$id ORDER BY created_at DESC;";
-			$result = mysql_query($q);
-
+			//Get All User Items By User Id
+			$result = Post::getUserItemsById($id);
 
 			include_once SYSTEM_PATH.'/view/header.tpl';
 			include_once SYSTEM_PATH.'/view/navigator.tpl';
@@ -219,10 +212,6 @@ class SiteController {
 			if($user != null) {
 				//Get his university
 				$university = $user->get('university');
-
-				$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
-				or die ('Error: Could not connect to MySql database');
-				mysql_select_db(DB_DATABASE);
 
 				//Find number of students from particular university
 				$numberOfStudents = User::getStudentCountFromUniversity($university);
@@ -269,13 +258,9 @@ class SiteController {
 			}
 
 
+			//Get User Favorite Post Ids
+			$favs = Favorite::getUserFavoritesById($id);
 
-			$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
-			or die ('Error: Could not connect to MySql database');
-			mysql_select_db(DB_DATABASE);
-
-			$favQuery = "SELECT post_id FROM Favorite WHERE user_id=$id;";
-			$favs = mysql_query($favQuery);
 
 			$postIdArray = array();
 			while($row = mysql_fetch_assoc($favs)):
@@ -286,8 +271,8 @@ class SiteController {
 			$formattedArray = implode(", ", $postIdArray);
 
 			//Get all Posts created by current user
-			$q = "SELECT * FROM Post WHERE id in ($formattedArray)";
-			$result = mysql_query($q);
+			$result = Post::getPostsByPostIds($formattedArray);
+
 
 
 			include_once SYSTEM_PATH.'/view/header.tpl';

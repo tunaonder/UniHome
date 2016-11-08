@@ -231,4 +231,33 @@ public function getFavoriteId($userId, $postId, $class_name, $db_table){
 
 }
 
+public function getUserItemsById($id){
+
+  //Get all Posts created by current user
+  $q = "SELECT * FROM Post WHERE created_by=$id ORDER BY created_at DESC;";
+  $result = mysql_query($q);
+
+  return $result;
+
+}
+
+public function getUserFavoritesById($id){
+
+
+  $favQuery = "SELECT post_id FROM Favorite WHERE user_id=$id;";
+  $favs = mysql_query($favQuery);
+
+  return $favs;
+
+
+}
+
+public function getPostsByPostIds($list){
+  $q = "SELECT * FROM Post WHERE id in ($list)";
+  $result = mysql_query($q);
+  return $result;
+
+
+}
+
 }
