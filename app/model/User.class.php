@@ -11,6 +11,7 @@ class User extends DbObject {
     protected $phone_number;
     protected $password;
     protected $university;
+    protected $type;
 
 
     // constructor
@@ -21,7 +22,8 @@ class User extends DbObject {
             'password' => '',
             'university' => '',
             'name' => '',
-            'phone_number' => ''
+            'phone_number' => '',
+            'type' => ''
             );
 
         $args += $defaultArgs;
@@ -32,6 +34,7 @@ class User extends DbObject {
         $this->university = $args['university'];
         $this->name = $args['name'];
         $this->phone_number = $args['phone_number'];
+        $this->type = $args['type'];
     }
 
     // save changes to object

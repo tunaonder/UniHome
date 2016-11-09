@@ -144,6 +144,7 @@ class SiteController {
 				$_SESSION['user'] = $u;
 				$_SESSION['userId'] = $user->get('id');
 				$_SESSION['userName'] = $user->get('name');
+				$_SESSION['userType'] = $user->get('type');
 				header('Location: '.BASE_URL);
 				exit();
 

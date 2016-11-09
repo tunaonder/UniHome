@@ -9,6 +9,7 @@ CREATE TABLE Users
   university VARCHAR(64) NOT NULL,
   password VARCHAR (128) NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  type ENUM('User', 'Admin') NOT NULL DEFAULT 'User',
   PRIMARY KEY (id)
 );
 
@@ -35,9 +36,9 @@ CREATE TABLE Favorite(
   post_id INT NOT NULL,
   PRIMARY KEY(id)
 );
-
+INSERT INTO Users (name, email, phone_number, university, password, type) VALUES
+('Sait Onder', 'saito@vt.edu', '5401112233', 'Virginia Tech', '1234', 'Admin');
 INSERT INTO Users (name, email, phone_number, university, password) VALUES
-('Sait Onder', 'saito@vt.edu', '5401112233', 'Virginia Tech', '1234'),
 ('Deniz Sahici', 'deniz@radford.edu', '4445551313', 'Radford University', '1234'),
 ('Mehmet Aslan', 'metmet@vt.edu', '3503506666', 'Virginia Tech', '1234'),
 ('Metin Kaya', 'metin@nrc.edu', '3503506666', 'New River College', '1234'),

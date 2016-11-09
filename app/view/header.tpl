@@ -8,6 +8,7 @@ $userLoggedInButtonStyle = "none";
 $userLoggedInButtonStyle2 = "block";
 $welcomeInfo = "Welcome to UniHome!";
 $userId = 0;
+$userType = '';
 $favButtonStyle = "none";
 
 
@@ -74,6 +75,7 @@ $favButtonStyle = "none";
       $userLoggedInButtonStyle2 = "none";
       $welcomeInfo = 'Welcome '.$_SESSION['userName'].'';
       $userId = $_SESSION['userId'];
+      $userType = $_SESSION['userType'];
       $favButtonStyle = "block";
 
 
@@ -85,6 +87,7 @@ $favButtonStyle = "none";
     <!-- Hidden HTML VALUES TO USE IN home.js(for ajax requests) -->
     <input type="hidden" id="welcomeInfo" value="<?= $welcomeInfo ?>">
     <input type="hidden" id="userId" value="<?= $userId ?>">
+    <input type="hidden" id="userType" value="<?= $userType ?>">
 
     <!-- Application Logo or Name -->
     <a id="appName"href="<?= BASE_URL ?>">UniHome</a>
