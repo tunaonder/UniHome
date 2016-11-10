@@ -11,8 +11,26 @@ $userId = 0;
 $userType = '';
 $favButtonStyle = "none";
 
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+
+if(isset($_SESSION['user'])) {
+
+  $loginInformation = 'Logged in as '.$_SESSION['userName'].'';
+  $userLoggedInButtonStyle = "block";
+  $userLoggedInButtonStyle2 = "none";
+  $welcomeInfo = 'Welcome '.$_SESSION['userName'].'';
+  $userId = $_SESSION['userId'];
+  $userType = $_SESSION['userType'];
+  $favButtonStyle = "block";
+
+
+
+}
 
 ?>
+
 
 <!DOCTYPE html>
 <html  lang="en">
@@ -53,6 +71,9 @@ $favButtonStyle = "none";
   <?php if($pageName == 'Your Favorites'): ?>
     <script type="text/javascript" src="<?= BASE_URL ?>/public/js/userFavs.js"></script>
   <?php endif; ?>
+  <?php if($pageName == 'View Users'): ?>
+    <script type="text/javascript" src="<?= BASE_URL ?>/public/js/viewUsers.js"></script>
+  <?php endif; ?>
 
 
 
@@ -62,27 +83,7 @@ $favButtonStyle = "none";
   <!-- Header Section Of Page -->
   <div class="header">
 
-    <?php
 
-    if (session_status() == PHP_SESSION_NONE) {
-      session_start();
-    }
-
-    if(isset($_SESSION['user'])) {
-
-      $loginInformation = 'Logged in as '.$_SESSION['userName'].'';
-      $userLoggedInButtonStyle = "block";
-      $userLoggedInButtonStyle2 = "none";
-      $welcomeInfo = 'Welcome '.$_SESSION['userName'].'';
-      $userId = $_SESSION['userId'];
-      $userType = $_SESSION['userType'];
-      $favButtonStyle = "block";
-
-
-
-    }
-
-    ?>
 
     <!-- Hidden HTML VALUES TO USE IN home.js(for ajax requests) -->
     <input type="hidden" id="welcomeInfo" value="<?= $welcomeInfo ?>">
@@ -102,6 +103,9 @@ $favButtonStyle = "none";
         <button type="button" onClick="document.location.href='<?= BASE_URL ?>/yourFavorites'" style="display: <?= $userLoggedInButtonStyle ?>">Your Favorites</button>
         <button type="button" onClick="document.location.href='<?= BASE_URL ?>/signUp'" style="display: <?= $userLoggedInButtonStyle2 ?>">Sign Up</button>
         <button type="button" onClick="document.location.href='<?= BASE_URL ?>/login'" style="display: <?= $userLoggedInButtonStyle2 ?>">Login</button>
+        <?php if($userType == 'Admin'): ?>
+          <button id="viewUsersButton"type="button" onClick="document.location.href='<?= BASE_URL ?>/viewUsers'" style="display: <?= $userLoggedInButtonStyle ?>"> View Users </button>
+        <?php endif; ?>
         <label id = "userLoggedInLabel "style="color: white"> <?= $loginInformation ?> </label>
 
       </form>

@@ -24,6 +24,8 @@ RewriteRule ^forSale/view/(\d+)/checkFav?$ app/controller/favoriteController.php
 # Site
 RewriteRule ^getInfoForAdmin/?$ app/controller/siteController.php?action=checkForAdmin&userId=$1 [QSA,L]
 RewriteRule ^check/?$ app/controller/siteController.php?action=check&userId=$1 [QSA,L]
+RewriteRule ^viewUsers/deleteUser?$ app/controller/userController.php?action=deleteUser&userId=$1 [QSA,L]
+RewriteRule ^viewUsers/?$ app/controller/siteController.php?action=viewUsers [QSA,L]
 RewriteRule ^$ app/controller/siteController.php?action=home [QSA,L]
 RewriteRule ^login/check/?$ app/controller/siteController.php?action=checkUser&userEmail=$1 [QSA,L]
 RewriteRule ^login/process/?$ app/controller/siteController.php?action=processLogin [QSA,L]

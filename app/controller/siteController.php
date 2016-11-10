@@ -67,6 +67,10 @@ class SiteController {
 				$this->checkUserEmail($userEmail);
 				break;
 
+				case 'viewUsers':
+				$this->viewUsers();
+				break;
+
 
 
 				// redirect to home page if all else fails
@@ -119,6 +123,17 @@ class SiteController {
 			include_once SYSTEM_PATH.'/view/navigator.tpl';
 			include_once SYSTEM_PATH.'/view/forSale.tpl';
 			include_once SYSTEM_PATH.'/view/footer.tpl';
+		}
+
+		public function viewUsers(){
+			$pageName = 'View Users';
+
+			$result = User::getAllUsers();
+
+			include_once SYSTEM_PATH.'/view/header.tpl';
+			include_once SYSTEM_PATH.'/view/viewUsers.tpl';
+			include_once SYSTEM_PATH.'/view/footer.tpl';
+
 		}
 
 		//Login User

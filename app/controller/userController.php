@@ -16,21 +16,25 @@ class UserController {
 		switch($action) {
 
 			case 'saveUser':
-        $this->saveUser();
-				break;
+			$this->saveUser();
+			break;
 
 
-        case 'checkEmail':
+			case 'checkEmail':
 
-            $userEmail = $_GET['email'];
+			$userEmail = $_GET['email'];
+			$this->checkUserEmail($userEmail);
+			break;
 
-                $this->checkUserEmail($userEmail);
-                break;
+			case 'deleteUser':
+			$userId = $_POST['userId'];
+			$this->deleteUser($userId);
+			break;
 
-      // redirect to home page if all else fails
-      default:
-        header('Location: '.BASE_URL);
-        exit();
+			// redirect to home page if all else fails
+			default:
+			header('Location: '.BASE_URL);
+			exit();
 		}
 
 	}
@@ -58,7 +62,7 @@ class UserController {
 
 	}
 
-    	public function checkUserEmail($userEmail) {
+	public function checkUserEmail($userEmail) {
 		$user = User::loadByEmail($userEmail);
 		if($user == null) {
 			// user doesn't exist; username is available
@@ -70,6 +74,23 @@ class UserController {
 
 		header('Content-Type: application/json');
 		echo json_encode($json);
+	}
+
+	public function deleteUser($id){
+		$result = User::deleteById($id);
+
+		if ($result == true){
+			$json = array( 'userDeleted' => 'true' );
+
+		}
+		else{
+			$json = array( 'userDeleted' => 'false' );
+		}
+
+		header('Content-Type: application/json');
+		echo json_encode($json);
+
+
 	}
 
 

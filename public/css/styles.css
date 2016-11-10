@@ -84,6 +84,10 @@ div{
   }
 }
 
+#viewUsersButton{
+  background-color: green;
+}
+
 
 /*=====================NAVIGATOR STYLING ===========================================*/
 
@@ -709,4 +713,24 @@ margin: 20px;
   font-family: 'Roboto','sans-serif';
   line-height: 30px;
   padding-left: 10px;
+}
+
+/*================================View Users Styling ===========================*/
+th {
+    text-align: left;
+    padding: 15px;
+    width: 200px;
+    font-size: 14px;
+}
+
+table{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#viewUsersAlert{
+  text-align: center;
+  margin-top: 30px;
+  font-size: 16px;
+  overflow: auto;
 }

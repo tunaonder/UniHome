@@ -285,4 +285,13 @@ public function getTotalPostCount(){
 
 }
 
+public function getAllUsers(){
+  $q = "SELECT * FROM Users;";
+  $result = mysql_query($q);
+  return $result;
+
+}
+
+
+
 }

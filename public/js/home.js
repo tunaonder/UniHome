@@ -71,6 +71,10 @@ $(document).ready(function () {
 
               $('#featuresLabel2').append('There are ' + data.postCount + ' posts uploaded to UniHome');
 
+              $('#featuresLabel1').css('color', 'green');
+
+              $('#featuresLabel2').css('color', 'green');
+
 
               $('#mainImage').attr('src', baseURL+'/public/images/student-house.jpg');
 

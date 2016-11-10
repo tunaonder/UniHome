@@ -58,6 +58,12 @@ class User extends DbObject {
         return $obj;
     }
 
+    public static function deleteById($id){
+      $db = Db::instance();
+      $result = $db->deleteById($id, __CLASS__, self::DB_TABLE);
+      return $result;
+    }
+
     // load user by email
     public static function loadByEmail($email=null) {
         if($email === null)
@@ -95,6 +101,14 @@ class User extends DbObject {
       $result = $db->getTotalStudentCount(__CLASS__, self::DB_TABLE);
       return $result;
     }
+
+    public static function getAllUsers(){
+      $db = Db::instance();
+      $result = $db->getAllUsers();
+      return $result;
+    }
+
+
 
 
 }
