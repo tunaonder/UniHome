@@ -90,5 +90,11 @@ class User extends DbObject {
       return $result;
     }
 
+    public static function getTotalStudentCount() {
+      $db = Db::instance();
+      $result = $db->getTotalStudentCount(__CLASS__, self::DB_TABLE);
+      return $result;
+    }
+
 
 }

@@ -57,6 +57,11 @@ class SiteController {
 				$this->checkUserData($userId);
 				break;
 
+				case 'checkForAdmin':
+				$userId = $_GET['userId'];
+				$this->getInfoForAdmin($userId);
+				break;
+
 				case 'checkUser':
 				$userEmail = $_GET['userEmail'];
 				$this->checkUserEmail($userEmail);
@@ -107,12 +112,7 @@ class SiteController {
 		public function forSale() {
 			$pageName = 'For Sale';
 
-			$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
-			or die ('Error: Could not connect to MySql database');
-			mysql_select_db(DB_DATABASE);
-
-			$q = "SELECT * FROM Post ORDER BY created_at DESC;";
-			$result = mysql_query($q);
+			$result = Post::getPosts();
 
 
 			include_once SYSTEM_PATH.'/view/header.tpl';
@@ -280,6 +280,34 @@ class SiteController {
 			include_once SYSTEM_PATH.'/view/navigator.tpl';
 			include_once SYSTEM_PATH.'/view/userFavs.tpl';
 			include_once SYSTEM_PATH.'/view/footer.tpl';
+		}
+
+		public function getInfoForAdmin($id){
+
+			$user = User::loadById($id);
+
+			//If there is such user and user is an Admin
+			if($user != null && $user->get('type') == 'Admin') {
+				//Get his university
+				// $university = $user->get('university');
+
+				//Find number of students from particular university
+				$numberOfStudents = User::getTotalStudentCount();
+				//Find number of posts posted by students from particular university
+				$postCount = Post::getTotalPostCount();
+
+				//Create json data with all this info
+				$json = array( 'status' => 'available', 'studentCount' => $numberOfStudents, 'postCount' => $postCount);
+
+			} else {
+
+				$json = array( 'status' => 'unavailable' );
+
+			}
+
+			header('Content-Type: application/json');
+			echo json_encode($json);
+
 		}
 
 	}

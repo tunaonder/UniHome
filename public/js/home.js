@@ -4,17 +4,15 @@ $(document).ready(function () {
 
   $(function(){
 
-    title = $('#welcomeInfo').val();
 
-
-    //  title = "Explore UniHome Features! -";
-    $('#featuresTitle').append(title);
 
     //Get Used Id From HTML hidden value to set as a json request parameter
     var userId = $('#userId').val();
     var userType= $('#userType').val();
 
     if(userType == 'User'){
+      title = $('#welcomeInfo').val();
+      $('#featuresTitle').append(title);
       $.get(
         baseURL+'/check',
         { 'userId': userId },
@@ -47,12 +45,8 @@ $(document).ready(function () {
 
           //If User is NOT Signed In Display General Info
           else if(data.status == 'unavailable') {
-            $('#featuresLabel1').append('Meet all of your housing needs by connecting other university Students!');
-            $('#featuresLabel2').append("Find Roommates from your university!");
-            $('#featuresLabel3').append("Buy and Sell your goods in a fast way!");
-            $('#featuresLabel4').append("Sublease your rooms!");
+            setGuestInterface();
 
-            $('#mainImage').attr('src', baseURL+'/public/images/student-house.jpg');
           }
 
         },
@@ -60,8 +54,42 @@ $(document).ready(function () {
       );
     }
     else if (userType == 'Admin'){
-          $('#featuresLabel1').append('There is admin');
+      title = 'Welcome Admin!';
+      $('#featuresTitle').append(title);
 
+
+      $.get(
+        baseURL+'/getInfoForAdmin',
+        { 'userId': userId },
+        function(data) {
+
+          //If User is signed in display information fetched from json request accordingly
+          if(data.status == 'available') {
+
+
+              $('#featuresLabel1').append('There are ' + data.studentCount + ' students registered to UniHome');
+
+              $('#featuresLabel2').append('There are ' + data.postCount + ' posts uploaded to UniHome');
+
+
+              $('#mainImage').attr('src', baseURL+'/public/images/student-house.jpg');
+
+          }
+
+          //If User is NOT Signed In Display General Info
+          else if(data.status == 'unavailable') {
+            setGuestInterface();
+
+          }
+
+        },
+        "json"
+      );
+
+    }
+    //If the user it not neither Admin nor LOGGED in user
+    else{
+      setGuestInterface();
     }
 
 
@@ -72,3 +100,20 @@ $(document).ready(function () {
 
 
 });
+
+function setGuestInterface(){
+  title = $('#welcomeInfo').val();
+
+
+  //  title = "Explore UniHome Features! -";
+  $('#featuresTitle').append(title);
+
+  $('#featuresLabel1').append('Meet all of your housing needs by connecting other university Students!');
+  $('#featuresLabel2').append("Find Roommates from your university!");
+  $('#featuresLabel3').append("Buy and Sell your goods in a fast way!");
+  $('#featuresLabel4').append("Sublease your rooms!");
+
+  $('#mainImage').attr('src', baseURL+'/public/images/student-house.jpg');
+
+
+}

@@ -196,6 +196,17 @@ public function getStudentCount($university, $class_name, $db_table){
 
 }
 
+//Get Total Student Count
+public function getTotalStudentCount($class_name, $db_table){
+
+  $result = mysql_query("SELECT * FROM Users;");
+
+  $num_rows = mysql_num_rows($result);
+
+  return $num_rows;
+
+}
+
 //Find number of posts posted by students from particular university
 public function getPostCountFromUniversity($university, $class_name, $db_table){
 
@@ -257,6 +268,20 @@ public function getPostsByPostIds($list){
   $result = mysql_query($q);
   return $result;
 
+
+}
+
+public function getPosts(){
+  $q = "SELECT * FROM Post";
+  $result = mysql_query($q);
+  return $result;
+}
+
+public function getTotalPostCount(){
+  $result = mysql_query("SELECT * FROM Post;");
+  $num_rows = mysql_num_rows($result);
+
+  return $num_rows;
 
 }
 
