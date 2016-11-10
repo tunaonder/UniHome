@@ -84,20 +84,15 @@ div{
 
 .header label{
   color: white;
-  text-decoration: underline;
   float: right;
   margin-right: 20px;
   margin-top: 25px;
 }
 
-/*#userLoggedInLabel{
-  color: white;
+#userLoggedInLabel{
   text-decoration: underline;
-  float: right;
-  margin-right: 20px;
-  margin-top: 25px;
 
-}*/
+}
 #userLoggedInLabel:hover{
   color: red;
 }
