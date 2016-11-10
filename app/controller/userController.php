@@ -31,6 +31,11 @@ class UserController {
 			$this->deleteUser($userId);
 			break;
 
+			case 'deleteUserOwnAccount':
+			$userId = $_POST['userId'];
+			$this->deleteUserOwnAccount($userId);
+			break;
+
 			case 'changeUserRole':
 			$userId = $_POST['userId'];
 			$userType = $_POST['userType'];
@@ -88,6 +93,40 @@ class UserController {
 
 		if ($result == true){
 			$result2 = User::deleteById($id);
+
+
+			if($result2){
+				$json = array( 'userDeleted' => 'true' );
+			}
+			else{
+				$json = array( 'userDeleted' => 'false' );
+			}
+
+
+
+		}
+		else{
+			$json = array( 'userDeleted' => 'false' );
+		}
+
+		header('Content-Type: application/json');
+		echo json_encode($json);
+
+
+	}
+
+	public function deleteUserOwnAccount($id){
+		//Delete Posts posted by a user
+		$result = Post::deletePostByUserId($id);
+
+		if ($result == true){
+			$result2 = User::deleteById($id);
+
+			//Clean Session Cookies
+			$_SESSION = Array();
+			//Delete Session
+			session_start();
+			session_destroy();
 
 			if($result2){
 				$json = array( 'userDeleted' => 'true' );

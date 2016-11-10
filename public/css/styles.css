@@ -60,12 +60,6 @@ div{
 
 }
 
-.header label{
-
-  float: right;
-  margin-right: 20px;
-  margin-top: 25px;
-}
 /*If width is less than 460px make header buttons occupy less space*/
 @media all and (max-width: 460px){
   .header button{
@@ -86,6 +80,26 @@ div{
 
 #viewUsersButton{
   background-color: green;
+}
+
+.header label{
+  color: white;
+  text-decoration: underline;
+  float: right;
+  margin-right: 20px;
+  margin-top: 25px;
+}
+
+/*#userLoggedInLabel{
+  color: white;
+  text-decoration: underline;
+  float: right;
+  margin-right: 20px;
+  margin-top: 25px;
+
+}*/
+#userLoggedInLabel:hover{
+  color: red;
 }
 
 
@@ -733,4 +747,30 @@ table{
   margin-top: 30px;
   font-size: 16px;
   overflow: auto;
+}
+
+
+/*===================User Profile Styling =============*/
+
+.mainContent .centeredContent2{
+  /*Make the item to the horizontally centered*/
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 30px;
+  font-size: 30px;
+  text-align: center;
+  width: 500px;
+}
+
+.editProfileButton {
+  background-color: white;
+  /*border: none;*/
+  /*color: white;*/
+  padding: 7px 15px;
+  font-size: 16px;
+  margin-top: 25px;
+  cursor: pointer;
+  float: left;
+  font-family: "Lucida Grande", Geneva, Verdana, Arial, Helvetica, sans-serif;
 }

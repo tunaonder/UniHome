@@ -6,7 +6,6 @@ function deleteUser(id){
     return;
   }
 
-
   $.post(
     baseURL+'/viewUsers/deleteUser',
     { 'userId': id },
@@ -24,7 +23,7 @@ function deleteUser(id){
 
 
       else if(data.userDeleted == 'false') {
-          alert("User deletation is failed");
+          alert("User deletion is failed");
       }
 
 
