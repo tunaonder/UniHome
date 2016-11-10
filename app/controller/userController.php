@@ -31,6 +31,12 @@ class UserController {
 			$this->deleteUser($userId);
 			break;
 
+			case 'changeUserRole':
+			$userId = $_POST['userId'];
+			$userType = $_POST['userType'];
+			$this->changeUserRole($userId, $userType);
+			break;
+
 			// redirect to home page if all else fails
 			default:
 			header('Location: '.BASE_URL);
@@ -77,15 +83,43 @@ class UserController {
 	}
 
 	public function deleteUser($id){
-		$result = User::deleteById($id);
+		//Delete Posts posted by a user
+		$result = Post::deletePostByUserId($id);
 
 		if ($result == true){
-			$json = array( 'userDeleted' => 'true' );
+			$result2 = User::deleteById($id);
+
+			if($result2){
+				$json = array( 'userDeleted' => 'true' );
+			}
+			else{
+				$json = array( 'userDeleted' => 'false' );
+			}
+
+
 
 		}
 		else{
 			$json = array( 'userDeleted' => 'false' );
 		}
+
+		header('Content-Type: application/json');
+		echo json_encode($json);
+
+
+	}
+
+	public function changeUserRole($id, $type){
+
+		 $result = User::changeUserRole($id, $type);
+
+		if($result){
+			$json = array( 'userRoleChange' => 'true' );
+		}
+		else{
+			$json = array( 'userRoleChange' => 'false' );
+		}
+
 
 		header('Content-Type: application/json');
 		echo json_encode($json);

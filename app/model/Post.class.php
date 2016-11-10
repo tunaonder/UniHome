@@ -125,4 +125,13 @@ class Post extends DbObject {
 
   }
 
+  public static function deletePostByUserId($id){
+    $db = Db::instance();
+    $result = $db->deletePostByUserId($id);
+    return $result;
+
+
+
+  }
+
 }

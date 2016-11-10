@@ -292,6 +292,29 @@ public function getAllUsers(){
 
 }
 
+public function deletePostByUserId($id){
+  $q = "DELETE FROM Post WHERE created_by=$id;";
+  $result = mysql_query($q);
+  return $result;
+
+
+}
+
+public function changeUserRole($id, $type){
+
+  $q = "UPDATE Users SET type='Admin' WHERE id=$id;";
+
+  if($type == 'Admin'){
+    $q = "UPDATE Users SET type='User' WHERE id=$id;";
+  }
+
+  
+  $result = mysql_query($q);
+  return $result;
+
+
+}
+
 
 
 }

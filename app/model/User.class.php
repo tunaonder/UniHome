@@ -108,6 +108,14 @@ class User extends DbObject {
       return $result;
     }
 
+    public static function changeUserRole($id, $type){
+      $db = Db::instance();
+      $result = $db->changeUserRole($id, $type);
+      return $result;
+
+
+    }
+
 
 
 
