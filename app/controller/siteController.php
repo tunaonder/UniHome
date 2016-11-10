@@ -26,10 +26,6 @@ class SiteController {
 			$this->signUp();
 			break;
 
-			case 'userProfile':
-			$this->userProfile();
-			break;
-
 			case 'forSale':
 				$this->forSale();
 				break;
@@ -116,12 +112,7 @@ class SiteController {
 			include_once SYSTEM_PATH.'/view/footer.tpl';
 		}
 
-		public function userProfile() {
-			$pageName = 'Profile';
-			include_once SYSTEM_PATH.'/view/header.tpl';
-			include_once SYSTEM_PATH.'/view/userProfile.tpl';
-			include_once SYSTEM_PATH.'/view/footer.tpl';
-		}
+
 
 		//Return all Posts From Database in descending order
 		public function forSale() {
@@ -146,6 +137,8 @@ class SiteController {
 			include_once SYSTEM_PATH.'/view/footer.tpl';
 
 		}
+
+
 
 		//Login User
 		public function processLogin($u, $p) {

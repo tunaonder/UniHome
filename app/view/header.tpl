@@ -18,7 +18,7 @@ if (session_status() == PHP_SESSION_NONE) {
 if(isset($_SESSION['user'])) {
 
 
-  $loginInformation = 'Logged in as '.$_SESSION['userName'].'';
+  $loginInformation = 'Logged in as '.$_SESSION['userEmail'].'';
   $userLoggedInButtonStyle = "block";
   $userLoggedInButtonStyle2 = "none";
   $welcomeInfo = 'Welcome '.$_SESSION['userName'].'';
@@ -26,8 +26,6 @@ if(isset($_SESSION['user'])) {
   $userType = $_SESSION['userType'];
   $userName = $_SESSION['userName'];
   $userEmail = $_SESSION['userEmail'];
-  $userUniversity = $_SESSION['userUniversity'];
-  $userPhone = $_SESSION['userPhone'];
   $favButtonStyle = "block";
 
 
@@ -82,6 +80,9 @@ if(isset($_SESSION['user'])) {
   <?php if($pageName == 'Profile'): ?>
     <script type="text/javascript" src="<?= BASE_URL ?>/public/js/userProfile.js"></script>
   <?php endif; ?>
+  <?php if($pageName == 'Edit Profile'): ?>
+    <script type="text/javascript" src="<?= BASE_URL ?>/public/js/editProfile.js"></script>
+  <?php endif; ?>
 
 
 
@@ -114,7 +115,7 @@ if(isset($_SESSION['user'])) {
         <?php if($userType == 'Admin'): ?>
           <button id="viewUsersButton"type="button" onClick="document.location.href='<?= BASE_URL ?>/viewUsers'" style="display: <?= $userLoggedInButtonStyle ?>"> View Users </button>
         <?php endif; ?>
-        <a href="<?= BASE_URL ?>/userProfile"> <label id = "userLoggedInLabel" class="clickable" style="display: <?= $userLoggedInButtonStyle ?>"> <?= $loginInformation ?> </label></a>
+        <a href="<?= BASE_URL ?>/userProfile/<?=$userId?>"> <label id = "userLoggedInLabel" class="clickable" style="display: <?= $userLoggedInButtonStyle ?>"> <?= $loginInformation ?> </label></a>
         <label style="display: <?= $userLoggedInButtonStyle2 ?>" > Login To Post An Item </label>
 
       </form>

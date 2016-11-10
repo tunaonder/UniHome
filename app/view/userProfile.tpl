@@ -7,26 +7,33 @@
 
 
         <div class="lineContainer">
-          <label>Name: <?= $userName ?></label>
+          <label>Name: </label>
+          <label id="rightComponent"><?= $user['name'] ?></label>
 
         </div>
 
         <div class="lineContainer">
-          <label>Email: <?= $userEmail ?></label>
+          <label>Email: </label>
+          <label id="rightComponent"><?= $user['email'] ?></label>
         </div>
 
         <div class="lineContainer">
-          <label>Phone: <?= $userPhone ?> </label>
+          <label>Phone:  </label>
+          <label id="rightComponent"> <?= $user['phone'] ?> </label>
         </div>
 
         <div class="lineContainer">
-          <label>Univeristy: <?= $userUniversity ?></label>
+          <label>Univeristy: </label>
+          <label id="rightComponent"> <?= $user['university'] ?> </label>
 
         </div>
 
         <div class="lineContainer">
-          <button class="editProfileButton" type="submit" >Edit Profile</button>
-          <button class="editProfileButton" value="<?= $userId ?>" onClick="deleteConfirmation(this.value);" type="submit" >Delete Account</button>
+
+          <form action="<?= BASE_URL ?>/userProfile/<?=$userId?>/edit" method="GET">
+            <button class="contentButton" type="submit" >Edit Profile</button>
+          </form>
+          <button class="contentButton" value="<?= $userId ?>" onClick="deleteConfirmation(this.value);" type="submit" >Delete Account</button>
 
         </div>
 

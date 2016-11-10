@@ -42,6 +42,21 @@ class UserController {
 			$this->changeUserRole($userId, $userType);
 			break;
 
+			case 'displayUserProfile':
+			$userId = $_GET['userId'];
+			$this->displayUserProfile($userId);
+			break;
+
+			case 'displayEditProfile':
+			$userId = $_GET['userId'];
+			$this->displayEditProfile($userId);
+			break;
+
+			case 'editUserProfile':
+			$userId = $_GET['userId'];
+			$this->editProfile($userId);
+			break;
+
 			// redirect to home page if all else fails
 			default:
 			header('Location: '.BASE_URL);
@@ -70,6 +85,72 @@ class UserController {
 		$user->save();
 		//Redirect user
 		header('Location: '.BASE_URL.'/login');
+
+	}
+
+	public function displayUserProfile($userId) {
+		$pageName = 'Profile';
+
+		$p = User::loadById($userId);
+
+		$user = array();
+
+		$user['name'] = $p->get('name');
+		$user['email'] = $p->get('email');
+		$user['phone'] = $p->get('phone_number');
+		$user['university'] = $p->get('university');
+		$user['id'] = $p->get('id');
+
+
+		include_once SYSTEM_PATH.'/view/header.tpl';
+		include_once SYSTEM_PATH.'/view/userProfile.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
+	}
+
+	public function displayEditProfile($userId){
+		$pageName = 'Edit Profile';
+
+		$p = User::loadById($userId);
+
+		$user = array();
+
+		$user['name'] = $p->get('name');
+		$user['email'] = $p->get('email');
+		$user['phone'] = $p->get('phone_number');
+		$user['university'] = $p->get('university');
+		$user['password'] = $p->get('password');
+		$user['id'] = $p->get('id');
+
+
+		include_once SYSTEM_PATH.'/view/header.tpl';
+		include_once SYSTEM_PATH.'/view/editProfile.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
+
+	}
+
+	public function editProfile($userId){
+
+		$pageName = 'Edit Profile';
+
+		$p = User::loadById($userId);
+
+		$name = $_POST['editUserName'];
+		$phone= $_POST['editUserPhone'];
+		$password = $_POST['editUserPassword'];
+		$university = $_POST['editUserUniversity'];
+
+
+		$p->set('name', $name);
+		$p->set('phone_number', $phone);
+		$p->set('password', $password);
+		$p->set('university', $university);
+
+
+		$p->save();
+
+
+		//Redirect user
+		header('Location: '.BASE_URL.'');
 
 	}
 
