@@ -88,4 +88,12 @@ class Follow extends DbObject {
       }
     }
 
+    public static function getUserFolloweesById($id){
+      $db = Db::instance();
+      $result = $db->getUserFolloweesById($id, __CLASS__, self::DB_TABLE);
+      return $result;
+
+    }
+
+
 }

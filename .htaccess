@@ -14,10 +14,15 @@ RewriteRule ^forSale/view/(\d+)/?$ app/controller/postController.php?action=view
 RewriteRule ^yourPosts/edit/(\d+)/editPost?$ app/controller/postController.php?action=editPost&pid=$1 [QSA,L]
 RewriteRule ^yourPosts/edit/(\d+)/?$ app/controller/postController.php?action=displayPostDetails&pid=$1 [QSA,L]
 RewriteRule ^yourPosts/delete/(\d+)/?$ app/controller/postController.php?action=deletePost&pid=$1 [QSA,L]
+
+#Favorite
 RewriteRule ^yourFavorites/delete/(\d+)/?$ app/controller/favoriteController.php?action=deleteFavorite&pid=$1 [QSA,L]
 RewriteRule ^forSale/view/(\d+)/addToFavs?$ app/controller/favoriteController.php?action=addToFavs&userId=$1&pid=$1 [QSA,L]
 RewriteRule ^forSale/view/(\d+)/checkFav?$ app/controller/favoriteController.php?action=checkFav&userId=$1&pid=$1 [QSA,L]
 
+#Follow
+RewriteRule ^yourFollowees/delete/(\d+)/?$ app/controller/followeeController.php?action=deleteFollowee&followeeEmail=$1 [QSA,L]
+RewriteRule ^forSale/view/(\d+)/checkFollowee?$ app/controller/followeeController.php?action=checkFollowee&followeeEmail=$1 [QSA,L]
 
 # Site
 RewriteRule ^getInfoForAdmin/?$ app/controller/siteController.php?action=checkForAdmin&userId=$1 [QSA,L]
@@ -38,6 +43,7 @@ RewriteRule ^processLogout/?$ app/controller/siteController.php?action=processLo
 RewriteRule ^post/?$ app/controller/siteController.php?action=post [QSA,L]
 RewriteRule ^yourPosts/?$ app/controller/siteController.php?action=displayUserPosts [QSA,L]
 RewriteRule ^yourFavorites/?$ app/controller/siteController.php?action=displayUserFavorites [QSA,L]
+RewriteRule ^yourFollowees/?$ app/controller/siteController.php?action=displayUserFollowees [QSA,L]
 RewriteRule ^forSale/?$ app/controller/siteController.php?action=forSale [QSA,L]
 RewriteRule ^user/follow/?$ app/controller/siteController.php?action=follow [QSA,L]
 RewriteRule ^notfound/?$ app/controller/siteController.php?action=notFound [QSA,L]

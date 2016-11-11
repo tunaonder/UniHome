@@ -116,7 +116,12 @@ class User extends DbObject {
 
     }
 
+    public static function getUsersByUserIds($list){
+      $db = Db::instance();
+      $result = $db->getUsersByUserIds($list, __CLASS__, self::DB_TABLE);
+      return $result;
 
+    }
 
 
 }

@@ -36,50 +36,54 @@ class SiteController {
 				break;
 
 			case 'processLogin':
-			$userEmail = $_POST['uEmail'];
-			$password = $_POST['uPw'];
-			$this->processLogin($userEmail, $password);
-			break;
+				$userEmail = $_POST['uEmail'];
+				$password = $_POST['uPw'];
+				$this->processLogin($userEmail, $password);
+				break;
 
 			case 'processLogout':
-			$this->processLogout();
-			break;
+				$this->processLogout();
+				break;
 
 			case 'post':
-			$this->post();
-			break;
+				$this->post();
+				break;
 
 			case 'displayUserPosts':
-			$this->displayUserPosts();
-			break;
+				$this->displayUserPosts();
+				break;
 
 			case 'displayUserFavorites':
-			$this->displayUserFavorites();
-			break;
+				$this->displayUserFavorites();
+				break;
+
+			case 'displayUserFollowees':
+				$this->displayUserFollowees();
+				break;
 
 			case 'check':
-			$userId = $_GET['userId'];
-			$this->checkUserData($userId);
-			break;
+				$userId = $_GET['userId'];
+				$this->checkUserData($userId);
+				break;
 
 			case 'checkForAdmin':
-			$userId = $_GET['userId'];
-			$this->getInfoForAdmin($userId);
-			break;
+				$userId = $_GET['userId'];
+				$this->getInfoForAdmin($userId);
+				break;
 
 			case 'checkUser':
-			$userEmail = $_GET['userEmail'];
-			$this->checkUserEmail($userEmail);
-			break;
+				$userEmail = $_GET['userEmail'];
+				$this->checkUserEmail($userEmail);
+				break;
 
 			case 'viewUsers':
-			$this->viewUsers();
-			break;
+				$this->viewUsers();
+				break;
 
 			// redirect to home page if all else fails
 			default:
-			header('Location: '.BASE_URL);
-			exit();
+				header('Location: '.BASE_URL);
+				exit();
 
 		}
 	}
@@ -303,6 +307,53 @@ class SiteController {
 			include_once SYSTEM_PATH.'/view/header.tpl';
 			include_once SYSTEM_PATH.'/view/navigator.tpl';
 			include_once SYSTEM_PATH.'/view/userFavs.tpl';
+			include_once SYSTEM_PATH.'/view/footer.tpl';
+		}
+
+		public function displayUserFollowees() {
+			$pageName = 'Your Followees';
+
+			//If session is not already started, start it
+			if (session_status() == PHP_SESSION_NONE) {
+				session_start();
+			}
+			//If user is set get its id
+			if(isset($_SESSION['user'])){
+
+				$id = $_SESSION['userId'];
+
+			}
+			//If there is no such id delete session
+			if($id == null){
+				//Delete Session
+				session_start();
+				session_destroy();
+				// send them back
+				header('Location: '.BASE_URL);
+				exit();
+
+			}
+
+			//Get User Favorite Post Ids
+			$followees = Follow::getUserFolloweesById($id);
+
+
+			$postIdArray = array();
+			while($row = mysql_fetch_assoc($followees)):
+				array_push($postIdArray, $row['followee_id']);
+			endwhile;
+
+			//Prepare Array For SQL Query
+			$formattedArray = implode(", ", $postIdArray);
+
+			//Get all Posts created by current user
+			$result = User::getUsersByUserIds($formattedArray);
+
+
+
+			include_once SYSTEM_PATH.'/view/header.tpl';
+			include_once SYSTEM_PATH.'/view/navigator.tpl';
+			include_once SYSTEM_PATH.'/view/userFollowees.tpl';
 			include_once SYSTEM_PATH.'/view/footer.tpl';
 		}
 

@@ -81,6 +81,9 @@ if(isset($_SESSION['user'])) {
   <?php if($pageName == 'Edit Profile'): ?>
     <script type="text/javascript" src="<?= BASE_URL ?>/public/js/editProfile.js"></script>
   <?php endif; ?>
+  <?php if($pageName == 'Your Followees'): ?>
+    <script type="text/javascript" src="<?= BASE_URL ?>/public/js/userFollowees.js"></script>
+  <?php endif; ?>
 
 
 
@@ -108,6 +111,7 @@ if(isset($_SESSION['user'])) {
         <button type="button" onClick="document.location.href='<?= BASE_URL ?>/post'" style="display: <?= $userLoggedInButtonStyle ?>"> New Post</button>
         <button type="button" onClick="document.location.href='<?= BASE_URL ?>/yourPosts'" style="display: <?= $userLoggedInButtonStyle ?>">Your Items</button>
         <button type="button" onClick="document.location.href='<?= BASE_URL ?>/yourFavorites'" style="display: <?= $userLoggedInButtonStyle ?>">Your Favorites</button>
+        <button type="button" onClick="document.location.href='<?= BASE_URL ?>/yourFollowees'" style="display: <?= $userLoggedInButtonStyle ?>">Your Followees</button>
         <button type="button" onClick="document.location.href='<?= BASE_URL ?>/signUp'" style="display: <?= $userLoggedInButtonStyle2 ?>">Sign Up</button>
         <button type="button" onClick="document.location.href='<?= BASE_URL ?>/login'" style="display: <?= $userLoggedInButtonStyle2 ?>">Login</button>
         <?php if($userType == 'Admin'): ?>

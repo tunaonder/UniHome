@@ -267,9 +267,20 @@ public function getPostsByPostIds($list){
   $q = "SELECT * FROM Post WHERE id in ($list)";
   $result = mysql_query($q);
   return $result;
-
-
 }
+public function getUsersByUserIds($list){
+  $q = "SELECT * FROM Users WHERE id in ($list)";
+  $result = mysql_query($q);
+  return $result;
+}
+
+public function getUserFolloweesById($id){
+  $favQuery = "SELECT followee_id FROM Follow WHERE follower_id=$id;";
+  $favs = mysql_query($favQuery);
+
+  return $favs;
+}
+
 
 public function getPosts(){
   $q = "SELECT * FROM Post";
@@ -308,7 +319,7 @@ public function changeUserRole($id, $type){
     $q = "UPDATE Users SET type='User' WHERE id=$id;";
   }
 
-  
+
   $result = mysql_query($q);
   return $result;
 
