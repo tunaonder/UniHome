@@ -665,6 +665,29 @@ margin: 20px;
   font-weight: bold;
 }
 
+#follow-button{
+  background-color: white;
+  /*border: none;*/
+  /*color: white;*/
+  padding: 7px 15px;
+  font-size: 16px;
+  margin-top: 0px;
+  margin-left: 20px;
+  cursor: pointer;
+  font-family: "Lucida Grande", Geneva, Verdana, Arial, Helvetica, sans-serif;
+}
+
+#followInfo{
+  color: green;
+  font-size: 20px;
+  margin-left: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-family: "Lucida Grande", Geneva, Verdana, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+
 /*=============================================YOUR POSTS LIST VIEW ===================================*/
 
 .yourItemsList {

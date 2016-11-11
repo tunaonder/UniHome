@@ -76,21 +76,28 @@
 
       <div id="contactContainer">
         <?php
-        $contactId = $p->get('creator_id');
-        $contact =   User::loadById($contactId);
-        $contactEmail = $contact->get('email');
-        $followButton = getFollowButton($contactEmail);
+        if(isset($_SESSION['userEmail'])) {
+          $contactId = $p->get('creator_id');
+          $contact =   User::loadById($contactId);
+          $contactEmail = $contact->get('email');
 
+        } else {
+          $contactEmail = null;
+        }
+
+        $followButton = getFollowButton($contactEmail);
         ?>
         <p id="itemContactPerson1" class="itemContactPerson"> <?= $contactInfo['name'] ?>  </p>
         <p id="itemContactPerson2" class="itemContactPerson"> <?= $contactInfo['email'] ?>  </p>
         <p id="itemContactPerson3" class="itemContactPerson"> <?= $contactInfo['phone'] ?>  </p>
 
-        <p class="details">You as <?=$_SESSION['userEmail']?> can follow <strong><?= $contactEmail?></strong><?= $followButton ?> 
-          this person</p>
-
       </div>
 
+      <p id="follow" >
+        <?= $followButton ?>
+        <p id="followInfo" style="display: none"> You're following <?= $contactInfo['email'] ?>  </p>
+
+      </p>
 
     </div>
 

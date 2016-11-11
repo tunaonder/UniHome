@@ -23,16 +23,12 @@ $(document).ready(function () {
           if(data.status == 'followed') {
             $('#favInfo').css('display', 'block');
             $('#favButton').css('display', 'none');
-
-
           }
-
           //If User is NOT Signed In Display General Info
           else if(data.status == 'unfollowed') {
             $('#favInfo').css('display', 'none');
             $('#favButton').css('display', 'block');
           }
-
         },
         "json"
       );
@@ -78,7 +74,6 @@ function addToFavs(){
     baseURL+'/forSale/view/'+postId+'/addToFavs',
     { 'userId': userId, 'pid': postId },
     function(data) {
-
       //If User is signed in display information fetched from json request accordingly
       if(data.status == 'available') {
         $('#favInfo').css('display', 'block');
@@ -97,9 +92,7 @@ function addToFavs(){
 }
 
 function follow(){
-
   var username = $('#follow-button').val();
-  alert(username);
   $.post(
     baseURL+'/user/follow',
     { 'username': username },
@@ -107,11 +100,9 @@ function follow(){
       if(data.success == 'success') {
         // Follow successful
         // Already followed, so remove the button
-
-        alert('succes');
         $('#follow-button').remove();
+        $('#followInfo').css('display', 'block');
       } else if (data.error != '') {
-        alert('333');
         alert(data.error); // show error as popup
       }
     },
