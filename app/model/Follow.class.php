@@ -2,7 +2,7 @@
 
 class Follow extends DbObject {
     // name of database table
-    const DB_TABLE = 'follow';
+    const DB_TABLE = 'Follow';
 
     // database fields
     protected $id;
@@ -95,5 +95,9 @@ class Follow extends DbObject {
 
     }
 
-
+    public static function deleteFolloweeById($id, $follower_id) {
+      $db = Db::instance();
+      $result = $db->deleteFolloweeById($id, $follower_id, __CLASS__, self::DB_TABLE);
+      return $result;
+    }
 }

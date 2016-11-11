@@ -402,7 +402,7 @@ div .alert{
 
 
 #listContent{
-  margin: 0px;
+  margin-left: 20px;
   margin-top: 20px;
   height: 100%;
   width: 100%;
@@ -714,6 +714,7 @@ margin: 20px;
   /*border: none;*/
   /*color: white;*/
   display: inline;
+  margin-top: 0px;
   padding: 7px 15px;
   font-size: 16px;
   margin-top: 10px;
@@ -758,6 +759,12 @@ th {
 table{
     border: 1px solid black;
     border-collapse: collapse;
+}
+
+
+#users-table,
+#follow-title {
+  margin-left: 20px;
 }
 
 #viewUsersAlert{

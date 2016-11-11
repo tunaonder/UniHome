@@ -95,7 +95,7 @@
 
       <p id="follow" >
         <?= $followButton ?>
-        <p id="followInfo" style="display: none"> You're following <?= $contactInfo['email'] ?>  </p>
+        <p id="followInfo" style="display: none"> You're following <?= $contactEmail ?>  </p>
 
       </p>
 

@@ -21,7 +21,7 @@ RewriteRule ^forSale/view/(\d+)/addToFavs?$ app/controller/favoriteController.ph
 RewriteRule ^forSale/view/(\d+)/checkFav?$ app/controller/favoriteController.php?action=checkFav&userId=$1&pid=$1 [QSA,L]
 
 #Follow
-RewriteRule ^yourFollowees/delete/(\d+)/?$ app/controller/followeeController.php?action=deleteFollowee&followeeEmail=$1 [QSA,L]
+RewriteRule ^yourFollowees/delete/(\d+)/?$ app/controller/followeeController.php?action=deleteFollowee&id=$1 [QSA,L]
 RewriteRule ^forSale/view/(\d+)/checkFollowee?$ app/controller/followeeController.php?action=checkFollowee&followeeEmail=$1 [QSA,L]
 
 # Site

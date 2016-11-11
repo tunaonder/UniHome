@@ -3,7 +3,7 @@
 
   <!-- Main Content -->
   <div id="listContent">
-    <table>
+    <table id="users-table">
 
       <?php while($row = mysql_fetch_assoc($result)): ?>
 

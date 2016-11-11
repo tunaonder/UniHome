@@ -81,11 +81,6 @@ if(isset($_SESSION['user'])) {
   <?php if($pageName == 'Edit Profile'): ?>
     <script type="text/javascript" src="<?= BASE_URL ?>/public/js/editProfile.js"></script>
   <?php endif; ?>
-  <?php if($pageName == 'Your Followees'): ?>
-    <script type="text/javascript" src="<?= BASE_URL ?>/public/js/userFollowees.js"></script>
-  <?php endif; ?>
-
-
 
 </head>
 <body>

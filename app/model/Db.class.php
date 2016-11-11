@@ -182,6 +182,23 @@ $result = $this->lookup($query);
 return true;
 }
 
+//Delete followee
+public function deleteFolloweeById($id, $follower_id, $class_name, $db_table) {
+  if ($id === null) {
+    return false;
+  }
+
+  $query = sprintf("DELETE FROM `%s` WHERE followee_id = '%s' and follower_id = '%s';",
+  $db_table,
+  $id,
+  $follower_id
+);
+//echo $query;
+$result = $this->lookup($query);
+
+return true;
+}
+
 //Get Student Count From Selected University
 public function getStudentCount($university, $class_name, $db_table){
 

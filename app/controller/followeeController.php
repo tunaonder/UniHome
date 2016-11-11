@@ -18,9 +18,9 @@ class FolloweeController {
 
 			case 'deleteFollowee':
 
-				$followeeEmail = $_GET['followeeEmail'];
+				$id = $_GET['id'];
 
-				$this->deleteFollowee($followeeEmail);
+				$this->deleteFollowee($id);
 				break;
 
 			case 'checkFollowee':
@@ -38,7 +38,7 @@ class FolloweeController {
 
 
 
-	public function deleteFollowee($followeeEmail){
+	public function deleteFollowee($id){
 
 		if (session_status() == PHP_SESSION_NONE) {
 			session_start();
@@ -46,15 +46,15 @@ class FolloweeController {
 
 		if(isset($_SESSION['user'])) {
 
-			$followerEmail = $_SESSION['userEmail'];
+			$follower_id = $_SESSION['userId'];
 
 		}
 
-		 $result = Follow::deleteFolloweeById($followerEmail,$followeeEmail);
+		 $result = Follow::deleteFolloweeById($id, $follower_id);
 
  		if($result){
  			//Redirect user
- 			header('Location: '.BASE_URL.'/yourFollowee');
+ 			header('Location: '.BASE_URL.'/yourFollowees');
  		}
 
 	}
