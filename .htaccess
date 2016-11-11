@@ -6,11 +6,9 @@ RewriteEngine on
 
 #User
 RewriteRule ^signup/check?$ app/controller/userController.php?action=checkEmail [QSA,L]
-
 RewriteRule ^signUp/saveUser?$ app/controller/userController.php?action=saveUser [QSA,L]
 
 #Item
-
 RewriteRule ^post/postItem?$ app/controller/postController.php?action=postItem [QSA,L]
 RewriteRule ^forSale/view/(\d+)/?$ app/controller/postController.php?action=viewPost&pid=$1 [QSA,L]
 RewriteRule ^yourPosts/edit/(\d+)/editPost?$ app/controller/postController.php?action=editPost&pid=$1 [QSA,L]
@@ -41,3 +39,5 @@ RewriteRule ^post/?$ app/controller/siteController.php?action=post [QSA,L]
 RewriteRule ^yourPosts/?$ app/controller/siteController.php?action=displayUserPosts [QSA,L]
 RewriteRule ^yourFavorites/?$ app/controller/siteController.php?action=displayUserFavorites [QSA,L]
 RewriteRule ^forSale/?$ app/controller/siteController.php?action=forSale [QSA,L]
+RewriteRule ^user/follow/?$ app/controller/siteController.php?action=follow [QSA,L]
+RewriteRule ^notfound/?$ app/controller/siteController.php?action=notFound [QSA,L]

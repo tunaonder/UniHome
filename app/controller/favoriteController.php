@@ -18,27 +18,27 @@ class FavoriteController {
 
 			case 'deleteFavorite':
 
-			$postId = $_GET['pid'];
+				$postId = $_GET['pid'];
 
-			$this->deleteFavorite($postId);
-			break;
+				$this->deleteFavorite($postId);
+				break;
 
 			case 'addToFavs':
-			$userId = $_POST['userId'];
-			$postId = $_POST['pid'];
-			$this->addToFavs($userId, $postId);
-			break;
+				$userId = $_POST['userId'];
+				$postId = $_POST['pid'];
+				$this->addToFavs($userId, $postId);
+				break;
 
 			case 'checkFav':
-			$userId = $_GET['userId'];
-			$postId = $_GET['pid'];
-			$this->checkFav($userId, $postId);
-			break;
+				$userId = $_GET['userId'];
+				$postId = $_GET['pid'];
+				$this->checkFav($userId, $postId);
+				break;
 
 			// redirect to home page if all else fails
 			default:
-			header('Location: '.BASE_URL);
-			exit();
+				header('Location: '.BASE_URL);
+				exit();
 
 		}
 	}

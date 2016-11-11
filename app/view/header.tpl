@@ -51,8 +51,6 @@ if(isset($_SESSION['user'])) {
 		var baseURL = '<?= BASE_URL ?>';
 	</script>
 
-
-
   <?php if($pageName == 'Home'): ?>
     <script type="text/javascript" src="<?= BASE_URL ?>/public/js/home.js"></script>
   <?php endif; ?>

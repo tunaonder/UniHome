@@ -26,61 +26,63 @@ class SiteController {
 			$this->signUp();
 			break;
 
+			case 'follow':
+				$username = $_POST['username'];
+				$this->follow($username);
+				break;
+
 			case 'forSale':
 				$this->forSale();
 				break;
 
-				case 'processLogin':
-				$userEmail = $_POST['uEmail'];
-				$password = $_POST['uPw'];
-				$this->processLogin($userEmail, $password);
-				break;
+			case 'processLogin':
+			$userEmail = $_POST['uEmail'];
+			$password = $_POST['uPw'];
+			$this->processLogin($userEmail, $password);
+			break;
 
-				case 'processLogout':
-				$this->processLogout();
-				break;
+			case 'processLogout':
+			$this->processLogout();
+			break;
 
-				case 'post':
-				$this->post();
-				break;
+			case 'post':
+			$this->post();
+			break;
 
-				case 'displayUserPosts':
-				$this->displayUserPosts();
-				break;
+			case 'displayUserPosts':
+			$this->displayUserPosts();
+			break;
 
-				case 'displayUserFavorites':
-				$this->displayUserFavorites();
-				break;
+			case 'displayUserFavorites':
+			$this->displayUserFavorites();
+			break;
 
-				case 'check':
-				$userId = $_GET['userId'];
-				$this->checkUserData($userId);
-				break;
+			case 'check':
+			$userId = $_GET['userId'];
+			$this->checkUserData($userId);
+			break;
 
-				case 'checkForAdmin':
-				$userId = $_GET['userId'];
-				$this->getInfoForAdmin($userId);
-				break;
+			case 'checkForAdmin':
+			$userId = $_GET['userId'];
+			$this->getInfoForAdmin($userId);
+			break;
 
-				case 'checkUser':
-				$userEmail = $_GET['userEmail'];
-				$this->checkUserEmail($userEmail);
-				break;
+			case 'checkUser':
+			$userEmail = $_GET['userEmail'];
+			$this->checkUserEmail($userEmail);
+			break;
 
-				case 'viewUsers':
-				$this->viewUsers();
-				break;
+			case 'viewUsers':
+			$this->viewUsers();
+			break;
 
-
-
-				// redirect to home page if all else fails
-				default:
-				header('Location: '.BASE_URL);
-				exit();
-
-			}
+			// redirect to home page if all else fails
+			default:
+			header('Location: '.BASE_URL);
+			exit();
 
 		}
+	}
 
 		public function home() {
 			$pageName = 'Home';
@@ -331,5 +333,43 @@ class SiteController {
 			echo json_encode($json);
 
 		}
+
+		public function follow($followeeEmail) {
+			if (session_status() == PHP_SESSION_NONE) {
+				session_start();
+			}
+
+			if(isset($_SESSION['user'])) {
+
+
+				// user is logged in
+				// get user ID for followee
+				$followee = User::loadByEmail($followeeEmail);
+
+				// does this follow already exist?
+				$f = Follow::loadByUsernames($_SESSION['userEmail'], $followeeEmail);
+				if($f != null) {
+					// follow already happened!
+					$json = array('error' => 'You already followed this user.');
+					echo json_encode($json);
+				}
+
+				// save the new follow
+				$f = new Follow(array(
+					'follower_id' => $_SESSION['userId'],
+					'followee_id' => $followee->get('id')
+					));
+				$f->save();
+				// we're done
+				$json = array('success' => 'success');
+				echo json_encode($json);
+				} else {
+					// user isn't logged in, so can't follow anyone
+					$json = array('error' => 'You are not logged in.');
+					echo json_encode($json);
+				}
+
+		}
+
 
 	}

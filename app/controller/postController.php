@@ -159,6 +159,7 @@ class PostController {
 			$contactInfo['phone'] = "";
 		}
 
+		include_once SYSTEM_PATH.'/view/followButtonHelper.php';
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/navigator.tpl';
 		include_once SYSTEM_PATH.'/view/itemView.tpl';

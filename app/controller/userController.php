@@ -21,7 +21,6 @@ class UserController {
 
 
 			case 'checkEmail':
-
 			$userEmail = $_GET['email'];
 			$this->checkUserEmail($userEmail);
 			break;

@@ -94,6 +94,27 @@ function addToFavs(){
     },
     "json"
   );
+}
 
+function follow(){
 
+  var username = $('#follow-button').val();
+  alert(username);
+  $.post(
+    baseURL+'/user/follow',
+    { 'username': username },
+    function(data) {
+      if(data.success == 'success') {
+        // Follow successful
+        // Already followed, so remove the button
+
+        alert('succes');
+        $('#follow-button').remove();
+      } else if (data.error != '') {
+        alert('333');
+        alert(data.error); // show error as popup
+      }
+    },
+    'json'
+  );
 }
