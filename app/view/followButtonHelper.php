@@ -9,7 +9,7 @@ function getFollowButton($username = null) {
   } elseif($_SESSION['userEmail'] == $username) {
       // logged-in user is the same as this user
       // so don't let user follow themselves
-      return '';
+      return '<p id="followInfo">You\'ve posted this item.</p>';
   } else {
     $f = Follow::loadByUsernames($_SESSION['userEmail'], $username);
     if($f != null) {

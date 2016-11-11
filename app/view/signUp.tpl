@@ -42,7 +42,7 @@
         </div>
 
         <div class="lineContainer">
-          <button class="contentButton" type="submit" >Sign Up!</button>
+          <button class="contentButton" type="submit" >Sign Up</button>
           <button class="contentButton" type="button" onClick="changePage('home');">Cancel</button>
 
         </div>

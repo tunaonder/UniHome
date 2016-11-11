@@ -3,10 +3,10 @@
 are either visible or hidden -->
 <?php
 
-$loginInformation = "Login to Post an Item!";
+$loginInformation = "Login to Post an Item";
 $userLoggedInButtonStyle = "none";
 $userLoggedInButtonStyle2 = "block";
-$welcomeInfo = "Welcome to UniHome!";
+$welcomeInfo = "Welcome to UniHome";
 $userId = 0;
 $userType = '';
 $favButtonStyle = "none";
@@ -114,7 +114,7 @@ if(isset($_SESSION['user'])) {
           <button id="viewUsersButton"type="button" onClick="document.location.href='<?= BASE_URL ?>/viewUsers'" style="display: <?= $userLoggedInButtonStyle ?>"> View Users </button>
         <?php endif; ?>
         <a href="<?= BASE_URL ?>/userProfile/<?=$userId?>"> <label id = "userLoggedInLabel" class="clickable" style="display: <?= $userLoggedInButtonStyle ?>"> <?= $loginInformation ?> </label></a>
-        <label style="display: <?= $userLoggedInButtonStyle2 ?>" > Login To Post An Item </label>
+        <label style="display: <?= $userLoggedInButtonStyle2 ?>" > Login to Post an Item </label>
 
       </form>
     </div>

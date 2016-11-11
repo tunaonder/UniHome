@@ -71,7 +71,7 @@
 
       <p id="favInfo" style="display: none"> Item is in Your Favorite List </p>
 
-      <button id="favButton" type="button" onClick="addToFavs();" style="display: <?= $favButtonStyle ?>">Add to Favorites!</button>
+      <button id="favButton" type="button" onClick="addToFavs();" style="display: <?= $favButtonStyle ?>">Add to Favorites</button>
 
 
       <div id="contactContainer">

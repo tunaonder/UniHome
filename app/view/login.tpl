@@ -18,7 +18,7 @@
         </div>
 
 
-        <button id="headerButton1" class="contentButton" type="submit" >Login!</button>
+        <button id="headerButton1" class="contentButton" type="submit" >Login</button>
         <button id="headerButton2" class="contentButton" type="button" onClick="changePage('home');">Cancel</button>
 
       </form>
