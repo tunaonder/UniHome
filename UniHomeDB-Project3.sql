@@ -25,6 +25,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `event`
 --
+DROP TABLE IF EXISTS Users, Post, Favorite, event, event_type, follow;
 
 CREATE TABLE `event` (
   `id` int(11) NOT NULL,
