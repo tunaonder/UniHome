@@ -99,9 +99,11 @@ class UserController {
 		$user['phone'] = $p->get('phone_number');
 		$user['university'] = $p->get('university');
 		$user['id'] = $p->get('id');
-
-
+        
+        $userEvents = Event::getJustUserEvents($userId, 5);
+        
 		include_once SYSTEM_PATH.'/view/header.tpl';
+        include_once SYSTEM_PATH.'/view/eventHelper.php';
 		include_once SYSTEM_PATH.'/view/userProfile.tpl';
 		include_once SYSTEM_PATH.'/view/footer.tpl';
 	}

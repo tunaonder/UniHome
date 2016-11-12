@@ -20,6 +20,8 @@ class FolloweeController {
 
 				$id = $_GET['id'];
 
+                
+                
 				$this->deleteFollowee($id);
 				break;
 
@@ -47,9 +49,23 @@ class FolloweeController {
 		if(isset($_SESSION['user'])) {
 
 			$follower_id = $_SESSION['userId'];
-
+            
 		}
-
+            
+        // log the event
+        $p = User::loadById($id);
+        $followee = $p->get('name');
+        
+        $e = new Event(array(
+                'event_type_id' => EventType::getIdByName('unfollow_user'),
+                'user_1_id' => $_SESSION['userId'],
+                'user_2_id' => $id,
+                'user_1_name' => $_SESSION['userName'],
+                'user_2_name' => $followee
+        ));
+        $e->save();
+        
+        
 		 $result = Follow::deleteFolloweeById($id, $follower_id);
 
  		if($result){

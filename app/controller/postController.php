@@ -68,8 +68,12 @@ class PostController {
 			$creator_id = $_SESSION['userId'];
 		}
 
+        
+
+        
 		$post = new Post();
 
+        
 		$post->set('category', $category);
 		$post->set('type', $type);
 		$post->set('title', $title);
@@ -81,6 +85,20 @@ class PostController {
 		$post->set('address', $address);
 
 		$post->save();
+        
+    
+        
+        // log the event
+        $e = new Event(array(
+                'event_type_id' => EventType::getIdByName('add_item'),
+                'user_1_id' => $_SESSION['userId'],
+                'user_1_name' => $_SESSION['userName'],
+                'product_1_name' => $title
+        ));
+        $e->save();
+
+        
+        
 		//Redirect user
 		header('Location: '.BASE_URL.'/yourPosts');
 	}
@@ -202,12 +220,19 @@ class PostController {
 		$price = $_POST['editPrice'];
 		$address = $_POST['editAddress'];
 
-
-		$p->set('title', $title);
+        // get the old data
+        $currTitle = $p->get('title');
+        $currDescription = $p->get('description');
+        $currPrice = $p->get('price');
+        $currAddress = $p->get('address');
+		
+        $p->set('title', $title);
 		$p->set('description', $description);
 		$p->set('price', $price);
 		$p->set('address', $address);
 
+        
+        
 		//If new Photo is uploaded set new photo data, otherwise do not change it
 		if($file_name != ""){
 			$p->set('photoInfo', $file_name);
@@ -216,6 +241,37 @@ class PostController {
 
 		$p->save();
 
+        $isChanged = false;
+        $data='';
+        
+        if (($currTitle != $title) )
+            {
+                $isChanged=true;
+                $data .=", title";
+            }
+        
+        if (($currDescription != $description))
+            {
+                $isChanged=true;
+                $data .=", description";
+            }
+        
+        if (($currPrice != $price))
+            {
+                $isChanged=true;
+                $data .=", price";
+            }
+        
+        if (($currAddress != $address))
+            {
+                $isChanged=true;
+                $data .=", address";
+            }
+        
+        if ( $isChanged)
+        {
+            postController::logEditPost($pid,$data);
+        }
 		//Redirect user
 		header('Location: '.BASE_URL.'/yourPosts');
 
@@ -223,14 +279,48 @@ class PostController {
 
 	public function deletePost($pid){
 
+        // log the event
+        if (session_status() == PHP_SESSION_NONE) {
+				session_start();
+			}
+        $p = Post::loadById($pid);
+        $title = $p->get('title');
+        
+        $e = new Event(array(
+                'event_type_id' => EventType::getIdByName('delete_item'),
+                'user_1_id' => $_SESSION['userId'],
+                'user_1_name' => $_SESSION['userName'],
+                'product_1_name' => $title
+        ));
+        $e->save();
+        
+        
 		$result = Post::deleteById($pid);
-
+        
 		if($result){
 			//Redirect user
 			header('Location: '.BASE_URL.'/yourPosts');
 		}
 	}
 
+    private function logEditPost($pid,$data)
+    {
+                         //log the event
+                if (session_status() == PHP_SESSION_NONE) {
+				    session_start();
+			     }
+                $p = Post::loadById($pid);
+                $title = $p->get('title');
+        
+                $e = new Event(array(
+                'event_type_id' => EventType::getIdByName('edit_item'),
+                'user_1_id' => $_SESSION['userId'],
+                'user_1_name' => $_SESSION['userName'],
+                'product_1_name' => $title,
+                'data_1' => $data
+        ));
+        $e->save();
+    }
 
 
 }

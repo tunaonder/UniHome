@@ -90,7 +90,18 @@ class SiteController {
 
 		public function home() {
 			$pageName = 'Home';
-			include_once SYSTEM_PATH.'/view/header.tpl';
+            
+            include_once SYSTEM_PATH.'/view/header.tpl';
+            
+            if(isset($_SESSION['user'])) {
+            $id = $_SESSION['userId'];
+               
+			$events = Event::getEventsByUserId($id,8);
+		}
+
+            include_once SYSTEM_PATH.'/view/eventHelper.php';
+            
+			
 			include_once SYSTEM_PATH.'/view/navigator.tpl';
 			include_once SYSTEM_PATH.'/view/home.tpl';
 			include_once SYSTEM_PATH.'/view/footer.tpl';
@@ -405,6 +416,18 @@ class SiteController {
 					echo json_encode($json);
 				}
 
+                
+                // log the event
+			$e = new Event(array(
+					'event_type_id' => EventType::getIdByName('follow_user'),
+					'user_1_id' => $_SESSION['userId'],
+					'user_2_id' => $followee->get('id'),
+                    'user_1_name' => $_SESSION['userName'],
+                    'user_2_name' => $followee->get('name')
+			));
+			$e->save();
+                
+                
 				// save the new follow
 				$f = new Follow(array(
 					'follower_id' => $_SESSION['userId'],

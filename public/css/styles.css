@@ -173,6 +173,9 @@ div{
   overflow: auto;
 }
 
+.list-holder > li{
+    list-style: none;
+}
 /*======================FOOTER STYLING====================*/
 #footer{
   width: 100%;

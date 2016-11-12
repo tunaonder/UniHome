@@ -27,9 +27,7 @@
 
         <div class="postItemLineContainer">
           <label>Description: </label>
-          <textarea id="descriptionInput" name="editDescription"rows="10" cols="30"><?= $post['description'] ?>
-
-          </textarea>
+          <textarea id="descriptionInput" name="editDescription"rows="10" cols="30"><?= $post['description'] ?></textarea>
         </div>
 
         <div class="postItemLineContainer">

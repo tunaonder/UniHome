@@ -32,9 +32,7 @@
 
         <div class="postItemLineContainer">
           <label>Description: </label>
-          <textarea id="descriptionInput" name="description"rows="10" cols="30">
-
-          </textarea>
+          <textarea id="descriptionInput" name="description"rows="10" cols="30"></textarea>
         </div>
 
         <div class="postItemLineContainer">

@@ -1,7 +1,27 @@
 <div class = "wrapper">
   <!-- Main Content -->
-  <div class="mainContent">
+  <div class="mainContent flex-container">
 
+        <?php if(isset($userEvents)): ?>
+
+            <h2>Recent Activity</h2>
+
+            <?php if(count($userEvents) == 0): ?>
+                <p>No recent activity.</p>
+            <?php else: ?>
+
+                <ul>
+                  <?php foreach($userEvents as $event): ?>
+                    <li><?= formatEvent($event) ?></li>
+                  <?php endforeach; ?>
+                </ul>
+
+            <?php endif; ?>
+
+        <?php else: ?>
+        
+        <?php endif; ?>
+        
     <div class="centeredContent2">
 
 
@@ -34,11 +54,6 @@
             <button class="contentButton" type="submit" >Edit Profile</button>
           </form>
           <button class="contentButton" value="<?= $userId ?>" onClick="deleteConfirmation(this.value);" type="submit" >Delete Account</button>
-
-        </div>
-
-
-
     </div>
 
 
