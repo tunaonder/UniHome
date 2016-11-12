@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 12, 2016 at 03:20 PM
+-- Host: localhost
+-- Generation Time: Nov 12, 2016 at 06:23 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -39,34 +39,6 @@ CREATE TABLE `event` (
   `data_2` text,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `event`
---
-
-INSERT INTO `event` (`id`, `event_type_id`, `user_1_id`, `user_2_id`, `user_1_name`, `user_2_name`, `product_1_name`, `product_2_name`, `data_1`, `data_2`, `date_created`) VALUES
-(42, 8, 7, NULL, 'reza', '', 'asdfsadfasdfdsa', NULL, NULL, NULL, '2016-11-12 08:55:31'),
-(43, 9, 7, NULL, 'reza', '', 'asdfsadfasdfdsa', NULL, NULL, NULL, '2016-11-12 08:55:38'),
-(44, 4, 7, 1, 'reza', 'Sait Onder', NULL, NULL, NULL, NULL, '2016-11-12 08:56:08'),
-(45, 5, 7, 1, 'reza', 'Sait Onder', NULL, NULL, NULL, NULL, '2016-11-12 08:56:16'),
-(46, 8, 7, NULL, 'reza', '', 'sdafsafasdf', NULL, NULL, NULL, '2016-11-12 09:38:10'),
-(66, 9, 7, NULL, 'reza', '', 'dddddddddddd', NULL, NULL, NULL, '2016-11-12 10:48:48'),
-(67, 8, 7, NULL, 'reza', '', 'this is test item', NULL, NULL, NULL, '2016-11-12 10:49:28'),
-(70, 9, 7, NULL, 'reza', '', 'this is test item', NULL, NULL, NULL, '2016-11-12 10:55:58'),
-(71, 8, 7, NULL, 'reza', '', 'and here we go', NULL, NULL, NULL, '2016-11-12 10:56:31'),
-(75, 9, 7, NULL, 'reza', '', 'and here we ', NULL, NULL, NULL, '2016-11-12 11:10:54'),
-(76, 8, 7, NULL, 'reza', '', 'test item with bad condition', NULL, NULL, NULL, '2016-11-12 11:11:44'),
-(80, 5, 1, 7, 'Sait Onder', 'reza', NULL, NULL, NULL, NULL, '2016-11-12 11:20:22'),
-(81, 4, 1, 7, 'Sait Onder', 'reza', NULL, NULL, NULL, NULL, '2016-11-12 11:20:45'),
-(82, 5, 1, 7, 'Sait Onder', 'reza', NULL, NULL, NULL, NULL, '2016-11-12 11:20:53'),
-(83, 4, 8, 1, 'reza', 'Sait Onder', NULL, NULL, NULL, NULL, '2016-11-12 11:58:14'),
-(84, 5, 8, 1, 'reza', 'Sait Onder', NULL, NULL, NULL, NULL, '2016-11-12 12:07:32'),
-(85, 4, 8, 1, 'reza', 'Sait Onder', NULL, NULL, NULL, NULL, '2016-11-12 12:07:47'),
-(86, 4, 9, 3, 'testUser', 'Deniz Sahici', NULL, NULL, NULL, NULL, '2016-11-12 14:03:25'),
-(87, 5, 9, 3, 'testUser', 'Deniz Sahici', NULL, NULL, NULL, NULL, '2016-11-12 14:03:40'),
-(88, 4, 9, 1, 'testUser', 'Sait Onder', NULL, NULL, NULL, NULL, '2016-11-12 14:04:19'),
-(89, 8, 9, NULL, 'testUser', '', 'sdkjfsad;lkjfklsadfj;klsdafj', NULL, NULL, NULL, '2016-11-12 14:05:51'),
-(90, 9, 9, NULL, 'testUser', '', 'sdkjfsad;lkjfklsadfj;klsdafj', NULL, NULL, NULL, '2016-11-12 14:06:11');
 
 -- --------------------------------------------------------
 
@@ -121,9 +93,9 @@ CREATE TABLE `follow` (
 
 INSERT INTO `follow` (`id`, `follower_id`, `followee_id`, `date_created`) VALUES
 (1, 1, 2, '2016-11-12 00:25:05'),
-(2, 2, 1, '2016-11-12 00:25:05'),
 (27, 8, 1, '2016-11-12 12:07:47'),
-(29, 9, 1, '2016-11-12 14:04:19');
+(29, 9, 1, '2016-11-12 14:04:19'),
+(30, 2, 1, '2016-11-12 17:17:11');
 
 -- --------------------------------------------------------
 
@@ -184,8 +156,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone_number`, `university`, `passw
 (3, 'Deniz Sahici', 'deniz@radford.edu', '4445551313', 'Radford University', '1234', '2016-11-12 00:25:05', 'User'),
 (4, 'Mehmet Aslan', 'metmet@vt.edu', '3503506666', 'Virginia Tech', '1234', '2016-11-12 00:25:05', 'User'),
 (5, 'Metin Kaya', 'metin@nrc.edu', '3503506666', 'New River College', '1234', '2016-11-12 00:25:05', 'User'),
-(6, 'Raziye Eraydin', 'raziye@vt.edu', '3503506666', 'Roanoke College', '1234', '2016-11-12 00:25:05', 'User'),
-(9, 'testUser', 't@t.com', '1234567890', 'Virginia Tech', '1234', '2016-11-12 14:02:50', 'User');
+(6, 'Raziye Eraydin', 'raziye@vt.edu', '3503506666', 'Roanoke College', '1234', '2016-11-12 00:25:05', 'User');
 
 --
 -- Indexes for dumped tables
@@ -240,7 +211,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 --
 -- AUTO_INCREMENT for table `event_type`
 --
@@ -255,12 +226,12 @@ ALTER TABLE `favorite`
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `users`
 --
