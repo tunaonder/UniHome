@@ -104,6 +104,7 @@ class UserController {
         
 		include_once SYSTEM_PATH.'/view/header.tpl';
         include_once SYSTEM_PATH.'/view/eventHelper.php';
+        include_once SYSTEM_PATH.'/view/navigator.tpl';
 		include_once SYSTEM_PATH.'/view/userProfile.tpl';
 		include_once SYSTEM_PATH.'/view/footer.tpl';
 	}

@@ -782,13 +782,13 @@ table{
 
 .mainContent .centeredContent2{
   /*Make the item to the horizontally centered*/
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  margin-top: 30px;
+
   font-size: 30px;
   text-align: center;
-  width: 500px;
+  flex: 1 1 auto;  
+  border: 2px black solid;
+  border-radius: 2%;
+    
 }
 
 .editProfileButton {
@@ -803,6 +803,22 @@ table{
   font-family: "Lucida Grande", Geneva, Verdana, Arial, Helvetica, sans-serif;
 }
 
+.flex-container {
+    display: flex;
+    flex-flow: row wrap;
+    
+}
+.activity-container {
+    flex: 1 1 auto;
+    margin: 60px;
+    border: 2px black solid;
+    border-radius: 2%;
+    
+}
+.flex {
+    margin: 30px;
+    padding: 20px;
+}
 /*====================User Profile Edit========*/
 
 .mainContent .centeredContent3{
