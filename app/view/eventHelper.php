@@ -12,12 +12,12 @@ function formatEvent($event=null) {
 
   $formattedEvent = '';
   switch($eventTypeName) {
-          
+
     case 'follow_user':
 //      $object1 = User::loadById($event->get('user_1_id'));
-//      $object2 = User::loadById($event->get('user_2_id'));    
+//      $object2 = User::loadById($event->get('user_2_id'));
 //      $user1name = $object1->get('name');
-      $user1name = $event->get('user_1_name');   
+      $user1name = $event->get('user_1_name');
       $user2name = $event->get('user_2_name');
       $date = date("m-j-y g:i a", strtotime($event->get('date_created')));
 
@@ -27,10 +27,10 @@ function formatEvent($event=null) {
         $date
         );
         break;
-          
-          
+
+
     case 'unfollow_user':
-      $user1name = $event->get('user_1_name');   
+      $user1name = $event->get('user_1_name');
       $user2name = $event->get('user_2_name');
       $date = date("m-j-y g:i a", strtotime($event->get('date_created')));
 
@@ -38,17 +38,17 @@ function formatEvent($event=null) {
         $user1name,
         $user2name,
         $date
-        );     
+        );
         break;
-    
+
     case 'add_item':
-          
+
         $object1 = User::loadById($event->get('user_1_id'));
         $user1name = $event->get('user_1_name');
-    
-  
+
+
         $product1 = $event->get('product_1_name');
-          
+
 //        $productURL = BASE_URL.'/forSale/view/'.$object2->get('id');
 
         $date = date("m-j-y g:i a", strtotime($event->get('date_created')));
@@ -57,10 +57,10 @@ function formatEvent($event=null) {
         $user1name,
         $product1,
         $date
-        ); 
+        );
         break;
-          
-          
+
+
     case 'delete_item':
         $user1name = $event->get('user_1_name');
         $title = $event->get('product_1_name');
@@ -70,15 +70,15 @@ function formatEvent($event=null) {
         $user1name,
         $title,
         $date
-        ); 
+        );
         break;
     case 'edit_item':
       $user1name = $event->get('user_1_name');
       $item = $event->get('product_1_name');
-      $data = $event->get('data_1');    
+      $data = $event->get('data_1');
       $date = date("m-j-y g:i a", strtotime($event->get('date_created')));
 
-      $formattedEvent = sprintf('%s edited %s for item %s</a> on %s.',
+      $formattedEvent = sprintf('%s edited%s for item %s</a> on %s.',
         $user1name,
         $data,
         $item,

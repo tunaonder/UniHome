@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 12, 2016 at 06:23 PM
+-- Generation Time: Nov 12, 2016 at 08:02 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -40,6 +40,22 @@ CREATE TABLE `event` (
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `event`
+--
+
+INSERT INTO `event` (`id`, `event_type_id`, `user_1_id`, `user_2_id`, `user_1_name`, `user_2_name`, `product_1_name`, `product_2_name`, `data_1`, `data_2`, `date_created`) VALUES
+(93, 11, 2, NULL, 'Zahra Ghaed', '', 'PS 4 Refurbished. Good Condition', NULL, ', price', NULL, '2016-11-12 17:26:39'),
+(94, 4, 10, 1, 'Reza Tasooji', 'Sait Onder', NULL, NULL, NULL, NULL, '2016-11-12 18:35:19'),
+(95, 4, 10, 3, 'Reza Tasooji', 'Deniz Sahici', NULL, NULL, NULL, NULL, '2016-11-12 18:35:28'),
+(96, 5, 10, 1, 'Reza Tasooji', 'Sait Onder', NULL, NULL, NULL, NULL, '2016-11-12 18:36:24'),
+(97, 5, 10, 3, 'Reza Tasooji', 'Deniz Sahici', NULL, NULL, NULL, NULL, '2016-11-12 18:36:25'),
+(98, 4, 10, 1, 'Reza Tasooji', 'Sait Onder', NULL, NULL, NULL, NULL, '2016-11-12 18:36:31'),
+(99, 4, 10, 3, 'Reza Tasooji', 'Deniz Sahici', NULL, NULL, NULL, NULL, '2016-11-12 18:36:42'),
+(100, 8, 10, NULL, 'Reza Tasooji', '', 'Laptop, like new!', NULL, NULL, NULL, '2016-11-12 18:49:29'),
+(101, 11, 10, NULL, 'Reza Tasooji', '', 'Gaming laptop, like new!', NULL, ', title', NULL, '2016-11-12 18:57:24'),
+(102, 4, 2, 10, 'Zahra Ghaed', 'Reza Tasooji', NULL, NULL, NULL, NULL, '2016-11-12 18:58:52');
+
 -- --------------------------------------------------------
 
 --
@@ -74,6 +90,13 @@ CREATE TABLE `favorite` (
   `post_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `favorite`
+--
+
+INSERT INTO `favorite` (`id`, `user_id`, `post_id`) VALUES
+(1, 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -95,7 +118,10 @@ INSERT INTO `follow` (`id`, `follower_id`, `followee_id`, `date_created`) VALUES
 (1, 1, 2, '2016-11-12 00:25:05'),
 (27, 8, 1, '2016-11-12 12:07:47'),
 (29, 9, 1, '2016-11-12 14:04:19'),
-(30, 2, 1, '2016-11-12 17:17:11');
+(30, 2, 1, '2016-11-12 17:17:11'),
+(33, 10, 1, '2016-11-12 18:36:31'),
+(34, 10, 3, '2016-11-12 18:36:42'),
+(35, 2, 10, '2016-11-12 18:58:52');
 
 -- --------------------------------------------------------
 
@@ -124,10 +150,11 @@ CREATE TABLE `post` (
 INSERT INTO `post` (`id`, `title`, `description`, `price`, `photoInfo`, `conditionInfo`, `category`, `type`, `address`, `created_at`, `created_by`) VALUES
 (1, 'Iphone 5s, has no problem!', 'This Phone works perfectly without any problems!. There are just a few scratches, but it is perfectly normal for 2 years old phone! It has been generally used with a case and screen protector', 200, 'iphone.jpg', 'Used', 'For Sale', 'Electronic', 'Blacksburg, VA', '2016-11-12 00:25:05', 1),
 (2, 'Brand New VT shirt', 'Brand New VIRGINIA TECH FROM NIKE! %100 Cotton. Price is negotiable! You can text me a message!', 35, 'vtshirt.jpg', 'New', 'For Sale', 'Clothing', 'Blacksburg, VA', '2016-11-12 00:25:05', 1),
-(3, 'PS 4 Refurbished. Good Condition', 'This ps4 is only 3 months old! Bought refurbished, but couldnt find enough time to play. Three games will be given with the console for free(GTA 5, FIFA 2016, Witcher 3). If you dont want the games, price can be $150!', 250, 'ps4.jpg', 'Used', 'For Sale', 'Electronic', 'Roanoke, VA', '2016-11-12 00:25:05', 2),
+(3, 'PS 4 Refurbished. Good Condition', 'This ps4 is only 3 months old! Bought refurbished, but couldnt find enough time to play. Three games will be given with the console for free(GTA 5, FIFA 2016, Witcher 3). If you dont want the games, price can be $150!', 220, 'ps4.jpg', 'Used', 'For Sale', 'Electronic', 'Roanoke, VA', '2016-11-12 00:25:05', 2),
 (4, 'Coffe Machine, less than 1 year old!', 'Perfect quality German Product! Almost 1 year old, but looks like brand new! If you like coffee, Bosch Tossimo is for you! Less than half price of a brand new one.', 30, 'coffemachine.jpg', 'Used', 'For Sale', 'Household', 'Radford, VA', '2016-11-12 00:25:05', 2),
 (5, 'High Quality Drawer!', 'Only reason I sell this drawer is I graduated and going to leave Blacksburg in a week! Must be picked up ASAP. Price can be negotiable.', 220, 'drawer.jpg', 'Used', 'For Sale', 'Furniture', 'Blacksburg, VA', '2016-11-12 00:25:05', 1),
-(6, 'Adidas Outdoor for cheap price!', 'After I bought these nice pair of shoes, I realized that they dont fit well to me. Its size is 9 US. I am selling this $50 cheaper than the original price. Call me!', 75, 'shoe.jpg', 'Used', 'For Sale', 'Clothing', 'Roanoke, VA', '2016-11-12 00:25:05', 3);
+(6, 'Adidas Outdoor for cheap price!', 'After I bought these nice pair of shoes, I realized that they dont fit well to me. Its size is 9 US. I am selling this $50 cheaper than the original price. Call me!', 75, 'shoe.jpg', 'Used', 'For Sale', 'Clothing', 'Roanoke, VA', '2016-11-12 00:25:05', 3),
+(7, 'Gaming laptop, like new!', 'I am selling my MSI Gaming Laptop. The Laptop is in like New working / cosmetic condition. It comes with the Box, Charger & MSI Laptop Sleeve. ', 770, '16372-laptop.jpg', 'Used', 'For Sale', 'Electronic', 'Jefferson street, Blacksburg, VA', '2016-11-12 18:49:29', 10);
 
 -- --------------------------------------------------------
 
@@ -156,7 +183,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone_number`, `university`, `passw
 (3, 'Deniz Sahici', 'deniz@radford.edu', '4445551313', 'Radford University', '1234', '2016-11-12 00:25:05', 'User'),
 (4, 'Mehmet Aslan', 'metmet@vt.edu', '3503506666', 'Virginia Tech', '1234', '2016-11-12 00:25:05', 'User'),
 (5, 'Metin Kaya', 'metin@nrc.edu', '3503506666', 'New River College', '1234', '2016-11-12 00:25:05', 'User'),
-(6, 'Raziye Eraydin', 'raziye@vt.edu', '3503506666', 'Roanoke College', '1234', '2016-11-12 00:25:05', 'User');
+(6, 'Raziye Eraydin', 'raziye@vt.edu', '3503506666', 'Roanoke College', '1234', '2016-11-12 00:25:05', 'User'),
+(10, 'Reza Tasooji', 'rtasooji@vt.edu', '5409999999', 'Virginia Tech', '1234', '2016-11-12 18:32:46', 'Admin');
 
 --
 -- Indexes for dumped tables
@@ -211,7 +239,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 --
 -- AUTO_INCREMENT for table `event_type`
 --
@@ -221,22 +249,22 @@ ALTER TABLE `event_type`
 -- AUTO_INCREMENT for table `favorite`
 --
 ALTER TABLE `favorite`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- Constraints for dumped tables
 --
