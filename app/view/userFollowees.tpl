@@ -6,9 +6,10 @@
       if (!$result) {
         echo('Your Followee List is Empty.');
       } else {
+        echo('<h2 id="follow-title"> You\'re Following these Users: </h2>');
       while($row = mysql_fetch_assoc($result)):
     ?>
-    <h2 id="follow-title"> You're Following these Users: </h2>
+
     <table id="users-table">
       <tr>
         <th><?= $row['name'] ?></th>
