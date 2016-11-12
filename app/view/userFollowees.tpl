@@ -1,7 +1,6 @@
 <div class = "wrapper">
   <!-- Main Content -->
   <div id="listContent">
-    <h2 id="follow-title"> You're Following these Users: </h2>
     <!-- Fetch each row from the result and create div and its components for each post in the database -->
     <?php
       if (!$result) {
@@ -9,6 +8,7 @@
       } else {
       while($row = mysql_fetch_assoc($result)):
     ?>
+    <h2 id="follow-title"> You're Following these Users: </h2>
     <table id="users-table">
       <tr>
         <th><?= $row['name'] ?></th>
