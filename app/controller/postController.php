@@ -42,6 +42,10 @@ class PostController {
 			break;
 
 
+            case 'getVizData':
+                $this->getVizData();
+                break;                
+                
 			// redirect to home page if all else fails
 			default:
 			header('Location: '.BASE_URL);
@@ -322,5 +326,116 @@ class PostController {
         $e->save();
     }
 
+    public function getVizData() {
+		
+		$posts = Post::getArrayPosts(); // get all posts
+        
+        $types = Post::getALlTypes(); // get all types
 
+        $vals = array_count_values($types); // get the number of items
+
+        $types = array_keys($vals);
+        
+		$jsonPosts= array(); // array to hold json posts
+        $jsonType = array(); // array to hold json types
+        
+        $jsonFurniture  = array(); // array to hold json enum as a child for type
+        $jsonElectronic = array(); 
+        $jsonClothing   = array();
+        $jsonHousehold  = array();
+        $jsonMisc       = array();
+        
+        // create json for each item and put it in it's type category
+        if (is_array($posts) || is_object($posts))
+        {
+            foreach($posts as $post) {
+                 
+                $type = $post->get('type'); // get the type
+                
+                $itemTitle = $post->get('title'); // get the title
+                // truncate if needed to fit into visualization
+                if(strlen($itemTitle) > 20)
+                $itemTitle = substr($itemTitle, 0, 20).'...';
+
+                // base on the type put the child in the correct parent
+                switch ($type) {    
+                    case 'Furniture':
+                        $jsonFurniture[] = $this->createJsonFile('Furniture', $itemTitle);
+                        break;
+                    case 'Electronic':
+                        $jsonElectronic[] = $this->createJsonFile('Electronic', $itemTitle);
+                        //print_r($jsonElectronic);
+                        break;
+                    case 'Clothing':
+                        $jsonClothing[] = $this->createJsonFile('Clothing', $itemTitle);
+                        break; 
+                    case 'Household':
+                        $jsonHousehold[] = $this->createJsonFile('Household', $itemTitle);
+                        break;
+                    case 'Misc':
+                        $jsonMisc[] = $this->createJsonFile('Misc', $itemTitle);
+                        break;
+                    default:
+                        $jsonMisc[] = $this->createJsonFile('Misc', $itemTitle);
+                        break;
+                }
+            }          
+        }
+        
+        // based on the type select the correct child
+        foreach ($types as $type)
+        {
+            $child = null;
+            switch ($type) {    
+                case 'Furniture':  
+                    $child = $jsonFurniture;
+                    break;
+                case 'Electronic':
+                    $child = $jsonElectronic; 
+                    break;
+                case 'Clothing':
+                    $child = $jsonClothing;
+                    break;
+                case 'Household':
+                   $child = $jsonHousehold;
+                    break;
+                case 'Misc':
+                    $child = $jsonMisc;
+                    break;
+                default:
+                    $child = $jsonMisc;
+                    break;
+            }
+            
+            // create json file with children
+            $jsonType = array(
+                'name' => $type,
+                'children' => $child
+            );
+            $jsonTypes[] = $jsonType;    
+        }
+        
+        
+		// finally, create the json root object
+		$json = array(
+			'name' => 'Posts',
+			'parent' => 'null',
+			'children' => $jsonTypes  
+		);
+
+		header('Content-Type: application/json');
+		echo json_encode($json);
+	}
+    
+    private function createJsonFile($typeName, $name)
+    {
+        $jsonItem = array(
+            'name' => $name,
+            'parent' => $typeName,
+            'size'=> 1
+        );  
+        
+        return $jsonItem;
+        
+    }
 }

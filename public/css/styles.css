@@ -487,6 +487,7 @@ div .alert{
 
 /*=============================FOR SALE ITEM STYLE===================*/
 
+
 /*Content from header to footer*/
 .itemContent{
   margin: 0px;
@@ -517,11 +518,27 @@ div .alert{
   margin-left: 10px;
   display: inline;
 }
+svg {
+    z-index: 1;
+}
+path {
+  stroke: #fff;
+  fill-rule: evenodd;
+}
 
 .itemContent .itemTitleContainer h2 {
   margin-left: 20px;
 }
+.item-list {
+    display: flex;
+    flex-flow: row wrap;
+}
 
+.dataViz-container {
+    order: -10;
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
 
 /*IMAGE AND FEATURES STYLING*/
 .itemContent img {

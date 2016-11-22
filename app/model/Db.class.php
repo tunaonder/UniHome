@@ -302,11 +302,12 @@ public function getUserFolloweesById($id){
 public function getPosts(){
   $q = "SELECT * FROM Post";
   $result = mysql_query($q);
+    
   return $result;
 }
 
 public function getTotalPostCount(){
-  $result = mysql_query("SELECT * FROM Post;");
+  $result = mysql_query("SELECT * FROM post;");
   $num_rows = mysql_num_rows($result);
 
   return $num_rows;
@@ -343,6 +344,62 @@ public function changeUserRole($id, $type){
 
 }
 
+public function getAllPosts(){
+  $q = "SELECT * FROM Post";
+  $sql = mysql_query($q);
+  $result = mysql_fetch_array($sql); 
+  return $result;
+}
+    
+    
+function get_enum_values()
+{
+    $type = mysql_query("SHOW COLUMNS FROM post WHERE Field = 'type'");
+    $val = mysql_fetch_assoc($type);
+    print_r($val);
+    preg_match("/^enum\(\'(.*)\'\)$/", $val, $matches);
+    $enum = explode("','", $matches[1]);
+    
+    return $enum;
+}
+    
+    
+public function getAllTypes(){
+    $sql = "SELECT type FROM post";
+    $row = mysql_query($sql);
+    
+    $results = array();
+    while ($result = mysql_fetch_assoc($row)) {
+    $type = $result['type'];
+    $results[] = $type;
+    }
+    
+//    foreach($results as $result)
+//    {
+//        echo $result['type'];
+//    }
+//    print_r($results);
+//    echo '<br/>';
+    return $results;
+    
+}
 
-
+      // load all Posts
+   public static function getArrayPosts($limit=null) {
+     $query = sprintf(" SELECT id FROM %s ",
+     self::DB_TABLE
+     );
+     $db = Db::instance();
+     $result = $db->lookup($query);
+     if(!mysql_num_rows($result))
+     return null;
+     else {
+       $objects = array();
+       while($row = mysql_fetch_assoc($result)) {
+         $objects[] = self::loadById($row['id']);
+       }
+       return ($objects);
+     }
+   }
+    
 }

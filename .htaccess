@@ -47,3 +47,8 @@ RewriteRule ^yourFollowees/?$ app/controller/siteController.php?action=displayUs
 RewriteRule ^forSale/?$ app/controller/siteController.php?action=forSale [QSA,L]
 RewriteRule ^user/follow/?$ app/controller/siteController.php?action=follow [QSA,L]
 RewriteRule ^notfound/?$ app/controller/siteController.php?action=notFound [QSA,L]
+
+#json test
+RewriteRule ^post/flare/?$ app/controller/siteController.php?action=flare [QSA,L]
+
+RewriteRule ^post/vizData/?$ app/controller/postController.php?action=getVizData [QSA,L]

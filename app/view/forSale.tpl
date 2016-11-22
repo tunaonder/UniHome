@@ -6,11 +6,19 @@ Drawer Image Source: http://home.50kz.com/second-hand-furniture-cork/
 Shoe Image Source: http://winnischneider.com/textil-recycling/blog/shoes-grade-a/ -->
 
 
-<div class = "wrapper">
+<div class = "wrapper item-list">
 
   <!-- Main Content -->
-  <div id="listContent">
+  
+       <div class="dataViz-container">
+         <script type="text/javascript" src="<?= BASE_URL ?>/public/js/vizData.js"></script>
+      </div>
+  
+  <div id="listContent" >
 
+ 
+    
+       
     <!-- Fetch each row from the result and create div and its components for each post in the database -->
     <?php while($row = mysql_fetch_assoc($result)): ?>
 

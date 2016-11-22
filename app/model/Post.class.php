@@ -129,9 +129,36 @@ class Post extends DbObject {
     $db = Db::instance();
     $result = $db->deletePostByUserId($id);
     return $result;
-
-
-
   }
-
+    
+    
+  public static function getAllPosts(){
+    $db = Db::instance();
+    $result = $db->getAllPosts(__CLASS__, self::DB_TABLE);
+    return $result;
+  }
+    
+  public static function getAllTypes(){
+    $db = Db::instance();
+    $result = $db->getAllTypes(__CLASS__, self::DB_TABLE);
+    return $result;
+  }    
+    
+      // load all Posts
+   public static function getArrayPosts($limit=null) {
+     $query = sprintf(" SELECT id FROM %s ",
+     self::DB_TABLE
+     );
+     $db = Db::instance();
+     $result = $db->lookup($query);
+     if(!mysql_num_rows($result))
+     return null;
+     else {
+       $objects = array();
+       while($row = mysql_fetch_assoc($result)) {
+         $objects[] = self::loadById($row['id']);
+       }
+       return ($objects);
+     }
+   }
 }
