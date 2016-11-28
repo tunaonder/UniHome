@@ -24,8 +24,4 @@ function updateUser(){
   else{
     return true;
   }
-
-
-
-
 }

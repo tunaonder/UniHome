@@ -73,8 +73,4 @@ function changeUserRole(id, userType){
     },
     "json"
   );
-
-
-
-
 }

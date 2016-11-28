@@ -511,6 +511,12 @@ div .alert{
 .itemContent #backNavigator:hover{
   color: red;
 }
+.hovered {
+    text-shadow: -1px 0 grey, 0 3px grey, 1px 0 grey;
+    transition: .5s;
+    
+}
+
 
 .itemContent .backContainer #itemPageItemTitle{
   font-weight: bold;
@@ -539,7 +545,11 @@ path {
     padding-top: 100px;
     padding-bottom: 50px;
 }
-
+#editItemForm {
+  float: right;
+  width: 250px;
+  display: none; /* hide by default */
+}
 /*IMAGE AND FEATURES STYLING*/
 .itemContent img {
   overflow: hidden;

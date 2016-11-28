@@ -5,7 +5,4 @@ function deleteConfirmation(){
   } else {
     return false;
   }
-
-
-
 }

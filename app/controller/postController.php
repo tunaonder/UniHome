@@ -46,6 +46,17 @@ class PostController {
                 $this->getVizData();
                 break;                
                 
+            case 'editTitleProcess':
+                $title = $_POST['postTitle'];
+                $postID = $_POST['postID'];
+                $this->editTitleProcess($postID, $title);
+                break;
+                
+                
+            case `dataVizDelete`;
+                $postId = $_POST['pid'];
+                $this->dataVizDelete($postId);
+                break;
 			// redirect to home page if all else fails
 			default:
 			header('Location: '.BASE_URL);
@@ -305,6 +316,13 @@ class PostController {
 			//Redirect user
 			header('Location: '.BASE_URL.'/yourPosts');
 		}
+        
+        // success! print the JSON
+//        $json = array('success' => 'success');
+//        echo json_encode($json);
+//        
+//        exit();
+        
 	}
 
     private function logEditPost($pid,$data)
@@ -351,7 +369,7 @@ class PostController {
             foreach($posts as $post) {
                  
                 $type = $post->get('type'); // get the type
-                
+                $pid = $post->get('id');
                 $itemTitle = $post->get('title'); // get the title
                 // truncate if needed to fit into visualization
                 if(strlen($itemTitle) > 20)
@@ -360,23 +378,23 @@ class PostController {
                 // base on the type put the child in the correct parent
                 switch ($type) {    
                     case 'Furniture':
-                        $jsonFurniture[] = $this->createJsonFile('Furniture', $itemTitle);
+                        $jsonFurniture[] = $this->createJsonFile('Furniture', $itemTitle, $pid);
                         break;
                     case 'Electronic':
-                        $jsonElectronic[] = $this->createJsonFile('Electronic', $itemTitle);
+                        $jsonElectronic[] = $this->createJsonFile('Electronic', $itemTitle, $pid);
                         //print_r($jsonElectronic);
                         break;
                     case 'Clothing':
-                        $jsonClothing[] = $this->createJsonFile('Clothing', $itemTitle);
+                        $jsonClothing[] = $this->createJsonFile('Clothing', $itemTitle, $pid);
                         break; 
                     case 'Household':
-                        $jsonHousehold[] = $this->createJsonFile('Household', $itemTitle);
+                        $jsonHousehold[] = $this->createJsonFile('Household', $itemTitle, $pid);
                         break;
                     case 'Misc':
-                        $jsonMisc[] = $this->createJsonFile('Misc', $itemTitle);
+                        $jsonMisc[] = $this->createJsonFile('Misc', $itemTitle, $pid);
                         break;
                     default:
-                        $jsonMisc[] = $this->createJsonFile('Misc', $itemTitle);
+                        $jsonMisc[] = $this->createJsonFile('Misc', $itemTitle, $pid);
                         break;
                 }
             }          
@@ -420,22 +438,78 @@ class PostController {
 		$json = array(
 			'name' => 'Posts',
 			'parent' => 'null',
-			'children' => $jsonTypes  
+            'children' => $jsonTypes  
 		);
 
 		header('Content-Type: application/json');
 		echo json_encode($json);
 	}
     
-    private function createJsonFile($typeName, $name)
+    private function createJsonFile($typeName, $name, $pid)
     {
         $jsonItem = array(
             'name' => $name,
             'parent' => $typeName,
+            'canEdit' => '1',
+            'postID' => $pid,
             'size'=> 1
         );  
         
         return $jsonItem;
         
+    }
+    
+    
+    public function editTitleProcess($id, $title) {
+        header('Content-Type: application/json');
+
+        // title can't be blank
+        if($title == '') {
+            $json = array('error' => 'Title cannot be blank.');
+            echo json_encode($json);
+            exit();
+        }
+
+        $product = Post::loadById($id);
+        
+        $product->set('title', $title);
+        $product->save();
+
+        // success! print the JSON
+        $json = array('success' => 'success');
+        echo json_encode($json);
+        
+        exit();
+    }
+    
+    
+    public function dataVizDelete($pid) {
+        if (session_status() == PHP_SESSION_NONE) {
+				session_start();
+			}
+        $p = Post::loadById($pid);
+        $title = $p->get('title');
+        
+        $e = new Event(array(
+                'event_type_id' => EventType::getIdByName('delete_item'),
+                'user_1_id' => $_SESSION['userId'],
+                'user_1_name' => $_SESSION['userName'],
+                'product_1_name' => $title
+        ));
+        $e->save();
+        
+        
+		$result = Post::deleteById($pid);
+        
+//		if($result){
+//			//Redirect user
+//			header('Location: '.BASE_URL.'/yourPosts');
+//		}
+        
+        // success! print the JSON
+        $json = array('success' => 'success');
+        echo json_encode($json);
+        
+        exit();
     }
 }

@@ -14,6 +14,9 @@ RewriteRule ^forSale/view/(\d+)/?$ app/controller/postController.php?action=view
 RewriteRule ^yourPosts/edit/(\d+)/editPost?$ app/controller/postController.php?action=editPost&pid=$1 [QSA,L]
 RewriteRule ^yourPosts/edit/(\d+)/?$ app/controller/postController.php?action=displayPostDetails&pid=$1 [QSA,L]
 RewriteRule ^yourPosts/delete/(\d+)/?$ app/controller/postController.php?action=deletePost&pid=$1 [QSA,L]
+RewriteRule ^post/editTitle/process/?$ app/controller/postController.php?action=editTitleProcess [QSA,L]
+
+RewriteRule ^post/delete/?$ app/controller/postController.php?action=deletePost [QSA,L]
 
 #Favorite
 RewriteRule ^yourFavorites/delete/(\d+)/?$ app/controller/favoriteController.php?action=deleteFavorite&pid=$1 [QSA,L]
