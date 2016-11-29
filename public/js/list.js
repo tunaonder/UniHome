@@ -1,51 +1,61 @@
 
+function sortByPrice(val){
 
-$(document).ready(function () {
-
-
-  var newItem;
-
-  for (var i = 0; i < itemTitleArray.length; i++) {
-    //initialize new div for every item in the array
-    newItem = document.createElement('div');
-    //set class to div
-    $(newItem).addClass('col-1');
-    //add div to the list content div
-    $(newItem).appendTo($("#listContent"));
-    //add an item number to each div
-    $(newItem).attr("itemNumber", i);
-    //call itemSelected method every time an item is clicked
-    $(newItem).click(function () {
-
-
-      itemSelected($(this).attr('itemNumber'));
-    })
-    var price = "<label>".concat(itemPriceArray[i], "</label>");
-    var itemPrice = $(price);
-    itemPrice.addClass('listItemPrice');
-    $(newItem).prepend(itemPrice);
-
-    //Put the item description between label tags
-    var title = "<label>".concat(itemTitleArray[i], "</label>");
-    var itemTitle = $(title);
-    //itemTitle has a class. This necassery for the styling
-    itemTitle.addClass('listItemTitle');
-    $(newItem).prepend(itemTitle);
-    //Create a string for image location
-    var imageName = "./images/".concat(itemImageArray[i]);
-    //Create an image
-    var img = $('<img>');
-    img.attr('src', imageName);
-    //Add image to the created div
-    $(newItem).prepend(img);
-
-
-
-
+  //Sort Items BY PRICE: Type 1: Low To High, Type 2: High To Low
+  if(val == 'lowToHigh'){
+    var type = 1;
   }
-});
+  else if(val == 'highToLow'){
+    var type = 2;
+  }
+  else{
+    return;
+  }
 
-function itemSelected(item){
-  localStorage.setItem('itemId',item);
-  changePage('item');
+
+  $.get(
+    baseURL+'/forSale/sortPosts',
+    { 'type': type },
+    function(data) {
+
+      //If User is signed in display information fetched from json request accordingly
+      if(data.status == 'available') {
+
+        //CHECK IF STUDENT AND POST COUNTS ARE PLURAL OR NOT. SET CORRECT GRAMMER ACCORDINGLY
+        if(data.studentCount < 2){
+          $('#featuresLabel1').append('There is ' + data.studentCount + ' student from ' + data.university);
+        }
+        else{
+          $('#featuresLabel1').append('There are ' + data.studentCount + ' students from ' + data.university);
+        }
+
+        if(data.postCount < 2){
+          $('#featuresLabel2').append(data.postCount + ' item is for sale by students from ' + data.university);
+        }
+        else{
+          $('#featuresLabel2').append(data.postCount + ' items are for sale by students from ' + data.university);
+        }
+
+        //http://wvns.images.worldnow.com/images/9386068_G.jpg
+        //http://www.universityprimetime.com/wp-content/uploads/2015/08/radford-picture.jpg
+        //https://www.theodysseyonline.com/an-open-letter-to-virginia-tech
+        //http://www.owlguru.com/schools/wp-content/plugins/autoGrid/gallery/Roanoke-College-campus-pictures/image_20151115_090600.jpg
+        $('#mainImage').attr('src', baseURL+'/public/images/'+data.university+'.jpg');
+      }
+
+      //If User is NOT Signed In Display General Info
+      else if(data.status == 'unavailable') {
+        setGuestInterface();
+
+      }
+
+    },
+    "json"
+  );
+
+
+
+
+
+  $('#forSaleItemList').load(document.URL +  ' #forSaleItemList');
 }

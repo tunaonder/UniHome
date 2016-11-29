@@ -26,6 +26,11 @@ class PostController {
 			$this->viewPost($postId);
 			break;
 
+			case 'sortPosts':
+			$sortType = $_GET['type'];
+			$this->sortPosts($sortType);
+			break;
+
 			case 'displayPostDetails':
 			$postId = $_GET['pid'];
 			$this->displayPostDetails($postId);
@@ -44,15 +49,15 @@ class PostController {
 
             case 'getVizData':
                 $this->getVizData();
-                break;                
-                
+                break;
+
             case 'editTitleProcess':
                 $title = $_POST['postTitle'];
                 $postID = $_POST['postID'];
                 $this->editTitleProcess($postID, $title);
                 break;
-                
-                
+
+
             case 'dataVizDelete';
                 $postId = $_POST['pid'];
                 $this->dataVizDelete($postId);
@@ -83,12 +88,12 @@ class PostController {
 			$creator_id = $_SESSION['userId'];
 		}
 
-        
 
-        
+
+
 		$post = new Post();
 
-        
+
 		$post->set('category', $category);
 		$post->set('type', $type);
 		$post->set('title', $title);
@@ -100,9 +105,9 @@ class PostController {
 		$post->set('address', $address);
 
 		$post->save();
-        
-    
-        
+
+
+
         // log the event
         $e = new Event(array(
                 'event_type_id' => EventType::getIdByName('add_item'),
@@ -112,8 +117,8 @@ class PostController {
         ));
         $e->save();
 
-        
-        
+
+
 		//Redirect user
 		header('Location: '.BASE_URL.'/yourPosts');
 	}
@@ -224,6 +229,12 @@ class PostController {
 
 	}
 
+	public function sortPosts($type){
+
+		$result =
+
+	}
+
 	public function editPost($pid){
 
 		$file_name = $this->uploadPhoto();
@@ -240,14 +251,14 @@ class PostController {
         $currDescription = $p->get('description');
         $currPrice = $p->get('price');
         $currAddress = $p->get('address');
-		
+
         $p->set('title', $title);
 		$p->set('description', $description);
 		$p->set('price', $price);
 		$p->set('address', $address);
 
-        
-        
+
+
 		//If new Photo is uploaded set new photo data, otherwise do not change it
 		if($file_name != ""){
 			$p->set('photoInfo', $file_name);
@@ -258,31 +269,31 @@ class PostController {
 
         $isChanged = false;
         $data='';
-        
+
         if (($currTitle != $title) )
             {
                 $isChanged=true;
                 $data .=", title";
             }
-        
+
         if (($currDescription != $description))
             {
                 $isChanged=true;
                 $data .=", description";
             }
-        
+
         if (($currPrice != $price))
             {
                 $isChanged=true;
                 $data .=", price";
             }
-        
+
         if (($currAddress != $address))
             {
                 $isChanged=true;
                 $data .=", address";
             }
-        
+
         if ( $isChanged)
         {
             postController::logEditPost($pid,$data);
@@ -300,7 +311,7 @@ class PostController {
 			}
         $p = Post::loadById($pid);
         $title = $p->get('title');
-        
+
         $e = new Event(array(
                 'event_type_id' => EventType::getIdByName('delete_item'),
                 'user_1_id' => $_SESSION['userId'],
@@ -308,21 +319,21 @@ class PostController {
                 'product_1_name' => $title
         ));
         $e->save();
-        
-        
+
+
 		$result = Post::deleteById($pid);
-        
+
 		if($result){
 			//Redirect user
 			header('Location: '.BASE_URL.'/yourPosts');
 		}
-        
+
         // success! print the JSON
 //        $json = array('success' => 'success');
 //        echo json_encode($json);
-//        
+//
 //        exit();
-        
+
 	}
 
     private function logEditPost($pid,$data)
@@ -333,7 +344,7 @@ class PostController {
 			     }
                 $p = Post::loadById($pid);
                 $title = $p->get('title');
-        
+
                 $e = new Event(array(
                 'event_type_id' => EventType::getIdByName('edit_item'),
                 'user_1_id' => $_SESSION['userId'],
@@ -345,29 +356,29 @@ class PostController {
     }
 
     public function getVizData() {
-		
+
 		$posts = Post::getArrayPosts(); // get all posts
-        
+
         $types = Post::getALlTypes(); // get all types
 
         $vals = array_count_values($types); // get the number of items
 
         $types = array_keys($vals);
-        
+
 		$jsonPosts= array(); // array to hold json posts
         $jsonType = array(); // array to hold json types
-        
+
         $jsonFurniture  = array(); // array to hold json enum as a child for type
-        $jsonElectronic = array(); 
+        $jsonElectronic = array();
         $jsonClothing   = array();
         $jsonHousehold  = array();
         $jsonMisc       = array();
-        
+
         // create json for each item and put it in it's type category
         if (is_array($posts) || is_object($posts))
         {
             foreach($posts as $post) {
-                 
+
                 $type = $post->get('type'); // get the type
                 $pid = $post->get('id');
                 $itemTitle = $post->get('title'); // get the title
@@ -376,7 +387,7 @@ class PostController {
                 $itemTitle = substr($itemTitle, 0, 20).'...';
 
                 // base on the type put the child in the correct parent
-                switch ($type) {    
+                switch ($type) {
                     case 'Furniture':
                         $jsonFurniture[] = $this->createJsonFile('Furniture', $itemTitle, $pid);
                         break;
@@ -386,7 +397,7 @@ class PostController {
                         break;
                     case 'Clothing':
                         $jsonClothing[] = $this->createJsonFile('Clothing', $itemTitle, $pid);
-                        break; 
+                        break;
                     case 'Household':
                         $jsonHousehold[] = $this->createJsonFile('Household', $itemTitle, $pid);
                         break;
@@ -397,19 +408,19 @@ class PostController {
                         $jsonMisc[] = $this->createJsonFile('Misc', $itemTitle, $pid);
                         break;
                 }
-            }          
+            }
         }
-        
+
         // based on the type select the correct child
         foreach ($types as $type)
         {
             $child = null;
-            switch ($type) {    
-                case 'Furniture':  
+            switch ($type) {
+                case 'Furniture':
                     $child = $jsonFurniture;
                     break;
                 case 'Electronic':
-                    $child = $jsonElectronic; 
+                    $child = $jsonElectronic;
                     break;
                 case 'Clothing':
                     $child = $jsonClothing;
@@ -424,27 +435,27 @@ class PostController {
                     $child = $jsonMisc;
                     break;
             }
-            
+
             // create json file with children
             $jsonType = array(
                 'name' => $type,
                 'children' => $child
             );
-            $jsonTypes[] = $jsonType;    
+            $jsonTypes[] = $jsonType;
         }
-        
-        
+
+
 		// finally, create the json root object
 		$json = array(
 			'name' => 'Posts',
 			'parent' => 'null',
-            'children' => $jsonTypes  
+            'children' => $jsonTypes
 		);
 
 		header('Content-Type: application/json');
 		echo json_encode($json);
 	}
-    
+
     private function createJsonFile($typeName, $name, $pid)
     {
         $jsonItem = array(
@@ -453,13 +464,13 @@ class PostController {
             'canEdit' => '1',
             'postID' => $pid,
             'size'=> 1
-        );  
-        
+        );
+
         return $jsonItem;
-        
+
     }
-    
-    
+
+
     public function editTitleProcess($id, $title) {
         header('Content-Type: application/json');
 
@@ -471,28 +482,28 @@ class PostController {
         }
 
         $product = Post::loadById($id);
-        
+
         $product->set('title', $title);
         $product->save();
 
         // success! print the JSON
         $json = array('success' => 'success');
         echo json_encode($json);
-        
+
         exit();
     }
-    
-    
+
+
     public function dataVizDelete($pid) {
-        
+
 		$result = Post::deleteById($pid);
-        
+
 		if($result){
 			//Redirect user
 			        // success! print the JSON
         $json = array('postDeleted' => 'true');
         echo json_encode($json);
         exit();
-		}        
+		}
     }
 }

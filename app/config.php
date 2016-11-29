@@ -2,7 +2,7 @@
 
 // path constants
 define('SYSTEM_PATH', dirname(__FILE__)); # location of 'app' folder - don't change
-define('BASE_URL','http://localhost:8080/UniHome/UniHome');
+define('BASE_URL','http://localhost/UniHome');
 
 //database constants
 define('DB_HOST','127.0.0.1');

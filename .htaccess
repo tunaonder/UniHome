@@ -11,6 +11,7 @@ RewriteRule ^signUp/saveUser?$ app/controller/userController.php?action=saveUser
 #Item
 RewriteRule ^post/postItem?$ app/controller/postController.php?action=postItem [QSA,L]
 RewriteRule ^forSale/view/(\d+)/?$ app/controller/postController.php?action=viewPost&pid=$1 [QSA,L]
+RewriteRule ^forSale/sortPosts/?$ app/controller/postController.php?action=sortPosts&type=$1 [QSA,L]
 RewriteRule ^yourPosts/edit/(\d+)/editPost?$ app/controller/postController.php?action=editPost&pid=$1 [QSA,L]
 RewriteRule ^yourPosts/edit/(\d+)/?$ app/controller/postController.php?action=displayPostDetails&pid=$1 [QSA,L]
 RewriteRule ^yourPosts/delete/(\d+)/?$ app/controller/postController.php?action=deletePost&pid=$1 [QSA,L]
