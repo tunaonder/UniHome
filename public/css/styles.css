@@ -548,6 +548,11 @@ path {
 #editItemForm {
   float: right;
   width: 250px;
+}
+
+#editContainer {
+  float: right;
+  width: 250px;
   display: none; /* hide by default */
 }
 /*IMAGE AND FEATURES STYLING*/

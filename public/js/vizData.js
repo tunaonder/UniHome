@@ -7,68 +7,88 @@ $(document).ready(function () {
     var userId = $('#userId').val();
     var userType= $('#userType').val();    
     
-if (userType == 'Admin')  {
+    if (userType == 'Admin')  
+    {
     
-    drawSunBrust(baseURL+'/post/vizData');
-    
-    
-    //Ajax section for update the title
-    	$('#editItemForm').submit(function(e){
-		e.preventDefault(); // don't submit the form
+        drawSunBrust(baseURL+'/post/vizData');
 
-		var title = $('#editTitle').val();
-		var id = $('#editID').val();
-		$.post(
-			baseURL+'/post/editTitle/process/',
-			{
-				'postTitle': title,
-				'postID': id
-			},
-			function(data) {
-				if(data.success == 'success') {
-					// Edit successful
-                    
-					$('#editItemForm').hide(); // hide edit panel
-					drawSunBrust(baseURL+'/post/vizData'); // redraw viz
-				} else if (data.error != '') {
-					alert(data.error); // show error as popup
-				}
-			},
-			"json"
-		);    
-	});    
-    
-  // if cancel button clicked hide editUI
-    $('#cancelEdit').click( function () {$('#editItemForm').hide();}); 
-    
-  //if delete button clicked delete Item
-    $('#deleteButton').click(function() { 
-        if (confirm("Are you sure you want to delete this post?") ) {
+        //Ajax section for update the title
+        $('#editItemForm').submit(function(e)
+        {
+            e.preventDefault(); // don't submit the form
+            var title = $('#editTitle').val();
+            var id = $('#editID').val();
+
+           $.post(
+            baseURL+'/post/editTitle/process/',
+            {
+                'postTitle': title,
+                'postID': id
+            },
+            function(data) {
+                if(data.success == 'success') 
+                {
+                    // Edit successful
+                    console.log('edited');
+                    drawSunBrust(baseURL+'/post/vizData'); // redraw viz
+                    $('#editContainer').hide(); // hide edit panel
+                } else if (data.error != '') {
+                    alert(data.error); // show error as popup
+                }
+            },
+            "json"
+           );   
+            
+        });    
+
+         //if delete button clicked delete Item
+            $('#deleteItemForm').submit(function(e)
+                { 
+                    e.preventDefault(); // don't submit the form
+                
+                    if (confirm("Are you sure you want to delete this post?") ) 
+                    { 
+                        var id = $('#editID').val();
+                        console.log(id);
+                        $.post(
+                            baseURL+'/post/delete/',
+                            {
+                                'pid': id
+                            },
+                            function(data) 
+                            {
+                                console.log("this");
+                                if(data.postDeleted == 'true') 
+                                {
+                                    // Edit successful
+                                    console.log('here');
+                                    $('#editContainer').hide(); // hide edit panel
+                                    drawSunBrust(baseURL+'/post/vizData'); // redraw viz
+                                } else if (data.error != '') {
+                                    alert(data.error); // show error as popup
+                                }
+                            },
+                            "json"
+                    );
+                  }
+                    else 
+                  {
+                    return false;
+                  }
+            });   
         
-		var id = $('#editID').val();
-            console.log(id);
-		$.get(
-			baseURL+'/post/delete/',
-			{
-				'pid': id
-			}
-		);
-        $('#editItemForm').hide(); // hide edit panel
-        drawSunBrust(baseURL+'/post/vizData'); // redraw viz
-      } else 
-          {
-            return false;
-          }
-    });
-    
-    //if create button clicked go to create page
-    $('#createButton').click(function(){
         
-        //var resultPage = baseURL+;
-        window.location = baseURL + '/post';
-        
-    });  
-}
+      // if cancel button clicked hide editUI
+        $('#cancelEdit').click( function () {$('#editContainer').hide();}); 
+
+        //if create button clicked go to create page
+        $('#createButton').click(function(){
+
+            //var resultPage = baseURL+;
+            window.location = baseURL + '/post';
+
+        });  
+    }
         
 function drawSunBrust(jsonURL) {
     
@@ -135,12 +155,12 @@ function drawSunBrust(jsonURL) {
 
         function edit(d) {
             if(d.data.canEdit == 1) {
-                                if($('#editItemForm').is(':visible')) {
-                                  $('#editItemForm').hide();
+                                if($('#editContainer').is(':visible')) {
+                                  $('#editContainer').hide();
                                 } else {
                                     $('#editTitle').val(d.data.name);
                                     $('#editID').val(d.data.postID);
-                                    $('#editItemForm').show();
+                                    $('#editContainer').show();
                                     $('#editTitle').focus();
                                 }
                             }

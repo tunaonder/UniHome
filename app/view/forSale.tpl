@@ -13,15 +13,19 @@ Shoe Image Source: http://winnischneider.com/textil-recycling/blog/shoes-grade-a
       
       <?php if($pageName == 'For Sale'): ?>
 
-<form id="editItemForm" method="POST" action="<?= BASE_URL ?>/post/editTitle/">
+<div id="editContainer">
+    <form id="editItemForm" method="POST" action="<?= BASE_URL ?>/post/editTitle/">
   <label>Edit Title: <input type="text" id="editTitle" name="title" value=""></label>
   <input  type="hidden" id="editID" name="postID" value="">
   <input  id="editButton" class="clickable" type="submit" name="submit" value="Edit">
-  <button id ="deleteButton" class="clickable" type="submit" name="delete" value="">Delete</button>
   <button id="createButton" class="clickable" type="submit" name="create" >Create</button>
   <button id="cancelEdit" class="clickable" type="button" name="cancel">Cancel</button>
   </form>
-  <form action="<?= BASE_URL ?>/yourPosts/delete/<?= $row['id'] ?>" method="POST" onsubmit="return deleteConfirmation();">
+  <form id="deleteItemForm" method="POST" >
+  <button id ="deleteButton" class="clickable" type="submit" name="delete">Delete</button>
+ </form>
+</div>
+
   
  
 

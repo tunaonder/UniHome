@@ -83,6 +83,7 @@ if(isset($_SESSION['user'])) {
   <?php endif; ?>
   <?php if ($pageName == 'For Sale'): ?>
 	<script type="text/javascript" src="<?= BASE_URL ?>/public/js/d3.min.js"></script>
+	<script type="text/javascript" src="<?= BASE_URL ?>/public/js/userPosts.js"></script>
 <?php endif; ?>
   
 

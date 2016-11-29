@@ -53,7 +53,7 @@ class PostController {
                 break;
                 
                 
-            case `dataVizDelete`;
+            case 'dataVizDelete';
                 $postId = $_POST['pid'];
                 $this->dataVizDelete($postId);
                 break;
@@ -484,32 +484,15 @@ class PostController {
     
     
     public function dataVizDelete($pid) {
-        if (session_status() == PHP_SESSION_NONE) {
-				session_start();
-			}
-        $p = Post::loadById($pid);
-        $title = $p->get('title');
-        
-        $e = new Event(array(
-                'event_type_id' => EventType::getIdByName('delete_item'),
-                'user_1_id' => $_SESSION['userId'],
-                'user_1_name' => $_SESSION['userName'],
-                'product_1_name' => $title
-        ));
-        $e->save();
-        
         
 		$result = Post::deleteById($pid);
         
-//		if($result){
-//			//Redirect user
-//			header('Location: '.BASE_URL.'/yourPosts');
-//		}
-        
-        // success! print the JSON
-        $json = array('success' => 'success');
+		if($result){
+			//Redirect user
+			        // success! print the JSON
+        $json = array('postDeleted' => 'true');
         echo json_encode($json);
-        
         exit();
+		}        
     }
 }

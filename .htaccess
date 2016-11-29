@@ -16,7 +16,7 @@ RewriteRule ^yourPosts/edit/(\d+)/?$ app/controller/postController.php?action=di
 RewriteRule ^yourPosts/delete/(\d+)/?$ app/controller/postController.php?action=deletePost&pid=$1 [QSA,L]
 RewriteRule ^post/editTitle/process/?$ app/controller/postController.php?action=editTitleProcess [QSA,L]
 
-RewriteRule ^post/delete/?$ app/controller/postController.php?action=deletePost [QSA,L]
+RewriteRule ^post/delete/?$ app/controller/postController.php?action=dataVizDelete [QSA,L]
 
 #Favorite
 RewriteRule ^yourFavorites/delete/(\d+)/?$ app/controller/favoriteController.php?action=deleteFavorite&pid=$1 [QSA,L]
