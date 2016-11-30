@@ -6,7 +6,7 @@
 
     <!-- Extra navigation to go back -->
     <div class="backContainer">
-      <a id="backNavigator" href="../">For Sale</a>
+      <a id="backNavigator" href="../">For Sale></a>
       <p id="itemPageItemTitle"> <?= $post['title'] ?></p>
     </div>
 

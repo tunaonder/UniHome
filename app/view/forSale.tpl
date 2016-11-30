@@ -25,13 +25,9 @@ Shoe Image Source: http://winnischneider.com/textil-recycling/blog/shoes-grade-a
         <button id ="deleteButton" class="clickable" type="submit" name="delete">Delete</button>
       </form>
     </div>
-
-
     <div class="dataViz-container">
       <script type="text/javascript" src="<?= BASE_URL ?>/public/js/vizData.js"></script>
     </div>
-
-
   <?php endif; ?>
   <div id="listContent" >
 
@@ -40,7 +36,7 @@ Shoe Image Source: http://winnischneider.com/textil-recycling/blog/shoes-grade-a
     <div id="forSaleSelectsDiv">
       <label class="forSaleLabel">Sort By: </label>
       <select id="selectSortBy" class="forSaleSelect" name="selectSortBy" onchange="sortByPrice(this.value);">
-        <option value="recentFirst">Recent First</option>
+        <option value="recentFirst"> Date </option>
         <option value="lowToHigh">Price Low To High</option>
         <option value="highToLow">Price High To Low</option>
 
