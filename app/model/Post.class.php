@@ -15,7 +15,6 @@ class Post extends DbObject {
   protected $photoInfo;
   protected $creator_id;
   protected $address;
-  protected $postList;
 
 
   // constructor
@@ -116,8 +115,12 @@ class Post extends DbObject {
   public static function getPosts(){
     $db = Db::instance();
     $result = $db->getPosts(__CLASS__, self::DB_TABLE);
-    //Save results in a class variable to be able to sort it later
-    $this->postList = $result;
+    return $result;
+  }
+
+  public static function getPostsSortByPrice($type){
+    $db = Db::instance();
+    $result = $db->getPostsSortByPrice($type);
     return $result;
   }
 
@@ -164,4 +167,11 @@ class Post extends DbObject {
        return ($objects);
      }
    }
+
+   public static function getPostsByType($type){
+     $db = Db::instance();
+     $result = $db->getPostsByType($type);
+     return $result;
+   }
+
 }

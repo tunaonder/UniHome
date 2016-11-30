@@ -5,18 +5,17 @@
 
       <!-- enctype defines form submits a file -->
       <form id="post-item" action="<?= BASE_URL ?>/post/postItem" method="POST" onSubmit="return postItem();" enctype="multipart/form-data">
-        <div class="postItemLineContainer">
+        <!-- <div class="postItemLineContainer">
           <label>Category: </label>
           <select name ="category"  onclick="alert('Currently only avaiable category is For Sale');">
-            <!-- <option value="vt">Roommates</option> -->
+
             <option value="For Sale">For Sale</option>
-            <!-- <option value="nrc">Sublease</option> -->
           </select>
-        </div>
+        </div> -->
 
         <div class="postItemLineContainer">
           <label>Type: </label>
-          <select name="type">
+          <select name="type" style="font-size: 16px;">
             <option value="Furniture">Furniture</option>
             <option value="Electronic">Electronic</option>
             <option value="Clothing">Clothing</option>

@@ -80,16 +80,16 @@ class SiteController {
 				$this->viewUsers();
 				break;
 
-                
+
             // TODO: delete when done, test json file
             case 'flare':
                 $this->checkFlare();
                 break;
-                
+
             case 'getVizData':
                 $this->getVizData();
                 break;
-                
+
 			// redirect to home page if all else fails
 			default:
 				header('Location: '.BASE_URL);
@@ -150,6 +150,7 @@ class SiteController {
 			include_once SYSTEM_PATH.'/view/forSale.tpl';
 			include_once SYSTEM_PATH.'/view/footer.tpl';
 		}
+
 
 		public function viewUsers(){
 			$pageName = 'View Users';
@@ -404,6 +405,7 @@ class SiteController {
 
 		}
 
+
 		public function follow($followeeEmail) {
 			if (session_status() == PHP_SESSION_NONE) {
 				session_start();
@@ -457,38 +459,38 @@ class SiteController {
     {
         include_once SYSTEM_PATH.'/view/flare.json';
     }
-    
-    
+
+
     public function getVizData() {
 		// get all posts
 		$posts = Post::getArrayPosts();
         $types = Post::getALlTypes();
-        
+
         $vals = array_count_values($types); // get the number of items
 
         $types = array_keys($vals);
-        
+
 		$jsonPosts= array(); // array to hold json posts
         $jsonType = array(); // array to hold json types
-        
+
         $jsonFurniture  = array();
         $jsonElectronic = array(); // array to hold json electronic types
         $jsonClothing   = array();
         $jsonHousehold  = array();
         $jsonMisc       = array();
-        
+
         // create json for each item and put it in it's type category
         if (is_array($posts) || is_object($posts))
         {
             foreach($posts as $post) {
-                
+
                 $type = $post->get('type');
                 $itemTitle = $post->get('title');
                 // truncate if needed to fit into visualization
                 if(strlen($itemTitle) > 20)
                 $itemTitle = substr($itemTitle, 0, 20).'...';
 
-                switch ($type) {    
+                switch ($type) {
                     case 'Furniture':
                         $jsonFurniture[] = $this->createJsonFile('Furniture', $itemTitle);
                         break;
@@ -498,7 +500,7 @@ class SiteController {
                         break;
                     case 'Clothing':
                         $jsonClothing[] = $this->createJsonFile('Clothing', $itemTitle);
-                        break; 
+                        break;
                     case 'Household':
                         $jsonHousehold[] = $this->createJsonFile('Household', $itemTitle);
                         break;
@@ -509,24 +511,24 @@ class SiteController {
                         $jsonMisc[] = $this->createJsonFile('Misc', $itemTitle);
                         break;
                 }
-            }          
+            }
         }
 //        $allItems[] = $jsonFurniture;
 //        $allItems[] = $jsonElectronic;
 //        $allItems[] = $jsonClothing;
 //        $allItems[] = $jsonHousehold;
 //        $allItems[] = $jsonMisc;
-        
+
                 // create json for each type
         foreach ($types as $type)
         {
             $child = null;
-            switch ($type) {    
-                case 'Furniture':  
+            switch ($type) {
+                case 'Furniture':
                     $child = $jsonFurniture;
                     break;
                 case 'Electronic':
-                    $child = $jsonElectronic; 
+                    $child = $jsonElectronic;
                     break;
                 case 'Clothing':
                     $child = $jsonClothing;
@@ -545,33 +547,35 @@ class SiteController {
                 'name' => $type,
                 'children' => $child
             );
-            $jsonTypes[] = $jsonType;    
+            $jsonTypes[] = $jsonType;
         }
-        
-        
+
+
 		// finally, the json root object
 		$json = array(
 			'name' => 'Posts',
 			'parent' => 'null',
-			'children' => $jsonTypes  
+			'children' => $jsonTypes
 		);
 
 		header('Content-Type: application/json');
 		echo json_encode($json);
 	}
-    
+
+
+
 //    private function createItemJson($post, $array)
 //    {
-//        
+//
 //        $type = $post->get('type');
-//        
+//
 //        $itemTitle = $post->get('title');
 //        // truncate if needed to fit into visualization
 //        if(strlen($itemTitle) > 20)
 //            $itemTitle = substr($itemTitle, 0, 20).'...';
-//        
-//        
-//        switch ($type) {    
+//
+//
+//        switch ($type) {
 //            case 'Furniture':
 //                $parent = $this->findChild($type, $array);
 //                $parent[] = $this->createJsonFile('Furniture', $itemTitle);
@@ -584,7 +588,7 @@ class SiteController {
 //            case 'Clothing':
 //                $parent = $this->findChild($type, $array);
 //                $parent[] = $this->createJsonFile('Clothing', $itemTitle);
-//                break; 
+//                break;
 //            case 'Household':
 //                $parent = $this->findChild($type, $array);
 //                $parent[] = $this->createJsonFile('Household', $itemTitle);
@@ -598,48 +602,48 @@ class SiteController {
 //                $parent[] = $this->createJsonFile('Misc', $itemTitle);
 //                break;
 //        }
-//            
+//
 //    }
-    
+
     private function createJsonFile($typeName, $name)
     {
         $jsonItem = array(
             'name' => $name,
             'parent' => $typeName,
             'size'=> 1
-        );  
-        
+        );
+
         return $jsonItem;
-        
+
     }
-    
+
 //    private function findChild($type, $array)
 //    {
 //
-//            
-//            switch ($type) {    
-//            case 'Furniture':    
+//
+//            switch ($type) {
+//            case 'Furniture':
 //                return $array[0];
-//                
+//
 //            case 'Electronic':
-//                
-//                return $array[1]; 
-//                
+//
+//                return $array[1];
+//
 //            case 'Clothing':
 //                return $array[2];
-//                
+//
 //            case 'Household':
 //               return $array[3];
-//                
+//
 //            case 'Misc':
 //                return $array[4];
-//                
+//
 //            default:
 //                return $array[4];
 //        }
-//        
-//        
+//
+//
 //    }
-    
+
 
 }

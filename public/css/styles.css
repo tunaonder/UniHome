@@ -184,7 +184,7 @@ div{
   background-color: #7D1935;
   color: white;
   height: 60px;
-  overflow: auto;overflow: auto;
+  overflow: auto;
 }
 
 #footer-content{
@@ -485,6 +485,16 @@ div .alert{
   }
 }
 
+#forSaleSelectsDiv{
+  text-align: center;
+  color: green;
+  font-size: 20px;
+}
+
+.forSaleSelect{
+  font-size: 20px;
+}
+
 /*=============================FOR SALE ITEM STYLE===================*/
 
 
@@ -514,7 +524,7 @@ div .alert{
 .hovered {
     text-shadow: -1px 0 grey, 0 3px grey, 1px 0 grey;
     transition: .5s;
-    
+
 }
 
 
@@ -817,10 +827,10 @@ table{
 
   font-size: 30px;
   text-align: center;
-  flex: 1 1 auto;  
+  flex: 1 1 auto;
   border: 2px black solid;
   border-radius: 2%;
-    
+
 }
 
 .editProfileButton {
@@ -838,14 +848,14 @@ table{
 .flex-container {
     display: flex;
     flex-flow: row wrap;
-    
+
 }
 .activity-container {
     flex: 1 1 auto;
     margin: 60px;
     border: 2px black solid;
     border-radius: 2%;
-    
+
 }
 .flex {
     margin: 30px;

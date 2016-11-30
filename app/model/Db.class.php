@@ -302,7 +302,44 @@ public function getUserFolloweesById($id){
 public function getPosts(){
   $q = "SELECT * FROM Post";
   $result = mysql_query($q);
-    
+
+  return $result;
+}
+
+public function getPostsByType($type){
+
+  if($type == 'All Posts'){
+
+    $q = "SELECT * FROM Post";
+    $result = mysql_query($q);
+    if (!$result){
+     throw new My_Db_Exception('Database error: ' . mysql_error());
+   }
+    return $result;
+  }
+
+
+  $q = "SELECT * FROM Post WHERE type = '$type';";
+  $result = mysql_query($q);
+  if (!$result){
+   throw new My_Db_Exception('Database error: ' . mysql_error());
+ }
+  return $result;
+}
+
+public function getPostsSortByPrice($type){
+  if ($type == 1){
+    $q = "SELECT * FROM Post ORDER BY price ASC;";
+  }
+  else if($type == 2){
+    $q = "SELECT * FROM Post ORDER BY price DESC;";
+  }
+  else{
+    $q = "SELECT * FROM Post";
+  }
+
+  $result = mysql_query($q);
+
   return $result;
 }
 
@@ -347,11 +384,11 @@ public function changeUserRole($id, $type){
 public function getAllPosts(){
   $q = "SELECT * FROM Post";
   $sql = mysql_query($q);
-  $result = mysql_fetch_array($sql); 
+  $result = mysql_fetch_array($sql);
   return $result;
 }
-    
-    
+
+
 function get_enum_values()
 {
     $type = mysql_query("SHOW COLUMNS FROM post WHERE Field = 'type'");
@@ -359,21 +396,21 @@ function get_enum_values()
     print_r($val);
     preg_match("/^enum\(\'(.*)\'\)$/", $val, $matches);
     $enum = explode("','", $matches[1]);
-    
+
     return $enum;
 }
-    
-    
+
+
 public function getAllTypes(){
     $sql = "SELECT type FROM post";
     $row = mysql_query($sql);
-    
+
     $results = array();
     while ($result = mysql_fetch_assoc($row)) {
     $type = $result['type'];
     $results[] = $type;
     }
-    
+
 //    foreach($results as $result)
 //    {
 //        echo $result['type'];
@@ -381,7 +418,7 @@ public function getAllTypes(){
 //    print_r($results);
 //    echo '<br/>';
     return $results;
-    
+
 }
 
       // load all Posts
@@ -401,5 +438,5 @@ public function getAllTypes(){
        return ($objects);
      }
    }
-    
+
 }

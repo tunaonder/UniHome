@@ -37,19 +37,24 @@ Shoe Image Source: http://winnischneider.com/textil-recycling/blog/shoes-grade-a
 
 
     <hr>
-    <label>Sort By: </label>
-    <select id="selectSortBy" name="selectSortBy" onchange="sortByPrice(this.value);">
-      <option value="lowToHigh">Price Low To High</option>
-      <option value="highToLow">Price High To Low</option>
-    </select>
-    <label>Select Category: </label>
-    <select name="selectCategoryForSale">
-      <option value="Furniture">Furniture</option>
-      <option value="Electronic">Electronic</option>
-      <option value="Clothing">Clothing</option>
-      <option value="Misc">Misc</option>
-      <option value="Household">Household</option>
-    </select>
+    <div id="forSaleSelectsDiv">
+      <label class="forSaleLabel">Sort By: </label>
+      <select id="selectSortBy" class="forSaleSelect" name="selectSortBy" onchange="sortByPrice(this.value);">
+        <option value="recentFirst">Recent First</option>
+        <option value="lowToHigh">Price Low To High</option>
+        <option value="highToLow">Price High To Low</option>
+
+      </select>
+      <label class="forSaleLabel">Select Category: </label>
+      <select id="selectCategoryForSale" class="forSaleSelect" name="selectCategoryForSale" onchange="selectType(this.value);">
+        <option value="All Posts"> All </option>
+        <option value="Furniture">Furniture</option>
+        <option value="Electronic">Electronic</option>
+        <option value="Clothing">Clothing</option>
+        <option value="Misc">Misc</option>
+        <option value="Household">Household</option>
+      </select>
+    </div>
     <hr>
 
     <div id="forSaleItemList">

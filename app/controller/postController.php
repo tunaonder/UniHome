@@ -26,10 +26,7 @@ class PostController {
 			$this->viewPost($postId);
 			break;
 
-			case 'sortPosts':
-			$sortType = $_GET['type'];
-			$this->sortPosts($sortType);
-			break;
+		
 
 			case 'displayPostDetails':
 			$postId = $_GET['pid'];
@@ -229,11 +226,7 @@ class PostController {
 
 	}
 
-	public function sortPosts($type){
 
-		$result =
-
-	}
 
 	public function editPost($pid){
 
