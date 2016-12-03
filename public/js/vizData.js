@@ -1,16 +1,16 @@
 
 $(document).ready(function () {
 
-    
-    
+
+
     //Get Used Id From HTML hidden value to set as a json request parameter
     var userId = $('#userId').val();
-    var userType= $('#userType').val();    
-    
-    
-    if (userType == 'Admin')  
+    var userType= $('#userType').val();
+
+
+    if (userType == 'Admin')
     {
-        
+
         drawSunBrust(baseURL+'/post/vizData');
         $('#post-item').hide();
         $('#post-item').submit(function(e)
@@ -33,24 +33,24 @@ $(document).ready(function () {
                     'type': type,
                     'conditionInfo': condition
                 },
-                function(data) 
-                {    
-                    if(data.postCreated == 'true') 
+                function(data)
+                {
+                    if(data.postCreated == 'true')
                         {
                             drawSunBrust(baseURL+'/post/vizData'); // redraw viz
                             $('#createButton').text("Create");
                             $('#post-item').hide(); // hide create panel
 
-                        } else if (data.error != '') 
+                        } else if (data.error != '')
                         {
                             alert(data.error); // show error as popup
                         }
                 },
-                "json"  
+                "json"
                 );
         });
-        
-        
+
+
         $('#editItemForm').submit(function(e)
         {
             e.preventDefault(); // don't submit the form
@@ -66,10 +66,10 @@ $(document).ready(function () {
                 'postID': id,
                 'postDesc': describtion,
                 'postPrice': price,
-                'postType': type     
+                'postType': type
             },
             function(data) {
-                if(data.postEdited == 'true') 
+                if(data.postEdited == 'true')
                 {
                     drawSunBrust(baseURL+'/post/vizData'); // redraw viz
                     $('#editContainer').hide(); // hide edit panel
@@ -78,17 +78,17 @@ $(document).ready(function () {
                 }
             },
             "json"
-           );   
-            
-        });  
-        
+           );
+
+        });
+
          //if delete button clicked delete Item
             $('#deleteItemForm').submit(function(e)
-                { 
+                {
                     e.preventDefault(); // don't submit the form
-                
-                    if (confirm("Are you sure you want to delete this post?") ) 
-                    { 
+
+                    if (confirm("Are you sure you want to delete this post?") )
+                    {
                         var id = $('#editID').val();
                         console.log(id);
                         $.post(
@@ -96,9 +96,9 @@ $(document).ready(function () {
                             {
                                 'pid': id
                             },
-                            function(data) 
+                            function(data)
                             {
-                                if(data.postDeleted == 'true') 
+                                if(data.postDeleted == 'true')
                                 {
                                     // Edit successful
                                     $('#editContainer').hide(); // hide edit panel
@@ -110,30 +110,30 @@ $(document).ready(function () {
                             "json"
                         );
                       }
-                        else 
+                        else
                       {
                         return false;
                       }
-                });   
-        
-        
+                });
+
+
         //enable save and cacel when button pushed
         $('#editButton').click(function ()     {
-        if ($('.hidden-item').is(':visible')) 
+        if ($('.hidden-item').is(':visible'))
             {
                $('.hidden-item').hide();
-               $('.disabled').attr("disabled", true);  
+               $('.disabled').attr("disabled", true);
             }
         else {
             $('.hidden-item').show();
                $('.disabled').attr("disabled", false);
         }
 
-       
+
     }  );
-        
+
         $('#createButton').click(function(){
-            if ($('#post-item').is(':visible')) 
+            if ($('#post-item').is(':visible'))
                 {
                    $('#createButton').text("Create");
                    $('#post-item').hide();
@@ -143,16 +143,16 @@ $(document).ready(function () {
                 $('#post-item').show();
             }
 
-        });  
+        });
     }
-   
-    
+
+
 function drawSunBrust(jsonURL) {
-    
+
     $('svg').remove();
 
-    var width  = 960,
-        height = 700,
+    var width  = 720,
+        height = 525,
         radius = (Math.min(width, height) / 2) - 10;
 
     var formatNumber = d3.format(",d");  // d:decimal notation rounded to integer
@@ -187,7 +187,7 @@ function drawSunBrust(jsonURL) {
         console.log(root);
 
         root.sum(function(d){return d.size; });
-        
+
       var path = svg.selectAll("path")
           .data(partition(root).descendants())
           .enter().append("g");
@@ -219,7 +219,7 @@ function drawSunBrust(jsonURL) {
                                     $('#editTitle').val(d.data.name);
                                     $('#editID').val(d.data.postID);
                                     $('#descriptionInput').val(d.data.description);
-                                    $('#postItemType').val(d.data.parent);  
+                                    $('#postItemType').val(d.data.parent);
                                     $('#priceInput').val(d.data.price);
                                     $('#editContainer').show();
                                     $('.disabled').attr("disabled", true);
@@ -231,7 +231,7 @@ function drawSunBrust(jsonURL) {
         }
 
         function click(d) {
-       text.transition().attr("opacity", 0); 
+       text.transition().attr("opacity", 0);
 
       svg.transition()
           .duration(750)
@@ -266,5 +266,5 @@ function drawSunBrust(jsonURL) {
 
         }
 
-    }  
+    }
 })
