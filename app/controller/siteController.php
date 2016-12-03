@@ -116,6 +116,7 @@ class SiteController {
 		public function signUp() {
 			$pageName = 'Sign Up';
 			include_once SYSTEM_PATH.'/view/header.tpl';
+			include_once SYSTEM_PATH.'/view/navigator.tpl';
 			include_once SYSTEM_PATH.'/view/signUp.tpl';
 			include_once SYSTEM_PATH.'/view/footer.tpl';
 		}
@@ -123,6 +124,7 @@ class SiteController {
 		public function post() {
 			$pageName = 'Post';
 			include_once SYSTEM_PATH.'/view/header.tpl';
+			include_once SYSTEM_PATH.'/view/navigator.tpl';
 			include_once SYSTEM_PATH.'/view/post.tpl';
 			include_once SYSTEM_PATH.'/view/footer.tpl';
 		}

@@ -196,7 +196,7 @@ div{
 
 #footer label{
   display: inline;
-  font-size: 15px;
+  /*font-size: 15px;*/
   color: white;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -267,7 +267,7 @@ div{
   margin-right: auto;
   display: block;
   margin-top: 30px;
-  font-size: 30px;
+  font-size: 20px;
   text-align: center;
   width: 300px;
 }
@@ -275,7 +275,6 @@ div{
 /*Move labels to the left of container in signUp and Login*/
 .mainContent label{
   float: left;
-
 }
 
 /*Move inputs and dropdowns to the right of container in signUp and Login*/
@@ -291,11 +290,11 @@ div{
 }
 
 .mainContent select{
-  float: right;
+  /*float: right;
   margin-top: 10px;
   width: 155px;
   background-color: white;
-  color: blue;
+  color: blue;*/
 }
 /*Add some margin between lines*/
 .mainContent .lineContainer{
@@ -911,4 +910,18 @@ table{
 #navbar {
   color: white;
   background-color: #7D1935;
+}
+
+.mainContent label {
+  font-weight: 400;
+}
+
+#select-university {
+  width: 150px;
+  float: right;
+  margin-top: 10px;
+}
+
+.lineContainer label {
+  margin-top: 10px;
 }

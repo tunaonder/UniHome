@@ -35,7 +35,7 @@
       <ul class="nav navbar-nav navbar-right">
 
         <label id="login-post" style="display: <?= $userLoggedInButtonStyle2 ?>" > Login to Post an Item </label>
-        <button type="button" class="btn btn-default navbar-btn" onClick="document.location.href='<?= BASE_URL ?>/login'" style="display: <?= $userLoggedInButtonStyle2 ?>">Login</button>
+        <button type="button" class="btn btn-success navbar-btn" onClick="document.location.href='<?= BASE_URL ?>/login'" style="display: <?= $userLoggedInButtonStyle2 ?>">Login</button>
         <button type="button" class="btn btn-default navbar-btn" onClick="document.location.href='<?= BASE_URL ?>/signUp'" style="display: <?= $userLoggedInButtonStyle2 ?>">Sign Up</button>
 
         <li class="dropdown" style="display: <?= $userLoggedInButtonStyle ?>">
