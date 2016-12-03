@@ -92,7 +92,7 @@ if(isset($_SESSION['user'])) {
 <body>
 
   <!-- Header Section Of Page -->
-  <div class="header">
+  <div>
 
 
 
@@ -101,28 +101,7 @@ if(isset($_SESSION['user'])) {
     <input type="hidden" id="userId" value="<?= $userId ?>">
     <input type="hidden" id="userType" value="<?= $userType ?>">
 
-    <!-- Application Logo or Name -->
-    <a id="appName"href="<?= BASE_URL ?>">UniHome</a>
 
-    <!-- Header Navigators -->
-    <div >
-      <form action="<?= BASE_URL ?>/processLogout" method="POST">
-
-        <button id="signUpButton" type="submit" style="display: <?= $userLoggedInButtonStyle ?>">Logout</button>
-        <button type="button" onClick="document.location.href='<?= BASE_URL ?>/post'" style="display: <?= $userLoggedInButtonStyle ?>"> New Post</button>
-        <button type="button" onClick="document.location.href='<?= BASE_URL ?>/yourPosts'" style="display: <?= $userLoggedInButtonStyle ?>">Your Items</button>
-        <button type="button" onClick="document.location.href='<?= BASE_URL ?>/yourFavorites'" style="display: <?= $userLoggedInButtonStyle ?>">Your Favorites</button>
-        <button type="button" onClick="document.location.href='<?= BASE_URL ?>/yourFollowees'" style="display: <?= $userLoggedInButtonStyle ?>">Your Followees</button>
-        <button type="button" onClick="document.location.href='<?= BASE_URL ?>/signUp'" style="display: <?= $userLoggedInButtonStyle2 ?>">Sign Up</button>
-        <button type="button" onClick="document.location.href='<?= BASE_URL ?>/login'" style="display: <?= $userLoggedInButtonStyle2 ?>">Login</button>
-        <?php if($userType == 'Admin'): ?>
-          <button id="viewUsersButton"type="button" onClick="document.location.href='<?= BASE_URL ?>/viewUsers'" style="display: <?= $userLoggedInButtonStyle ?>"> View Users </button>
-        <?php endif; ?>
-        <a href="<?= BASE_URL ?>/userProfile/<?=$userId?>"> <label id = "userLoggedInLabel" class="clickable" style="display: <?= $userLoggedInButtonStyle ?>"> <?= $loginInformation ?> </label></a>
-        <label style="display: <?= $userLoggedInButtonStyle2 ?>" > Login to Post an Item </label>
-
-      </form>
-    </div>
 
 
   </div>

@@ -34,7 +34,8 @@ div{
   background-color: #7D1935;
   overflow: auto;
 }
-.header #appName{
+
+#appName{
 
   float: left;
   text-decoration: underline;
@@ -568,7 +569,7 @@ path {
 }
 #createContainer {
     display: flex;
-    flex-flow: column nowrap; 
+    flex-flow: column nowrap;
     align-items: flex-start;
 }
 .newLine {
@@ -581,7 +582,7 @@ path {
     padding: 5px;
 }
 #editContainer {
-    
+
   float: right;
   width: 250px;
   display: none; /* hide by default */
@@ -900,4 +901,14 @@ table{
 #rightComponent{
   /*Make the item to the horizontally centered*/
   float: right;
+}
+
+#menu-dropdown,
+#login-info {
+  color: white;
+}
+
+#navbar {
+  color: white;
+  background-color: #7D1935;
 }

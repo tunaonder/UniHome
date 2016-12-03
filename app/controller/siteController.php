@@ -108,6 +108,7 @@ class SiteController {
 		public function login() {
 			$pageName = 'Login';
 			include_once SYSTEM_PATH.'/view/header.tpl';
+			include_once SYSTEM_PATH.'/view/navigator.tpl';
 			include_once SYSTEM_PATH.'/view/login.tpl';
 			include_once SYSTEM_PATH.'/view/footer.tpl';
 		}
