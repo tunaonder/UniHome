@@ -533,8 +533,7 @@ div .alert{
   color: purple;
   margin-left: 10px;
   display: inline;
-}
-svg {
+}svg {
     z-index: 1;
 }
 path {
@@ -548,6 +547,7 @@ path {
 .item-list {
     display: flex;
     flex-flow: row wrap;
+    align-items: flex-start;
 }
 
 .dataViz-container {
@@ -555,15 +555,38 @@ path {
     padding-top: 100px;
     padding-bottom: 50px;
 }
+
+.hidden-item {
+    display: none;
+}
 #editItemForm {
   float: right;
   width: 250px;
 }
-
+#createButton{
+     margin-top: 20px;
+}
+#createContainer {
+    display: flex;
+    flex-flow: column nowrap; 
+    align-items: flex-start;
+}
+.newLine {
+  display: block;
+}
+.pad {
+    padding: 5px;
+}
+.createItemContainer {
+    padding: 5px;
+}
 #editContainer {
+    
   float: right;
   width: 250px;
   display: none; /* hide by default */
+    margin-top: 20px;
+    margin-left: auto;
 }
 /*IMAGE AND FEATURES STYLING*/
 .itemContent img {

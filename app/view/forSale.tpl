@@ -11,24 +11,97 @@ Shoe Image Source: http://winnischneider.com/textil-recycling/blog/shoes-grade-a
   <!-- Main Content -->
 
 
-  <?php if($pageName == 'For Sale'): ?>
+<?php if($pageName == 'For Sale' && $userType =='Admin'): ?>
+    <div id="createContainer">
+        <button id="createButton" class="clickable" type="button" name="create" >Create</button>
+        <form id="post-item" method="POST" enctype="multipart/form-data">
+
+            <div class="createItemContainer">
+              <label>Title: </label>
+              <input  id="category" type="hidden" name="category" value="For Sale">
+              <input id="createTitle" name="title" type="text">
+            </div>
+
+            <div class="createItemContainer">
+              <label class="newLine">Description: </label>
+              <textarea id="createDescription" name="description"rows="10" cols="30"></textarea>
+            </div>
+
+            <div class="createItemContainer">
+              <label>Type: </label>
+              <select id="createItemType" name="type">
+                <option value="Furniture">Furniture</option>
+                <option value="Electronic">Electronic</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Household">Household</option>
+                <option value="Misc">Misc</option>
+              </select>
+            </div>
+           
+            <div class="createItemContainer">
+              <label>Price: </label>
+              <input id="createPrice" name="price" type="text">
+            </div>
+
+
+
+            <div class="createItemContainer">
+              <label>Condition: </label>
+              <select id="condition" name="conditionInfo">
+                <option value="New">New</option>
+                <option value="Used">Used</option>
+              </select>
+            </div>
+            
+            <div class="createItemContainer">
+              <button class="contentButton" name="submit" type="submit" >Submit</button>
+            </div>
+        </form>
+    </div>
 
     <div id="editContainer">
-      <form id="editItemForm" method="POST" action="<?= BASE_URL ?>/post/editTitle/">
-        <label>Edit Title: <input type="text" id="editTitle" name="title" value=""></label>
-        <input  type="hidden" id="editID" name="postID" value="">
-        <input  id="editButton" class="clickable" type="submit" name="submit" value="Edit">
-        <button id="createButton" class="clickable" type="submit" name="create" >Create</button>
-        <button id="cancelEdit" class="clickable" type="button" name="cancel">Cancel</button>
+        <form id="editItemForm" method="POST" action="<?= BASE_URL ?>/post/editTitle/">
+      <label>Title: <input type="text" id="editTitle" class="disabled" name="title" value=""></label>
+
+      <div class="postItemLineContainer pad disabled">
+          <label>Description: </label>
+          <textarea id="descriptionInput" class="disabled" name="description"rows="10" cols="30" value=""></textarea>
+       </div>
+
+        <div class="postItemLineContainer pad disabled">
+          <label>Type: </label>
+          <select id="postItemType" name="type" class="disabled">
+            <option value="Furniture">Furniture</option>
+            <option value="Electronic">Electronic</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Household">Household</option>
+            <option value="Misc">Misc</option>
+          </select>
+        </div>
+
+        <div class="postItemLineContainer pad disabled">
+          <label>Price: </label>
+          <input id="priceInput" name="price" class="disabled" type="text">
+         </div>
+
+      <input  type="hidden" id="editID" name="postID" value="">
+        <button  id="editButton" class="clickable pad" type="button" name="edit">Edit</button>
+
+            <button id="saveEdit" class="clickable hidden-item pad" type="submit" name="save">Save</button>
+
       </form>
       <form id="deleteItemForm" method="POST" >
-        <button id ="deleteButton" class="clickable" type="submit" name="delete">Delete</button>
-      </form>
+      <button id ="deleteButton" class="clickable pad" type="submit" name="delete">Delete</button>
+     </form>
     </div>
-    <div class="dataViz-container">
-      <script type="text/javascript" src="<?= BASE_URL ?>/public/js/vizData.js"></script>
-    </div>
+
+       <div class="dataViz-container">
+         <script type="text/javascript" src="<?= BASE_URL ?>/public/js/vizData.js"></script>
+      </div>
+  
+  
   <?php endif; ?>
+  
   <div id="listContent" >
 
 

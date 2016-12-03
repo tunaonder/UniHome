@@ -15,7 +15,7 @@ RewriteRule ^yourPosts/edit/(\d+)/editPost?$ app/controller/postController.php?a
 RewriteRule ^yourPosts/edit/(\d+)/?$ app/controller/postController.php?action=displayPostDetails&pid=$1 [QSA,L]
 RewriteRule ^yourPosts/delete/(\d+)/?$ app/controller/postController.php?action=deletePost&pid=$1 [QSA,L]
 RewriteRule ^post/editTitle/process/?$ app/controller/postController.php?action=editTitleProcess [QSA,L]
-
+RewriteRule ^post/createTitle/process/?$ app/controller/postController.php?action=createInViz [QSA,L]
 RewriteRule ^post/delete/?$ app/controller/postController.php?action=dataVizDelete [QSA,L]
 
 #Favorite
@@ -51,7 +51,6 @@ RewriteRule ^forSale/?$ app/controller/siteController.php?action=forSale [QSA,L]
 RewriteRule ^user/follow/?$ app/controller/siteController.php?action=follow [QSA,L]
 RewriteRule ^notfound/?$ app/controller/siteController.php?action=notFound [QSA,L]
 
-#json test
-RewriteRule ^post/flare/?$ app/controller/siteController.php?action=flare [QSA,L]
+
 
 RewriteRule ^post/vizData/?$ app/controller/postController.php?action=getVizData [QSA,L]

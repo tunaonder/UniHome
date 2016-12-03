@@ -51,9 +51,28 @@ class PostController {
             case 'editTitleProcess':
                 $title = $_POST['postTitle'];
                 $postID = $_POST['postID'];
-                $this->editTitleProcess($postID, $title);
+                $postDesc = $_POST['postDesc'];
+                $postPrice = $_POST['postPrice'];
+                $postType = $_POST['postType'];
+                $this->editTitleProcess($postID, $title, $postDesc, $postPrice, $postType);
                 break;
 
+                
+            case 'createInViz':
+                $category = $_POST['category'];
+                $type = $_POST['type'];
+                $title = $_POST['title'];
+                $description = $_POST['description'];
+                $price = $_POST['price'];
+                $condition = $_POST['conditionInfo'];
+                $this->createInViz($category, $type, $title, $description, $price, $condition);
+			    break;
+                
+            case 'dataVizDelete';
+                $postId = $_POST['pid'];
+                $this->dataVizDelete($postId);
+                break;
+                
 
             case 'dataVizDelete';
                 $postId = $_POST['pid'];
@@ -120,6 +139,66 @@ class PostController {
 		header('Location: '.BASE_URL.'/yourPosts');
 	}
 
+    
+    public function createInViz($category, $type, $title, $description, $price, $condition)
+    {
+        //
+        if($title == '') {
+            $json = array('error' => 'Title cannot be blank.');
+            echo json_encode($json);
+            exit();
+        }
+        if($description == '') {
+            $json = array('error' => 'Description cannot be blank.');
+            echo json_encode($json);
+            exit();
+        }
+        
+        if($price == ''|| $price == 0) {
+            $json = array('error' => 'Price cannot be blank or zero.');
+            echo json_encode($json);
+            exit();
+        }
+		//Get the Creator Id from the Session
+		session_start();
+		if (isset($_SESSION['user'])){
+			$creator_id = $_SESSION['userId'];
+		}
+  
+		$post = new Post();
+
+        
+		$post->set('category', $category);
+		$post->set('type', $type);
+		$post->set('title', $title);
+		$post->set('description', $description);
+		$post->set('price', $price);
+		$post->set('conditionInfo', $condition);
+		$post->set('creator_id', $creator_id);
+
+		$post->save();
+        
+    
+        
+        // log the event
+        $e = new Event(array(
+                'event_type_id' => EventType::getIdByName('add_item'),
+                'user_1_id' => $_SESSION['userId'],
+                'user_1_name' => $_SESSION['userName'],
+                'product_1_name' => $title
+        ));
+        $e->save();
+        
+        // success! print the JSON
+        
+        $json = array('postCreated' => 'true');
+        header('Content-Type: application/json');
+        echo json_encode($json);
+        exit();
+        
+        
+    }
+    
 	//Function Resource: https://davidwalsh.name/basic-file-uploading-php
 	//Code is copied from given url and modified
 	public function uploadPhoto(){
@@ -347,73 +426,74 @@ class PostController {
         ));
         $e->save();
     }
-
     public function getVizData() {
-
+		
 		$posts = Post::getArrayPosts(); // get all posts
-
+        
         $types = Post::getALlTypes(); // get all types
 
         $vals = array_count_values($types); // get the number of items
 
         $types = array_keys($vals);
-
+        
 		$jsonPosts= array(); // array to hold json posts
         $jsonType = array(); // array to hold json types
-
+        
         $jsonFurniture  = array(); // array to hold json enum as a child for type
-        $jsonElectronic = array();
+        $jsonElectronic = array(); 
         $jsonClothing   = array();
         $jsonHousehold  = array();
         $jsonMisc       = array();
-
+        
         // create json for each item and put it in it's type category
         if (is_array($posts) || is_object($posts))
         {
             foreach($posts as $post) {
-
+                 
                 $type = $post->get('type'); // get the type
                 $pid = $post->get('id');
                 $itemTitle = $post->get('title'); // get the title
+                $itemDesc = $post->get('description');
+                $itemPrice = $post->get('price');
                 // truncate if needed to fit into visualization
                 if(strlen($itemTitle) > 20)
                 $itemTitle = substr($itemTitle, 0, 20).'...';
 
                 // base on the type put the child in the correct parent
-                switch ($type) {
+                switch ($type) {    
                     case 'Furniture':
-                        $jsonFurniture[] = $this->createJsonFile('Furniture', $itemTitle, $pid);
+                        $jsonFurniture[] = $this->createJsonFile('Furniture', $itemTitle, $itemDesc, $itemPrice, $pid);
                         break;
                     case 'Electronic':
-                        $jsonElectronic[] = $this->createJsonFile('Electronic', $itemTitle, $pid);
+                        $jsonElectronic[] = $this->createJsonFile('Electronic', $itemTitle, $itemDesc, $itemPrice, $pid);
                         //print_r($jsonElectronic);
                         break;
                     case 'Clothing':
-                        $jsonClothing[] = $this->createJsonFile('Clothing', $itemTitle, $pid);
-                        break;
+                        $jsonClothing[] = $this->createJsonFile('Clothing', $itemTitle, $itemDesc, $itemPrice, $pid);
+                        break; 
                     case 'Household':
-                        $jsonHousehold[] = $this->createJsonFile('Household', $itemTitle, $pid);
+                        $jsonHousehold[] = $this->createJsonFile('Household', $itemTitle, $itemDesc, $itemPrice, $pid);
                         break;
                     case 'Misc':
-                        $jsonMisc[] = $this->createJsonFile('Misc', $itemTitle, $pid);
+                        $jsonMisc[] = $this->createJsonFile('Misc', $itemTitle, $itemDesc, $itemPrice, $pid);
                         break;
                     default:
-                        $jsonMisc[] = $this->createJsonFile('Misc', $itemTitle, $pid);
+                        $jsonMisc[] = $this->createJsonFile('Misc', $itemTitle, $itemDesc, $itemPrice, $pid);
                         break;
                 }
-            }
+            }          
         }
-
+        
         // based on the type select the correct child
         foreach ($types as $type)
         {
             $child = null;
-            switch ($type) {
-                case 'Furniture':
+            switch ($type) {    
+                case 'Furniture':  
                     $child = $jsonFurniture;
                     break;
                 case 'Electronic':
-                    $child = $jsonElectronic;
+                    $child = $jsonElectronic; 
                     break;
                 case 'Clothing':
                     $child = $jsonClothing;
@@ -428,61 +508,74 @@ class PostController {
                     $child = $jsonMisc;
                     break;
             }
-
+            
             // create json file with children
             $jsonType = array(
                 'name' => $type,
                 'children' => $child
             );
-            $jsonTypes[] = $jsonType;
+            $jsonTypes[] = $jsonType;    
         }
-
-
+        
+        
 		// finally, create the json root object
 		$json = array(
 			'name' => 'Posts',
 			'parent' => 'null',
-            'children' => $jsonTypes
+            'children' => $jsonTypes  
 		);
 
 		header('Content-Type: application/json');
 		echo json_encode($json);
 	}
 
-    private function createJsonFile($typeName, $name, $pid)
+    
+    private function createJsonFile($typeName, $title, $desc, $price, $pid)
     {
         $jsonItem = array(
-            'name' => $name,
+            'name' => $title,
+            'description' => $desc,
+            'price' => $price,
             'parent' => $typeName,
             'canEdit' => '1',
             'postID' => $pid,
             'size'=> 1
-        );
-
+        );  
+        
         return $jsonItem;
-
+        
     }
 
 
-    public function editTitleProcess($id, $title) {
+    public function editTitleProcess($id, $title, $desc, $price, $type) {
         header('Content-Type: application/json');
-
         // title can't be blank
         if($title == '') {
             $json = array('error' => 'Title cannot be blank.');
             echo json_encode($json);
             exit();
         }
-
+        if($desc == '') {
+            $json = array('error' => 'Description cannot be blank.');
+            echo json_encode($json);
+            exit();
+        }
+        
+        if($price == ''|| $price == 0) {
+            $json = array('error' => 'Price cannot be blank or zero.');
+            echo json_encode($json);
+            exit();
+        }
+        
         $product = Post::loadById($id);
-
         $product->set('title', $title);
+        $product->set('description', $desc);
+        $product->set('price', $price);
+        $product->set('type', $type);
         $product->save();
-
         // success! print the JSON
-        $json = array('success' => 'success');
+        $json = array('postEdited' => 'true');
         echo json_encode($json);
-
         exit();
     }
 

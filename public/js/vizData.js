@@ -7,29 +7,70 @@ $(document).ready(function () {
     var userId = $('#userId').val();
     var userType= $('#userType').val();    
     
+    
     if (userType == 'Admin')  
     {
-    
+        
         drawSunBrust(baseURL+'/post/vizData');
+        $('#post-item').hide();
+        $('#post-item').submit(function(e)
+        {
+            e.preventDefault();
+            var category = $('#category').val();
+            var title = $('#createTitle').val();
+            var describtion = $('#createDescription').val();
+            var price = $('#createPrice').val();
+            var type = $('#createItemType').val();
+            var condition = $('#condition').val();
+            console.log(category + title + describtion+ +price+ condition + type);
+            $.post(
+                baseURL+'/post/createTitle/process/',
+                {
+                    'category': category,
+                    'title': title,
+                    'description': describtion,
+                    'price': price,
+                    'type': type,
+                    'conditionInfo': condition
+                },
+                function(data) 
+                {    
+                    if(data.postCreated == 'true') 
+                        {
+                            drawSunBrust(baseURL+'/post/vizData'); // redraw viz
+                            $('#createButton').text("Create");
+                            $('#post-item').hide(); // hide create panel
 
-        //Ajax section for update the title
+                        } else if (data.error != '') 
+                        {
+                            alert(data.error); // show error as popup
+                        }
+                },
+                "json"  
+                );
+        });
+        
+        
         $('#editItemForm').submit(function(e)
         {
             e.preventDefault(); // don't submit the form
             var title = $('#editTitle').val();
             var id = $('#editID').val();
-
+            var describtion = $('#descriptionInput').val();
+            var price = $('#priceInput').val();
+            var type = $('#postItemType').val();
            $.post(
             baseURL+'/post/editTitle/process/',
             {
                 'postTitle': title,
-                'postID': id
+                'postID': id,
+                'postDesc': describtion,
+                'postPrice': price,
+                'postType': type     
             },
             function(data) {
-                if(data.success == 'success') 
+                if(data.postEdited == 'true') 
                 {
-                    // Edit successful
-                    console.log('edited');
                     drawSunBrust(baseURL+'/post/vizData'); // redraw viz
                     $('#editContainer').hide(); // hide edit panel
                 } else if (data.error != '') {
@@ -39,8 +80,8 @@ $(document).ready(function () {
             "json"
            );   
             
-        });    
-
+        });  
+        
          //if delete button clicked delete Item
             $('#deleteItemForm').submit(function(e)
                 { 
@@ -57,11 +98,9 @@ $(document).ready(function () {
                             },
                             function(data) 
                             {
-                                console.log("this");
                                 if(data.postDeleted == 'true') 
                                 {
                                     // Edit successful
-                                    console.log('here');
                                     $('#editContainer').hide(); // hide edit panel
                                     drawSunBrust(baseURL+'/post/vizData'); // redraw viz
                                 } else if (data.error != '') {
@@ -69,27 +108,45 @@ $(document).ready(function () {
                                 }
                             },
                             "json"
-                    );
-                  }
-                    else 
-                  {
-                    return false;
-                  }
-            });   
+                        );
+                      }
+                        else 
+                      {
+                        return false;
+                      }
+                });   
         
         
-      // if cancel button clicked hide editUI
-        $('#cancelEdit').click( function () {$('#editContainer').hide();}); 
+        //enable save and cacel when button pushed
+        $('#editButton').click(function ()     {
+        if ($('.hidden-item').is(':visible')) 
+            {
+               $('.hidden-item').hide();
+               $('.disabled').attr("disabled", true);  
+            }
+        else {
+            $('.hidden-item').show();
+               $('.disabled').attr("disabled", false);
+        }
 
-        //if create button clicked go to create page
+       
+    }  );
+        
         $('#createButton').click(function(){
-
-            //var resultPage = baseURL+;
-            window.location = baseURL + '/post';
+            if ($('#post-item').is(':visible')) 
+                {
+                   $('#createButton').text("Create");
+                   $('#post-item').hide();
+                }
+            else {
+                $('#createButton').text("Cancel");
+                $('#post-item').show();
+            }
 
         });  
     }
-        
+   
+    
 function drawSunBrust(jsonURL) {
     
     $('svg').remove();
@@ -130,6 +187,7 @@ function drawSunBrust(jsonURL) {
         console.log(root);
 
         root.sum(function(d){return d.size; });
+        
       var path = svg.selectAll("path")
           .data(partition(root).descendants())
           .enter().append("g");
@@ -149,7 +207,7 @@ function drawSunBrust(jsonURL) {
           .text(function(d) { return d.data.name;})
            .classed("clickable", true);
         var title= path.append("title")
-          .text(function(d) { return d.data.name + "\n" + formatNumber(d.value); });
+          .text(function(d) { if (d.data.canEdit == 1) return d.data.name; else return d.data.name + "\n" + formatNumber(d.value) });
 
 
 
@@ -160,8 +218,14 @@ function drawSunBrust(jsonURL) {
                                 } else {
                                     $('#editTitle').val(d.data.name);
                                     $('#editID').val(d.data.postID);
+                                    $('#descriptionInput').val(d.data.description);
+                                    $('#postItemType').val(d.data.parent);  
+                                    $('#priceInput').val(d.data.price);
                                     $('#editContainer').show();
-                                    $('#editTitle').focus();
+                                    $('.disabled').attr("disabled", true);
+                                    if ($('.hidden-item').is(':visible')) {
+                                        $('.hidden-item').hide();
+                                    }
                                 }
                             }
         }
@@ -181,11 +245,6 @@ function drawSunBrust(jsonURL) {
         .selectAll("path")
           .attrTween("d", function(d) { return function() { return arc(d); }; })
           .on("end", function(e, i){
-    //      console.log("e " + e.x0);
-    //      console.log("d0 " + d.x0);
-    //      console.log("d1 " + d.x1);
-    //      console.log(e.data.name);
-    //      console.log(d.data.name);
           if (e.x0 >= d.x0 && e.x0 < d.x1){
 
               var arcText = d3.select(this.parentNode).select("text");
