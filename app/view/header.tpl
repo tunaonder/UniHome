@@ -5,7 +5,7 @@ are either visible or hidden -->
 
 $loginInformation = "Login to Post an Item";
 $userLoggedInButtonStyle = "none";
-$userLoggedInButtonStyle2 = "block";
+$userLoggedInButtonStyle2 = "inline";
 $welcomeInfo = "Welcome to UniHome";
 $userId = 0;
 $userType = '';
