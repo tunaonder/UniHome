@@ -36,16 +36,13 @@ div{
 }
 
 #appName{
-
   float: left;
   text-decoration: underline;
   font-size: 36px;
   margin-left: 20px;
-  margin-top: 10px;
   color: white;
   cursor: pointer;
   font-family: Impact, Charcoal, sans-serif;
-
 }
 
 /*Header buttons should be on the right*/
@@ -105,7 +102,7 @@ div{
   width: 100%;
   text-align: center;
   background-color: #C4C4C4;
-  margin-top: 20px;
+  margin-top: 0;
   overflow: auto;
 }
 
@@ -121,8 +118,8 @@ div{
   border: none;
   background: transparent;
   text-decoration: underline;
-  font-size: 20px;
-  padding-left: 30px;
+  font-size: 17px;
+  padding-left: 20px;
   cursor: pointer;
   font-family: "Lucida Grande", Geneva, Verdana, Arial, Helvetica, sans-serif;
 
@@ -907,6 +904,11 @@ table{
   color: white;
 }
 
+#new-post {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
 #navbar {
   color: white;
   background-color: #7D1935;
@@ -924,4 +926,8 @@ table{
 
 .lineContainer label {
   margin-top: 10px;
+}
+
+#nav-primary {
+  margin-bottom: 0;
 }

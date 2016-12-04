@@ -48,6 +48,8 @@ RewriteRule ^yourPosts/?$ app/controller/siteController.php?action=displayUserPo
 RewriteRule ^yourFavorites/?$ app/controller/siteController.php?action=displayUserFavorites [QSA,L]
 RewriteRule ^yourFollowees/?$ app/controller/siteController.php?action=displayUserFollowees [QSA,L]
 RewriteRule ^forSale/?$ app/controller/siteController.php?action=forSale [QSA,L]
+RewriteRule ^about/?$ app/controller/siteController.php?action=about [QSA,L]
+RewriteRule ^contact/?$ app/controller/siteController.php?action=contact [QSA,L]
 RewriteRule ^user/follow/?$ app/controller/siteController.php?action=follow [QSA,L]
 RewriteRule ^notfound/?$ app/controller/siteController.php?action=notFound [QSA,L]
 

@@ -6,7 +6,7 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<nav class="navbar navbar-default" >
+<nav class="navbar navbar-default" id="nav-primary">
   <div class="container-fluid" id="navbar">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -24,7 +24,7 @@
       <ul class="nav navbar-nav">
 
         <li style="display: <?= $userLoggedInButtonStyle ?>" ><a id="login-info"><?= $loginInformation ?></a></li>
-        <li><a href="<?= BASE_URL ?>/post" style="display: <?= $userLoggedInButtonStyle ?>" id="new-post"> New Post</a></li>
+        <button onclick="document.location.href='<?= BASE_URL ?>/post'" class="btn btn-default" style="display: <?= $userLoggedInButtonStyle ?>" id="new-post">New Post</button>
 
 
       </ul>
@@ -52,6 +52,7 @@
           </ul>
         </li>
       </ul>
+
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -60,8 +61,8 @@
   <div id="innerNav">
     <button onclick="document.location.href='<?= BASE_URL ?>'">Home</button>
     <button onclick="document.location.href='<?= BASE_URL ?>/forSale'">For Sale</button>
-    <button onclick="changePage('roommates');">Roommates</button>
-    <button onclick="changePage('sublease');">Sublease</button>
+    <button onclick="document.location.href='<?= BASE_URL ?>/about'">About Us</button>
+    <button onclick="document.location.href='<?= BASE_URL ?>/contact'">Contact</button>
   </div>
 
 </div>

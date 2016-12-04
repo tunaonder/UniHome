@@ -35,6 +35,14 @@ class SiteController {
 				$this->forSale();
 				break;
 
+			case 'about':
+				$this->about();
+				break;
+
+			case 'contact':
+				$this->contact();
+				break;
+
 			case 'processLogin':
 				$userEmail = $_POST['uEmail'];
 				$password = $_POST['uPw'];
@@ -129,7 +137,22 @@ class SiteController {
 			include_once SYSTEM_PATH.'/view/footer.tpl';
 		}
 
+		public function about() {
+			$pageName = 'About';
+			include_once SYSTEM_PATH.'/view/header.tpl';
+			include_once SYSTEM_PATH.'/view/navigator.tpl';
+			include_once SYSTEM_PATH.'/view/about.tpl';
+			include_once SYSTEM_PATH.'/view/footer.tpl';
+		}
 
+
+		public function contact() {
+			$pageName = 'Contact';
+			include_once SYSTEM_PATH.'/view/header.tpl';
+			include_once SYSTEM_PATH.'/view/navigator.tpl';
+			include_once SYSTEM_PATH.'/view/contact.tpl';
+			include_once SYSTEM_PATH.'/view/footer.tpl';
+		}
 
 		//Return all Posts From Database in descending order
 		public function forSale() {
