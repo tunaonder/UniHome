@@ -42,3 +42,16 @@ function selectType(type){
 
     });
 }
+
+function selectUniversity(university){
+  $.post(
+    baseURL+'/app/model/UniversitySelect.class.php', // location of php script
+    { university: university },
+    function( data ){
+        $( "#forSaleItemList" ).empty(); // Delete previos content
+        $( '#forSaleItemList').append( data );
+        //Change value of other select box
+        $( '#selectSortBy').val('recentFirst');
+
+    });
+}

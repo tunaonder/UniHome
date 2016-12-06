@@ -37,7 +37,7 @@ Shoe Image Source: http://winnischneider.com/textil-recycling/blog/shoes-grade-a
                 <option value="Misc">Misc</option>
               </select>
             </div>
-           
+
             <div class="createItemContainer">
               <label>Price: </label>
               <input id="createPrice" name="price" type="text">
@@ -52,7 +52,7 @@ Shoe Image Source: http://winnischneider.com/textil-recycling/blog/shoes-grade-a
                 <option value="Used">Used</option>
               </select>
             </div>
-            
+
             <div class="createItemContainer">
               <button class="contentButton" name="submit" type="submit" >Submit</button>
             </div>
@@ -98,10 +98,10 @@ Shoe Image Source: http://winnischneider.com/textil-recycling/blog/shoes-grade-a
        <div class="dataViz-container">
          <script type="text/javascript" src="<?= BASE_URL ?>/public/js/vizData.js"></script>
       </div>
-  
-  
+
+
   <?php endif; ?>
-  
+
   <div id="listContent" >
 
 
@@ -122,6 +122,15 @@ Shoe Image Source: http://winnischneider.com/textil-recycling/blog/shoes-grade-a
         <option value="Clothing">Clothing</option>
         <option value="Misc">Misc</option>
         <option value="Household">Household</option>
+      </select>
+
+      <label class="forSaleLabel">Select University: </label>
+      <select id="selectUniversityForSale" class="forSaleSelect" name="selectUniversityForSale" onchange="selectUniversity(this.value);">
+        <option value="All"> All </option>
+        <option value="Virginia Tech">Virginia Tech</option>
+        <option value="Radford University">Radford University</option>
+        <option value="Roanoke College">Roanoke College</option>
+        <option value="New River College">New River College</option>
       </select>
     </div>
     <hr>

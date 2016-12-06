@@ -327,6 +327,27 @@ public function getPostsByType($type){
   return $result;
 }
 
+public function getPostsByUniversity($uni){
+
+  if($uni == 'All'){
+
+    $q = "SELECT * FROM Post";
+    $result = mysql_query($q);
+    if (!$result){
+     throw new My_Db_Exception('Database error: ' . mysql_error());
+   }
+    return $result;
+  }
+
+
+  $q = "SELECT * FROM Post WHERE created_by IN (SELECT id FROM Users WHERE university='$uni');";
+  $result = mysql_query($q);
+  if (!$result){
+   throw new My_Db_Exception('Database error: ' . mysql_error());
+ }
+  return $result;
+}
+
 public function getPostsSortByPrice($type){
   if ($type == 1){
     $q = "SELECT * FROM Post ORDER BY price ASC;";

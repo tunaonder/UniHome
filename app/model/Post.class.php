@@ -174,4 +174,10 @@ class Post extends DbObject {
      return $result;
    }
 
+   public static function getPostsByUniversity($uni){
+     $db = Db::instance();
+     $result = $db->getPostsByUniversity($uni);
+     return $result;
+   }
+
 }
