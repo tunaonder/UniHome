@@ -365,7 +365,7 @@ public function getPostsSortByPrice($type){
 }
 
 public function getTotalPostCount(){
-  $result = mysql_query("SELECT * FROM post;");
+  $result = mysql_query("SELECT * FROM Post;");
   $num_rows = mysql_num_rows($result);
 
   return $num_rows;
@@ -412,7 +412,7 @@ public function getAllPosts(){
 
 function get_enum_values()
 {
-    $type = mysql_query("SHOW COLUMNS FROM post WHERE Field = 'type'");
+    $type = mysql_query("SHOW COLUMNS FROM Post WHERE Field = 'type'");
     $val = mysql_fetch_assoc($type);
     print_r($val);
     preg_match("/^enum\(\'(.*)\'\)$/", $val, $matches);
@@ -423,7 +423,7 @@ function get_enum_values()
 
 
 public function getAllTypes(){
-    $sql = "SELECT type FROM post";
+    $sql = "SELECT type FROM Post";
     $row = mysql_query($sql);
 
     $results = array();
