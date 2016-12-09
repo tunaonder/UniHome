@@ -234,8 +234,7 @@ INSERT INTO `Post` (`id`, `title`, `description`, `price`, `photoInfo`, `conditi
 (34, 'High tech phone', 'Last used hundred years ago.', 1, '68662-img_5311.jpg', 'Used', 'For Sale', 'Electronic', 'virginia beach, va', '2016-11-14 05:57:27', 2),
 (35, 'VT sweater', 'small. Never used. Selling because it doesn''t fit.', 20, '9537-img_5312.jpg', 'New', 'For Sale', 'Clothing', 'fairfax, va', '2016-11-14 05:59:57', 2),
 (36, '2015 mac book pro', 'selling because I bought a 2016 model.', 2000, '31831-img_5314.jpg', 'Used', 'For Sale', 'Electronic', 'blacksburg, va', '2016-11-14 06:06:56', 2),
-(37, 'Modern desk lamp', 'Bought it from a garage sale. Selling because no longer needed.', 10, '25037-img_5315.jpg', 'Used', 'For Sale', 'Household', 'richmond, va', '2016-11-14 06:09:11', 2),
-(38, 'some furniture!', ' sfdfdsa fsda fdsadfassdfa sfdfdsa fsda fdsadfassdfa sfdfdsa fsda fdsadfassdfa sfdfdsa fsda fdsadfassdfa sfdfdsa fsda fdsadfassdfa', 123, '', 'New', 'For Sale', 'Furniture', '100 Main st', '2016-11-20 21:41:28', 13);
+(37, 'Modern desk lamp', 'Bought it from a garage sale. Selling because no longer needed.', 10, '25037-img_5315.jpg', 'Used', 'For Sale', 'Household', 'richmond, va', '2016-11-14 06:09:11', 2);
 
 -- --------------------------------------------------------
 
